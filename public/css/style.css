@@ -1,0 +1,176 @@
+@font-face {font-family:='mynexa'; scr:url(../fonts/Nexa.woff);}
+#cover {
+
+  width: 100%;
+  height: 730px;
+  background-image: url(../images/cover.png); 
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+#logo img {
+      width: 20vw;
+      margin-left: 15vw; 
+      margin-top: 20px;
+}
+.sign-up {
+   background-color: #12666b !important; 
+   width: 10vw; 
+   height: 60px;
+   margin-top: 450px; 
+   margin-left: 10vw;
+   font-size: 1em;
+}
+#middel {
+  width:100%; 
+  height: 550px;
+}
+#middelimg {
+  float: right; 
+  width: 50vw;
+}
+#middelimg img {
+  width: 50vw;
+}
+#middeltxt {
+  float:left;
+  width: 48vw;
+  margin-top: 36.5px;
+}
+#middeltxt h2 {
+
+  font-family:inherit;
+  display:inline-block;
+  padding-left: 2vw;
+  color: #333333;
+}
+#footer {
+  width:100%;
+  height: 180px; 
+  background-color:#333333;
+}
+#footer img {
+  width: 25vw;
+  padding-top: 20px; 
+  margin-left: 5vw;
+}
+#footer h3 {
+  color: #ebe9e9; 
+  padding-top: 10vh; 
+  float: right; 
+  margin-right:5vw;
+}
+/* profile page */
+.container-fluid{
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+.navbar {
+  border:0;
+}
+.navbar .navbar-default {
+  box-shadow: 0 0 !important;
+}
+.navbar-header .navbar-brand {
+  height: 60px;
+  padding: 0 15px;
+  padding-top: 5px;
+}
+.navbar-nav>li>a {
+  padding-top: 24px
+
+}
+.navbar-header a img {
+      float: left;
+      width: 10vw;
+      margin-left: 15vw; 
+}
+.navbar-text {
+  float: right;
+  margin-left:40vw;
+  margin-top: 22px;
+}
+#profilecontent {
+  width: 100%;
+  height: 700px;
+}
+.row {
+ margin-left:15px;
+ margin-top: 80px; 
+ margin-right: 0px;
+}
+.my {
+  float: left;
+}
+.md-padding{
+  margin-left: 50px;
+  background-color: transparent;
+}
+.thumbnail {
+  background-color: #edebeb;
+}
+.search{
+  width: 100%;
+}
+.friends {
+  margin-top: 10px;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+
+  /*home menu*/
+.bg {
+  background-color: #004040 !important;
+  color: white;
+}
+.left {
+  margin: 50 auto;
+  margin-left: 25%
+}
+.colored {
+  color: #004040 !important;
+}
+
+.center {
+    margin: 2em auto;
+    padding: 0.5;
+}
+
+.circle {
+  width: 25vh;
+    margin: 0 auto;
+}
+
+
+
+
+
+/*Date picker*/
+
+.datepickerdemoBasicUsage {
+  /** Demo styles for mdCalendar. */ }
+  .datepickerdemoBasicUsage md-content {
+    padding-bottom: 200px; }
+  .datepickerdemoBasicUsage .validation-messages {
+    font-size: 12px;
+    color: #dd2c00;
+    margin-left: 15px; }
