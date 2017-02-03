@@ -25,6 +25,7 @@
   <!-- Angular Material Library -->
   <script src="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.1/angular-material.js"></script>
   <script src="{{url('/js/app.js')}}"></script>
+  <script src="{{url('/js/angular-filter.min.js')}}"></script>
   <script type="text/javascript" src="{{url('js/profileCtrl.js')}}" ></script>
   <script type="text/javascript" src="{{url('js/boxCtrl.js')}}" ></script>
   <script type="text/javascript" src="{{url('js/rateCtrl.js')}}" ></script>
@@ -71,8 +72,8 @@
 		@if (!Auth::user()->invited($friend->id, $project->id))
 			{{$friend->fname . ' ' . $friend->lname}}
 			<input type="checkbox" value="{{$friend->id}}" ng-click="inviteToggle({{$friend->id}})">
-		@endif
 		<br>
+		@endif
 	@endforeach
 </div>
 

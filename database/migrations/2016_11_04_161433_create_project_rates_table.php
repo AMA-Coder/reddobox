@@ -17,6 +17,8 @@ class CreateProjectRatesTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('project_id');
+            $table->integer('rate');
+            $table->string('review');            
             $table->timestamps();
         });
     }

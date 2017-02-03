@@ -138,9 +138,9 @@
 
 
   /*home menu*/
-.bg {
+.bg{
   background-color: #004040 !important;
-  color: white;
+  color: white !important;
 }
 .left {
   margin: 50 auto;
@@ -174,3 +174,4 @@
     font-size: 12px;
     color: #dd2c00;
     margin-left: 15px; }
+

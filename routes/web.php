@@ -174,14 +174,19 @@ Route::group(['prefix' => 'rate', 'middleware' => 'auth'], function () {
 	    	$project->user()->associate(User::find($id));
 	    	$project->save();
 	    })->name('new_project');
-	    Route::post('/rate/{project_id}', function ($user_id, $project_id) {
-	    	$check = projectRate::whereUserId($user_id)->whereProjectId($project_id)->get();
+	    Route::post('/rate/{project_id}', function ($user_id, $project_id, Request $request) {
+	    	$check = projectRate::whereUserId($user_id)->whereProjectId($project_id)->first();
 	    	if(count($check)>0) {
-	    		return ['check' => false];
+		    	$check->rate = $request['rate'];
+		    	$check->review = $request['review'];
+		    	$check->save();
+	    		return ['check' => true];
 	    	}else{
 		    	$rate = new projectRate();
 		    	$rate->user()->associate(User::find($user_id));
 		    	$rate->project()->associate(User::find($project_id));
+		    	$rate->rate = $request['rate'];
+		    	$rate->review = $request['review'];
 		    	$rate->save();
 	    		return ['check' => true];
 	    	}

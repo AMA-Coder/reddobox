@@ -6,7 +6,7 @@ app.controller('professionalCtrl', function ($scope, $mdDialog, $http, $rootScop
          parent: parentEl,
          targetEvent: $event,
          template:`
-           <md-dialog aria-label="List dialog">
+           <md-dialog aria-label="List dialog" style="width: 40%; padding: 10px; color: black !important">
              <md-dialog-content>
              	<br>
 		          <md-input-container class="md-block" flex-gt-sm>
@@ -18,12 +18,12 @@ app.controller('professionalCtrl', function ($scope, $mdDialog, $http, $rootScop
 		            </md-select>
 		          </md-input-container>
 		          <br>
-			      <md-input-container>
+			      <md-input-container class="md-block" flex-gt-sm>
 			        <label>Enter the Title</label>
 			        <input ng-model="project.title">
 			      </md-input-container>
 			      <br>
-			      <md-input-container>
+			      <md-input-container class="md-block" flex-gt-sm>
 			        <label>Enter the Description</label>
 			        <textarea md-maxlength="150" rows="5" md-select-on-focus ng-model="project.desc">
 			        </textarea>
@@ -126,12 +126,17 @@ app.controller('projectCtrl', function ($scope, $mdDialog, $http, $rootScope) {
    	  }
     }
 
-    $scope.Rate = function (user_id, project_id) {
-      $http.post('/rate/professional/' + user_id + '/rate/' + project_id).then(function (result) {
+    $scope.rateModel = [];
+
+    $scope.Rate = function (user_id, project_id, rate, review) {
+      $http.post('/rate/professional/' + user_id + '/rate/' + project_id, {
+        rate: rate,
+        review: review,
+      }).then(function (result) {
         if (result.data.check == true) {
-          alert('Done');
+          swal('Done');
         }else{
-          alert('Already rated')
+          swal('Error');
         }
       });
     }

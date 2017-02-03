@@ -44,7 +44,7 @@
       <div id="logo">
         <img src="images/logo.png">
       </div>
-      <div class="dialog-demo-content" layout="row" layout-wrap layout-margin layout-align="margin-left">
+      <div class="dialog-demo-content" style="margin-top: -100px" layout="row" layout-wrap layout-margin layout-align="margin-left">
         <md-button class="md-primary md-raised sign-up" ng-click="signupPrompt()">
             Sign up
         </md-button>
