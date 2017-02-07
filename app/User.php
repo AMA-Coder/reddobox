@@ -122,7 +122,7 @@ class User extends Authenticatable
             $invitation->fromUser()->associate(Auth::user());
             $invitation->save();
             $text = $this->fname . ' has added you to a project so you can rate.';
-            $url = '/rate/professional/' . $this->id;
+            $url = '/rate/project/' . $projectID;
             $user->newNotification($user->id, $this->id, $text, $url);
         }
     }

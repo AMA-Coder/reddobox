@@ -174,13 +174,15 @@ Route::group(['prefix' => 'rate', 'middleware' => 'auth'], function () {
 	    	$project->user()->associate(User::find($id));
 	    	$project->save();
 	    })->name('new_project');
-	    Route::post('/rate/{project_id}', function ($user_id, $project_id, Request $request) {
+	    Route::post('/project/rate', function (Request $request) {
+	    	$project_id = $request['project_id'];
+	    	$project = Project::find($project_id);
+	    	$user_id = Auth::id();
 	    	$check = projectRate::whereUserId($user_id)->whereProjectId($project_id)->first();
 	    	if(count($check)>0) {
 		    	$check->rate = $request['rate'];
 		    	$check->review = $request['review'];
 		    	$check->save();
-	    		return ['check' => true];
 	    	}else{
 		    	$rate = new projectRate();
 		    	$rate->user()->associate(User::find($user_id));
@@ -188,11 +190,30 @@ Route::group(['prefix' => 'rate', 'middleware' => 'auth'], function () {
 		    	$rate->rate = $request['rate'];
 		    	$rate->review = $request['review'];
 		    	$rate->save();
-	    		return ['check' => true];
 	    	}
+            $text = Auth::user()->fname . ' rated and reviewed your '. $project->type . '.';
+            $url = '/rate/project/' . $project_id;
+            Auth::user()->newNotification($project->user->id, Auth::id(), $text, $url);
+    		return ['check' => true];
 	    });
+
+	    Route::post('get_my_rate_on_a_project', function(Request $request) {
+	    	$project_id = $request['project_id'];
+	        return projectRate::whereUserId(Auth::id())->whereProjectId($project_id)->first();
+	    });
+
 	});
 
+    Route::get('project/{id}', function($id) {
+        $project = Project::find($id);
+        $user = $project->user;
+        if($project->user->id == Auth::id()) {
+			$rates = $project->rates->sortByDesc('updated_at');
+        }else{
+        	$rates = [];
+        }
+        return view('rate.project', compact('user', 'project', 'rates'));
+    });
 });
 
 Route::group(['prefix' => 'invite'], function() {
@@ -200,7 +221,7 @@ Route::group(['prefix' => 'invite'], function() {
     Route::get('{project_id}', function($project_id) {
         //
         $project = Project::find($project_id);
-        $users = User::all();
+        $users = User::all()->except(Auth::id());
         return view('invite', compact('project', 'users'));
     });
 	Route::post('toggle/{id}', function($id, Request $request) {

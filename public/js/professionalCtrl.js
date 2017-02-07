@@ -125,19 +125,5 @@ app.controller('projectCtrl', function ($scope, $mdDialog, $http, $rootScope) {
         $mdDialog.hide();
    	  }
     }
-
-    $scope.rateModel = [];
-
-    $scope.Rate = function (user_id, project_id, rate, review) {
-      $http.post('/rate/professional/' + user_id + '/rate/' + project_id, {
-        rate: rate,
-        review: review,
-      }).then(function (result) {
-        if (result.data.check == true) {
-          swal('Done');
-        }else{
-          swal('Error');
-        }
-      });
-    }
 });
+
