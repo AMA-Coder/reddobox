@@ -20,14 +20,15 @@
 					Your ratings
 				</p>
 		          <div class="col-md-12" style=" min-height: 80%;" ng-controller="showRatesCtrl">
-			          <div class="col-md-9">
-				          <center><h2>Social</h2></center>
-					        <div ng-circles value="socials" class="circle"></div>					          	
+			          <br>
+			          <div style="float: left; clear: both; position: absolute;">
+				          <center><h4>Social</h4></center>
+					        <div style="width: 100px" ng-circles value="socials" class="circle"></div>
 			          </div>
-			          <div class="col-md-9">
-				          <center><h2>Personal</h2></center>
-					        <div ng-circles value="personals" class="circle"></div>					          	
-			          </div>
+			          <div style="float: left; clear: both; position: absolute; right: 30px">
+				          <center><h4>Personal</h4></center>
+					        <div style="width: 100px" ng-circles value="personals" class="circle"></div>	
+			          </div>				          	
 		          </div>
           <script type="text/javascript">
           	app.controller('showRatesCtrl', function ($scope, $http) {

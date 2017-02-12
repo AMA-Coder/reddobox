@@ -44,11 +44,30 @@
 		$scope.friends = JSON.parse('{!! json_encode(Auth::user()->getFriends()) !!}');
 		console.log($scope.friends)
 		console.log('a')
-	$scope.inviteToggle = function (id) {
-		$http.post('/invite/toggle/' + id, {
-			projectID: {{$project->id}},
+		$scope.inviteToggle = function (id) {
+			$http.post('/invite/toggle/' + id, {
+				projectID: {{$project->id}},
+			})
+		}
+
+		$scope.$watch('search', function () {
+		  $scope.r = $scope.search;
+		  $http.post('/get/uninvited/users', {
+		    'search': $scope.search,
+		    'project_id': {!! $project->id !!}
+		  }).then(function (result) {
+		    setTimeout(function() {
+		      if(result.data.users.length > 0) {
+		        $scope.results = result.data.users;
+		        $scope.$apply();
+		      }else{
+		        $scope.results = false;
+		      }
+		      console.log(result)
+		    }, 0);
+		  })
 		})
-	}
+
 	})
 </script>
 </head>
@@ -68,12 +87,31 @@
 	@if (count(Auth::user()->getFriends()) == 0)
 		<p>You have no friends yet.</p>
 	@endif
-	@foreach ($users as $friend)
-		@if (!Auth::user()->invited($friend->id, $project->id))
-			{{$friend->fname . ' ' . $friend->lname}}
-			<input type="checkbox" value="{{$friend->id}}" ng-click="inviteToggle({{$friend->id}})">
-		<br>
-		@endif
-	@endforeach
+		{{-- {{$friend->fname . ' ' . $friend->lname}}
+		<input type="checkbox" value="{{$friend->id}}" ng-click="inviteToggle({{$friend->id}})"> --}}
+		<div ng-repeat="friend in users | filter:searchText">
+			@{{friend.fname}} @{{friend.lname}}
+			<input type="checkbox" value="@{{friend.id}}" ng-click="inviteToggle(friend.id)">
+		</div>
+		<div>
+			<form id="searchForm" action="#" ng-submit="$event.preventdefault()">
+			  <input type="search" ng-model="search" placeholder="Find people to Reddo" class="form-control" >
+			</form>
+			<div ng-show="search" class="panel panel-default">
+			<md-progress-linear ng-show="!results" md-mode="indeterminate"></md-progress-linear>
+				<div class="panel-body">
+					<div ng-show="results.length" ng-repeat="user in results">
+						@if (!Auth::user()->invited('@{{user.id}}', $project->id))
+							@{{user.full_name}} 
+							<input type="checkbox" value="@{{user.id}}" ng-click="inviteToggle(user.id)">
+						@endif
+					</div>
+					<div ng-show="!results">
+						No results were found for "@{{r}}".
+					</div>
+				</div>
+			</div>
+		</div>
+	<br>
 </div>
 

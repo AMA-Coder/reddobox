@@ -164,13 +164,13 @@
 			</center>
 		@else
           <div class="col-md-9" style=" height: auto;" ng-controller="showRatesCtrl">
-	          <div class="col-md-6">
-		          <center><h2>Personal</h2></center>
-			        <div ng-circles value="personals" class="circle"></div>					          	
-	          </div>
 	          <div class="col-md-5">
 		          <center><h2>Social</h2></center>
 			        <div ng-circles value="socials" class="circle"></div>					          	
+	          </div>
+	          <div class="col-md-6">
+		          <center><h2>Personal</h2></center>
+			        <div ng-circles value="personals" class="circle"></div>					          	
 	          </div>
           </div>
           @if (!Auth::user()->isFriendWith($user))

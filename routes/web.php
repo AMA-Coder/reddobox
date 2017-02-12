@@ -361,14 +361,14 @@ Route::post('readNotification', function(Request $request) {
     //
 	if($request['id'] !== null) {
 	    $tmp = Notification::find($request['id']);
-	    $tmp->state = 0;
-	    $tmp->save();
+	    // $tmp->state = 0;
+	    // $tmp->save();
 	    return $tmp;
 	}
 	if($request['text'] !== null) {
 	    $tmp = Notification::whereUserId(Auth::id())->whereText($request['text'])->get();
 	    foreach ($tmp as $key) {
-		    $key->state = 0;
+		    // $key->state = 0;
 		    $key->save();
 	    }
 	    return $request['text'];
@@ -377,7 +377,7 @@ Route::post('readNotification', function(Request $request) {
 		$id = $request['from_id'];
 		$tmp = Notification::where('from_id',$id)->whereUserId(Auth::id())->whereState(1)->get();
 		foreach ($tmp as $key) {
-			$key->state = 0;
+			// $key->state = 0;
 			$key->save();
 		}
 		return $tmp;
@@ -408,6 +408,34 @@ Route::post('get/users', function(Request $request) {
 	    		return false;
 	    	}
 	    }
+		return ['users' => $check];
+    }else{
+    	return ['users' => []];
+    }
+});
+
+Route::post('get/uninvited/users', function(Request $request) {
+    //
+    $query = $request['search'];
+    if(strlen($query) > 2) {
+	    $check = User::where('email', 'Like', '%' . $query . '%')
+	    ->orWhere('full_name', 'Like', '%' . $query . '%')->get();
+	    function check($x) {
+	    	if(count($x) > 0) {
+	    		return true;
+	    	}else{
+	    		return false;
+	    	}
+	    }
+
+		$index = 0;
+	    foreach ($check as $val) {
+	    	if (Auth::user()->invited($val->id, $request['project_id'])) {
+	    		unset($val);
+	    	}
+		    $index++;
+	    }
+
 		return ['users' => $check];
     }else{
     	return ['users' => []];

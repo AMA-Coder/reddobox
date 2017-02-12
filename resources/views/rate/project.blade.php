@@ -58,7 +58,7 @@
 						<p><h4>How do you rate this {{$project->type}}?</h4></p>
 					      <md-slider-container>
 					        <md-icon md-svg-icon="device:brightness-low"></md-icon>
-					        <md-slider ng-model="rateModel.rate"></md-slider>
+					        <md-slider ng-model="rateModel.rate" md-discrete=""></md-slider>
 					      </md-slider-container>
 					      <hr>
 						<p><h4>Write a short review about {{$project->title}}</h4></p>

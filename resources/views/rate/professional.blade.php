@@ -25,7 +25,7 @@
 						<div class="col-sm-6 col-md-3 my friends" ng-controller="projectCtrl">
 							<center>
 							<div class="thumbnail">
-								<h3>{{$project->title}} ({{$project->type}})</h3>
+								<h3><a href="/rate/project/{{$project->id}}">{{$project->title}} ({{$project->type}})</a></h3>
 								<h4>{{$project->description}}</h4>
 							@if (Auth::id() == $id)
 								<h4><a class="btn btn-default" onclick='window.open("/invite/{{$project->id}}", "", "width=330, height=500");'>Add people to this project</a></h4>
