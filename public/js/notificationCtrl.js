@@ -1,24 +1,34 @@
 app.controller('notificationCtrl', function ($scope, $http, $window) {
 	$scope.x = 0;
 	$scope.notes = [];
-	$http.get('/get/notifications').then(function (result) {
-		$scope.notifications = result.data.notifications;
-		console.log(result)
-		$scope.haveNotifications = false;
-		
-		for (var i = $scope.notifications.length - 1; i >= 0; i--) {
-			if($scope.notifications[i].state == 1) {
-				$scope.x += 1;
-			}
-			if($scope.notifications[i].state == 1) {
-				$scope.haveNotifications = true;
-			}
-			if($scope.notifications[i].state == 1) {
-				$scope.notes.push($scope.notifications[i]);
-			}
 
-		}
-	})
+	function getNotifications() {
+		$http.get('/get/notifications').then(function (result) {
+			$scope.notifications = result.data.notifications;
+			console.log(result)
+			$scope.haveNotifications = false;
+			
+			$scope.x = 0;
+
+			for (var i = $scope.notifications.length - 1; i >= 0; i--) {
+				if($scope.notifications[i].state == 1) {
+					$scope.x += 1;
+				}
+				if($scope.notifications[i].state == 1) {
+					$scope.haveNotifications = true;
+				}
+				if($scope.notifications[i].state == 1) {
+					$scope.notes.push($scope.notifications[i]);
+				}
+
+			}
+		})
+	}
+
+	getNotifications();
+
+
+	setInterval(getNotifications, 60000)
 	
 	$scope.getCount = function (i) {
 	    var iCount = iCount || 0;
@@ -38,5 +48,11 @@ app.controller('notificationCtrl', function ($scope, $http, $window) {
 				$window.location.href = href;
 			}
 		})
+	}
+
+	$scope.limit = 2;
+	$scope.showMore = function (event) {
+		event.stopPropagation();
+		$scope.limit += 2;
 	}
 })

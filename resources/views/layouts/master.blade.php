@@ -95,7 +95,7 @@
 				<a class="navbar-brand" href="/dashboard"><img src="/images/logo.png"></a>
 				<p class="navbar-text">
 {{-- <a href="/profile/{{Auth::id()}}">{{Auth::user()->fname}} {{Auth::user()->lname}}</a> --}}
-				<a href="/profile/{{Auth::id()}}">{{Auth::user()->fname}} {{Auth::user()->lname}}</a></p>
+				<a href="/profile/{{Auth::id()}}">{{Auth::user()->fname}}</a></p>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -103,13 +103,20 @@
 					<li class="dropdown" ng-controller="notificationCtrl">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications </span><span class="caret"></span>  <span class="label label-pill label-warning">@{{x}}</span></a>
 						<ul style="width: 160%" class="dropdown-menu">
-							<div ng-repeat="note in notes | unique:'text'">
+							<div ng-repeat="note in notes | unique:'text' | limitTo:limit">
 								<li><p style="padding: 10px" ng-click="read(note.text, note.url)"> @{{note.text}}
 									<span class="label label-pill label-warning">
 										@{{getCount(note.text)}}
-									</span>
-								</p></li>
-								<li role="separator" class="divider"></li>
+									</span> 
+									<br>
+									<br>
+								<span style="color: grey; font-size: 70%;"> @{{note.updated_at_humans}}</span>
+								</p>
+								</li>
+								{{-- <li role="separator" class="divider" style="position: absolute;"></li> --}}
+							</div>
+							<div ng-show="haveNotifications">
+								<button style="width: 100%" type="button" class="btn btn-default" ng-click="showMore($event)">Show More</button>
 							</div>
 							<div ng-show="!haveNotifications">
 								<p style="padding: 20px">You have no new notifications.</p>

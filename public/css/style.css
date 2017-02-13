@@ -1,5 +1,14 @@
 /*font Awesome http://fontawesome.io*/
 @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
+
+#red-slider .md-thumb:after, #red-slider .md-track{
+    background-color: greenyellow !important;
+    border-color: greenyellow !important;
+}
+#red-slider .md-focus-thumb, #red-slider .md-focus-ring{
+    background-color: greenyellow;
+}
+
 /*Comment List styles*/
 .comment .row {
   margin-bottom: 0px;

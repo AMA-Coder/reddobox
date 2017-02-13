@@ -37,6 +37,26 @@
 						</div>
 					@endif
 				@endforeach
+				<div class="col-md-12">
+					@if (count($invitations) > 0)
+						<center>
+							<h2>Projects you were invited it: </h2>
+						</center>
+					@endif
+					@if ($id == Auth::id())
+						@foreach ($invitations as $invitation)
+							<div class="col-sm-6 col-md-3 my friends" ng-controller="projectCtrl">
+								<center>
+								<div class="thumbnail">
+									<h3><a href="/rate/project/{{$invitation->project->id}}">{{$invitation->project->title}}</a> By <a href="/profile/{{$invitation->fromUser->id}}">{{$invitation->fromUser->full_name}}</a></h3>
+									<h4>{{$invitation->project->description}}</h4>
+									<h4><a onclick="window.location='/rate/project/{{$invitation->project->id}}'" class="btn btn-default">Rate</a></h4>
+								</div>
+								</center>
+							</div>
+						@endforeach
+					@endif
+				</div>
 			</div>
 		</div>
 	</div>
