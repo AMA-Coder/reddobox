@@ -115,8 +115,13 @@
 								</li>
 								{{-- <li role="separator" class="divider" style="position: absolute;"></li> --}}
 							</div>
-							<div ng-show="haveNotifications">
+							<div ng-show="haveNotifications && !noMore">
 								<button style="width: 100%" type="button" class="btn btn-default" ng-click="showMore($event)">Show More</button>
+							</div>
+							<div ng-show="noMore">
+								<center>
+									<p style="padding: 20px">No more to load.</p>
+								</center>
 							</div>
 							<div ng-show="!haveNotifications">
 								<p style="padding: 20px">You have no new notifications.</p>

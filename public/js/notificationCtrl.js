@@ -50,9 +50,12 @@ app.controller('notificationCtrl', function ($scope, $http, $window) {
 		})
 	}
 
-	$scope.limit = 2;
+	$scope.limit = 5;
 	$scope.showMore = function (event) {
 		event.stopPropagation();
-		$scope.limit += 2;
+		$scope.limit += 5;
+		if($scope.limit >= $scope.x) {
+			$scope.noMore = true;
+		}
 	}
 })
