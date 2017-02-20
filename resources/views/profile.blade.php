@@ -165,11 +165,27 @@
 		@else
           <div class="col-md-9" style=" height: auto;" ng-controller="showRatesCtrl">
 	          <div class="col-md-5">
-		          <center><h2>Social</h2></center>
+		          @if (Auth::user()->isFriendWith($user))
+			          <center>
+			          	<h2>
+				          <a style="cursor: pointer; text-decoration: none" ng-click="social({{$user->id}})">Social</a>
+				       	</h2>
+				      </center>
+		          @else
+		          	<h2><center>Social</center></h2>
+		          @endif
 			        <div ng-circles value="socials" class="circle"></div>					          	
 	          </div>
 	          <div class="col-md-6">
-		          <center><h2>Personal</h2></center>
+		          @if (Auth::user()->isFriendWith($user))
+			          <center>
+			          	<h2>
+				          <a style="cursor: pointer; text-decoration: none" ng-click="personal({{$user->id}})">Personal</a>
+				       	</h2>
+				       </center>
+		          @else
+		          	<h2><center>Personal</center></h2>
+		          @endif
 			        <div ng-circles value="personals" class="circle"></div>					          	
 	          </div>
           </div>
@@ -177,21 +193,21 @@
           	<center>
           		<h2>You can't rate him/her, because he/she is not in your box.</h2>
           	</center>
-          @else
-          	<center ng-controller="profileCtrl">
-	          	<p style="padding-top: 22em">Choose one of the following to rate</p>
-				<button class="btn btn-default" ng-click="social({{$user->id}})">Social</button>
-				<button class="btn btn-default" ng-click="personal({{$user->id}})">Personal</button>
-				<button class="btn btn-default" ng-click="goProf({{$user->id}})">Professional</button>
-          	</center>
-          @endif
-          <div>
-          	
-          </div>
 
-		@endif
+          @endif
+	  @endif
           <script type="text/javascript">
-          	app.controller('showRatesCtrl', function ($scope, $http) {
+          	app.controller('showRatesCtrl', function ($scope, $http, $window) {
+
+				$scope.social = function (id) {
+				  $window.location.href = '/rate/social/' + id;
+				}
+				$scope.personal = function (id) {
+				  $window.location.href = '/rate/personal/' + id;
+				}
+				$scope.goProf = function (id) {
+				  $window.location.href = '/rate/professional/' + id;
+				}
 
           		$scope.socials = 0;
           		$scope.personals = 0;
@@ -233,11 +249,16 @@
           </script>
 		</div>
 	<br>
-
-	<hr>
   		<div ng-controller="dashController">
   		<center>
-  			<h2>People in the box</h2>
+  			<h2>People in
+  			@if (Auth::id() == $user->id)
+	  			your
+  			@else
+  				{{$user->gender == 'male' ? 'his' : 'her'}}
+  			@endif
+  			box
+  			</h2>
 	      		<div ng-show="!friends.length">
 	      			<p>There is no people in the box.</p>
 	      		</div>

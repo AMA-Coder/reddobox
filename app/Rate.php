@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\RateTrait;
 
 class Rate extends Model
 {
@@ -12,4 +13,9 @@ class Rate extends Model
     {
     	return $this->belongsTo('App\User');
     }
+
+	public function getTraitName ($id)
+	{
+		return RateTrait::find($id)->name;
+	}
 }

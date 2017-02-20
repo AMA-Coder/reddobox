@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\projectInvitation as Invitation;
 use App\Project;
 use App\Notification;
+use App\Rate;
 
 class User extends Authenticatable
 {
@@ -45,6 +46,39 @@ class User extends Authenticatable
     public function rates()
     {
         return $this->hasMany(Rate::class);
+    }
+
+    public function ratesSortedByFriends ()
+    {
+        $friends = Auth::user()->getFriends();
+        $final_rates = [];
+        for ($i=0; $i < count($friends) ; $i++) {
+            $rates = Auth::user()->rates()->whereFromId($friends[$i]->id)->get()->sortBy('updated_at');
+            $ratesFormed = [];
+            if(count($rates) > 0) {
+                foreach ($rates as $rate) {
+                    if($rate->category == 'social') {
+                        $ratesFormed['social'][] = array(
+                            'traitName' => $rate->getTraitName($rate->rate_trait_id),
+                            'rate' => $rate->rate,
+                            'review' => $rate->review,
+                            'category' => $rate->category,
+                            'updated_at' => $rate->updated_at,
+                        );
+                    }else{
+                        $ratesFormed['personal'][] = array(
+                            'traitName' => $rate->getTraitName($rate->rate_trait_id),
+                            'rate' => $rate->rate,
+                            'review' => $rate->review,
+                            'category' => $rate->category,
+                            'updated_at' => $rate->updated_at,
+                        );
+                    }
+                }
+                $final_rates[] = $ratesFormed;
+            }
+        }
+        return $final_rates;
     }
 
     public function requests() 

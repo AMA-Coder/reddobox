@@ -16,19 +16,20 @@
                 	</center>
                 @endif
  --}}              
-				<p>
-					Your ratings
-				</p>
 		          <div class="col-md-12" style=" min-height: 80%;" ng-controller="showRatesCtrl">
 			          <br>
 			          <div style="float: left; clear: both; position: absolute;">
-				          <center><h4>Social</h4></center>
-					        <div style="width: 100px" ng-circles value="socials" class="circle"></div>
-			          </div>
-			          <div style="float: left; clear: both; position: absolute; right: 30px">
-				          <center><h4>Personal</h4></center>
+				          <a href="/rate/details">
+					          <center><h4><i class="fa fa-user"></i> Personal</h4></center>
 					        <div style="width: 100px" ng-circles value="personals" class="circle"></div>	
+					      </a>
 			          </div>				          	
+			          <div style="float: left; clear: both; position: absolute; right: 30px">
+				          <a href="/rate/details">
+					          <center><h4><i class="fa fa-users"></i> Social</h4></center>
+					        <div style="width: 100px" ng-circles value="socials" class="circle"></div>
+				          </a>
+			          </div>
 		          </div>
           <script type="text/javascript">
           	app.controller('showRatesCtrl', function ($scope, $http) {
@@ -53,16 +54,20 @@
           				social_sum += social_filtered[i].rate;
           			}
           			$scope.socials = Math.round(social_sum/(social_filtered.length));
-          			console.log($scope.socials)
+
 
           			var personals = result.data.personals;
-          			personal = 0;
+          			var personal_filtered = [];
           			for (var i = personals.length - 1; i >= 0; i--) {
-          				var temp = personals[i].one + personals[i].two + personals[i].three;
-          				personal = personal + temp;
+          				if(personals[i].rate != 0) {
+          					personal_filtered.push(personals[i]);
+          				}
           			}
-          			$scope.personals = Math.round(personal*100/(personals.length*300));
-
+          			var personal_sum = 0;
+          			for (var i = 0; i < personal_filtered.length; i++) {
+          				personal_sum += personal_filtered[i].rate;
+          			}
+          			$scope.personals = Math.round(personal_sum/(personal_filtered.length));
           		})
           	})
           </script>
@@ -100,8 +105,7 @@
 			                <div class="thumbnail">
 			                  <img width="200px" src="{{url('uploads/images/')}}/@{{friend.avatar}}" >
 			                  <div class="caption">
-			                    <h4> @{{friend.fname}} @{{friend.lname}} </h4>
-			                    <p><a href="/profile/@{{friend.id}}" class="btn btn-default" role="button">Reddo @{{friend.fname}}</a></p>
+			                    <h4><a href="/profile/@{{friend.id}}">@{{friend.fname}} @{{friend.lname}}</a></h4>
 			                  </div>
 			                </div>
 			              </div>
@@ -134,6 +138,10 @@
         </div>
         </div><!-- /.container-fluid -->
       </div>
+
+      <script type="text/javascript">
+      	var id = {{Auth::id()}};
+      </script>
 
 {{-- 		<center>
 		<div ng-controller="DemoBasicCtrl as ctrl">

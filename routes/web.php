@@ -71,36 +71,52 @@ Route::group(['middleware' => ['auth']], function () {
 	});
 
 	Route::group(['prefix' => 'rate', 'middleware' => 'auth'], function () {
+
+		Route::get('details', function() {
+			// return Auth::user()->getFriends();
+			$rates = Auth::user()->ratesSortedByFriends();
+		    return view('rate.details', compact('rates'));
+		});
+
 		Route::get('get_traits/{cat}', function($cat) {
 		    return ['traits' => App\RateTrait::whereType($cat)->get()];
 		});
 		Route::post('/social', function (Request $request) {
-			$trait = $request['trait_id'];
-			$check = Rate::whereFromId(Auth::id())->whereUserId($request['id'])
-							->whereCategory('social')
-							->whereRateTraitId($trait)->first();
-			if(count($check) > 0) {
-				$check->rate = $request['rate'];
-				$check->save();
-				// $text = 'Someone rated you socially!';
-				// $url = '/profile/' . $request['id'];
-				// $user = User::whereId($request['id'])->first();
-				// $user->newNotification($request['id'], Auth::id(), $text, $url);	
-				return ['check' => true];
-			}else{
-				$rate = new Rate([
-					'from_id' => Auth::user()->id,
-					'category' => 'social',
-					'review' => $request['review'],
-					'rate_trait_id' => $trait,
-					'rate' => $request['rate'],
-				]);
-				$user = User::whereId($request['id'])->first();
-				$rate->user()->associate($user);
-				$rate->save();
-				return ['check' => true];
+
+			// return $request['rates'];
+			foreach ($request['rates'] as $trait_id => $value) {
+
+				if($value != null || $value === 0) {
+					$check = Rate::whereFromId(Auth::id())->whereUserId($request['id'])
+									->whereCategory('social')
+									->whereRateTraitId($trait_id)->first();
+					if(count($check) > 0) {
+						$check->rate = $value;
+						$check->review = $request['review'];
+						$check->save();
+						// $text = 'Someone rated you socially!';
+						// $url = '/profile/' . $request['id'];
+						// $user = User::whereId($request['id'])->first();
+						// $user->newNotification($request['id'], Auth::id(), $text, $url);	
+					}else{
+						$rate = new Rate([
+							'from_id' => Auth::user()->id,
+							'category' => 'social',
+							'review' => $request['review'],
+							'rate_trait_id' => $trait_id,
+							'rate' => $value,
+						]);
+						$user = User::whereId($request['id'])->first();
+						$rate->user()->associate($user);
+						$rate->save();
+					}
+				}
+				
 			}
+
+			return ['check' => true];
 		});
+
 		Route::get('/social/{id}', function (Request $request, $id) {
 			// $columns = Schema::getColumnListing('rates');
 			// for ($i=0; $i < count(Schema::getColumnListing('rates'))-1; $i++) { 
@@ -143,27 +159,37 @@ Route::group(['middleware' => ['auth']], function () {
 		    return ['rate' => $rates];
 		});
 		Route::post('/personal', function (Request $request) {
-			$trait = $request['trait_id'];
-			$check = Rate::whereFromId(Auth::id())->whereUserId($request['id'])
-							->whereCategory('personal')
-							->whereRateTraitId($trait)->first();
-			if(count($check) > 0) {
-				$check->rate = $request['rate'];
-				$check->save();
-				return ['check' => true];
-			}else{
-				$rate = new Rate([
-					'from_id' => Auth::user()->id,
-					'category' => 'personal',
-					'review' => $request['review'],
-					'rate_trait_id' => $trait,
-					'rate' => $request['rate'],
-				]);
-				$user = User::whereId($request['id'])->first();
-				$rate->user()->associate($user);
-				$rate->save();
-				return ['check' => true];
+			foreach ($request['rates'] as $trait_id => $value) {
+
+				if($value != null || $value === 0) {
+					$check = Rate::whereFromId(Auth::id())->whereUserId($request['id'])
+									->whereCategory('personal')
+									->whereRateTraitId($trait_id)->first();
+					if(count($check) > 0) {
+						$check->rate = $value;
+						$check->review = $request['review'];
+						$check->save();
+						// $text = 'Someone rated you personally!';
+						// $url = '/profile/' . $request['id'];
+						// $user = User::whereId($request['id'])->first();
+						// $user->newNotification($request['id'], Auth::id(), $text, $url);	
+					}else{
+						$rate = new Rate([
+							'from_id' => Auth::user()->id,
+							'category' => 'personal',
+							'review' => $request['review'],
+							'rate_trait_id' => $trait_id,
+							'rate' => $value,
+						]);
+						$user = User::whereId($request['id'])->first();
+						$rate->user()->associate($user);
+						$rate->save();
+					}
+				}
+
 			}
+
+			return ['check' => true];
 		});
 
 		Route::group(['prefix' => 'professional/{id}'], function() {
@@ -341,9 +367,13 @@ Route::group(['middleware' => ['auth']], function () {
 		});
 	});
 
-	Route::get('getFriends', function() {
-	    //
-	    return ['friends' => Auth::user()->getFriends()];
+	Route::post('getFriends', function(Request $request) {
+
+		if(isset($request['id'])) {
+			return ['friends' => User::find($request['id'])->getFriends()];
+		}
+
+		return ['friends' => Auth::user()->getFriends()];
 	});
 
 	Route::get('get/friendsRequests', function() {
@@ -374,14 +404,14 @@ Route::group(['middleware' => ['auth']], function () {
 	    //
 		if($request['id'] !== null) {
 		    $tmp = Notification::find($request['id']);
-		    // $tmp->state = 0;
-		    // $tmp->save();
+		    $tmp->state = 0;
+		    $tmp->save();
 		    return $tmp;
 		}
 		if($request['text'] !== null) {
 		    $tmp = Notification::whereUserId(Auth::id())->whereText($request['text'])->get();
 		    foreach ($tmp as $key) {
-			    // $key->state = 0;
+			    $key->state = 0;
 			    $key->save();
 		    }
 		    return $request['text'];

@@ -219,8 +219,11 @@ $scope.myFunct = function(user, keyEvent) {
   });
 
 app.controller('dashController', function ($scope, $http, $timeout, $q, $log) {
+
     $scope.getFriends = function () {
-      $http.get('/getFriends').then(function (result) {
+      $http.post('/getFriends', {
+        id: id
+      }).then(function (result) {
         $scope.friends = result.data.friends;
         console.log($scope.friends)
       });

@@ -97,13 +97,4 @@ app.controller('profileCtrl', function ($scope, $http, $window) {
 		});
 	}
 
-    $scope.social = function (id) {
-      $window.location.href = '/rate/social/' + id;
-    }
-    $scope.personal = function (id) {
-      $window.location.href = '/rate/personal/' + id;
-    }
-    $scope.goProf = function (id) {
-      $window.location.href = '/rate/professional/' + id;
-    }
 });

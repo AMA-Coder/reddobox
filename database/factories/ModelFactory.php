@@ -25,3 +25,17 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'password' => $password ?: $password = bcrypt('secret'),
     ];
 });
+
+$factory->define(App\Rate::class, function (Faker\Generator $faker) {
+    $cats = ['social', 'personal'];
+    return [
+        'user_id' => rand(1, 10000),
+        'from_id' => rand(1, 10000),
+        'category' => $cats[rand(0, 1)],
+        'rate_trait_id' => rand(0, 24),
+        'rate' => rand(0, 100),
+        'review' => str_random(100)
+    ];
+});
+
+// factory(App\Rate::class)->make();

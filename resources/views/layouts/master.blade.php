@@ -19,7 +19,7 @@
   <script src="{{url('js/bootstrap.min.js')}}"></script>
     <script src="//rawgit.com/lugolabs/circles/master/circles.js"></script>
     <script src="//rawgit.com/ActivKonnect/angular-circles/master/angular-circles.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <script src=" {{url('/js/ngFacebook.js')}} "></script>
   <!-- Angular Material Library -->
@@ -95,7 +95,7 @@
 				<a class="navbar-brand" href="/dashboard"><img src="/images/logo.png"></a>
 				<p class="navbar-text">
 {{-- <a href="/profile/{{Auth::id()}}">{{Auth::user()->fname}} {{Auth::user()->lname}}</a> --}}
-				<a href="/profile/{{Auth::id()}}">{{Auth::user()->fname}}</a></p>
+				<a href="/dashboard">{{Auth::user()->fname}}</a></p>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -133,7 +133,8 @@
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span><span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="/rate/professional/{{Auth::id()}}" >Professional box</a></li>
+							<li><a href="/profile/{{Auth::id()}}" >My Profile</a></li>
+							{{-- <li><a href="/rate/professional/{{Auth::id()}}" >Professional box</a></li> --}}
 							<li><a href="/blocks/{{Auth::id()}}" >Block List</a></li>
 							<li><a href="/profile/{{Auth::id()}}">Account settings</a></li>
 							<li role="separator" class="divider"></li>
