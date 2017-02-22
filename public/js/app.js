@@ -172,7 +172,7 @@ app.config(['ngCirclesSettingsProvider', function (ngCirclesSettingsProvider) {
   		}).then(function (data) {
   			console.log(data.data.state)
   			if(data.data.state) {
-  				$scope.showAlert('Done!', 'Check your email to see the confirmation code.', 'Okay!', false);
+  				$scope.showAlert('Done!', 'Your account has been made successfully.', 'Okay!', true);
   			}
   		})
   	}
@@ -196,7 +196,8 @@ $scope.myFunct = function(user, keyEvent) {
             $scope.showAlert('Error', 'Email and Password Don\'t match!', 'Try again!', true);
           }
         }else{
-            $scope.showAlert('Error', 'Your account is not verified yet, Please check your mail to verify your account.', 'Okay!', false);
+            $scope.showAlert('Error', 'Email and Password Don\'t match!', 'Try again!', true);
+            // $scope.showAlert('Error', 'Your account is not verified yet, Please check your mail to verify your account.', 'Okay!', false);
         }
   		})
   	}
@@ -234,7 +235,7 @@ app.controller('dashController', function ($scope, $http, $timeout, $q, $log) {
 
     $scope.$watch('search', function () {
       $scope.r = $scope.search;
-      $http.post('get/users', {
+      $http.post('/get/users', {
         'search': $scope.search,
       }).then(function (result) {
         setTimeout(function() {
@@ -248,6 +249,16 @@ app.controller('dashController', function ($scope, $http, $timeout, $q, $log) {
         }, 0);
       })
     })
-})
+});
 
 
+app.controller('loadingCtrl', function ($scope) {
+
+    $scope.loading = true;
+
+    document.onreadystatechange = function () {
+      if (document.readyState == "complete") {
+              $scope.loading = false;
+      }
+    }
+});

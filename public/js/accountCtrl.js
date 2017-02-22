@@ -1,19 +1,19 @@
-app.controller('accountCtrl', function ($scope) {
+app.controller('accountCtrl', function ($scope, $http) {
 	$scope.user = user;
+  if(!$scope.user.dof) {
+    $scope.user.dof = 'dd-mm-yy'
+  }
 	console.log($scope.user)
-	$scope.edit = function () {
-		
+	$scope.edit = function (id) {
+    $http.post('/api/user/edit', {
+      user: $scope.user,
+      id: id
+    }).then(function (res) {
+      if(res.data.check) {
+        swal('Done');
+      }else{
+        swal('Something went wrong, try again')
+      }
+    })
 	}
-	
-  $scope.myDate = new Date();
-
-  $scope.minDate = new Date(
-      $scope.myDate.getFullYear() - 80,
-      $scope.myDate.getMonth(),
-      $scope.myDate.getDate());
-
-  $scope.maxDate = new Date(
-      $scope.myDate.getFullYear() - 15,
-      $scope.myDate.getMonth(),
-      $scope.myDate.getDate());
 });

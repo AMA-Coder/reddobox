@@ -114,9 +114,9 @@
 
 				              <div layout="row">
 						        <md-input-container class="center" flex="30">
-									<label>Enter date</label>
-									<input name="dof" type="text" ng-model="user.daof"
-										ng-pattern="/^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/(19\d\d|20[12]\d)$/">
+									<label>Date of birth</label>
+									<input name="dof" type="text" ng-model="user.dof" ng-change="con()" value="2015-11-30"
+									ng-pattern="/^(0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[012])-(19\d\d|20[12]\d)$/">
 				                <div ng-messages="projectForm.dof.$error">
 				                  <div ng-message-exp="['pattern']">
 				                    Enter your proper birth date.
@@ -140,8 +140,8 @@
 				    </md-dialog-content>
 
 				    <md-dialog-actions layout="row">
-				      <md-button type="submit" style="width: 50%" class="bg left" style="color:white;" ng-disabled="projectForm.$invalid" ng-click="edit(user)">
-				        Submit
+				      <md-button type="submit" style="width: 50%" class="bg left" style="color:white;" ng-disabled="projectForm.$invalid" ng-click="edit({{Auth::id()}})">
+				        Update info
 				      </md-button>
 				    </form>
 				    </md-dialog-actions>
@@ -154,11 +154,11 @@
 		          <div class="col-md-12" style=" height: auto;" ng-controller="showRatesCtrl">
 			          <div class="col-md-6">
 				          <center><h2>Personal</h2></center>
-					        <div ng-circles value="personals" class="circle"></div>					          	
+					        <div ng-circles colors="colors" value="personals" class="circle"></div>					          	
 			          </div>
 			          <div class="col-md-5">
 				          <center><h2>Social</h2></center>
-					        <div ng-circles value="socials" class="circle"></div>					          	
+					        <div ng-circles colors="colors" value="socials" class="circle"></div>					          	
 			          </div>
 		          </div>
 			</center>
@@ -174,7 +174,7 @@
 		          @else
 		          	<h2><center>Social</center></h2>
 		          @endif
-			        <div ng-circles value="socials" class="circle"></div>					          	
+			        <div ng-circles colors="colors" value="socials" class="circle"></div>					          	
 	          </div>
 	          <div class="col-md-6">
 		          @if (Auth::user()->isFriendWith($user))
@@ -186,7 +186,7 @@
 		          @else
 		          	<h2><center>Personal</center></h2>
 		          @endif
-			        <div ng-circles value="personals" class="circle"></div>					          	
+			        <div ng-circles colors="colors" value="personals" class="circle"></div>					          	
 	          </div>
           </div>
           @if (!Auth::user()->isFriendWith($user))
@@ -198,6 +198,8 @@
 	  @endif
           <script type="text/javascript">
           	app.controller('showRatesCtrl', function ($scope, $http, $window) {
+
+          		$scope.colors = ['lightgrey', '#1D7F8D']
 
 				$scope.social = function (id) {
 				  $window.location.href = '/rate/social/' + id;

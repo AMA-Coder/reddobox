@@ -21,18 +21,20 @@
 			          <div style="float: left; clear: both; position: absolute;">
 				          <a href="/rate/details">
 					          <center><h4><i class="fa fa-user"></i> Personal</h4></center>
-					        <div style="width: 100px" ng-circles value="personals" class="circle"></div>	
+					        <div style="width: 100px" ng-circles colors="colors" value="personals" class="circle"></div>	
 					      </a>
 			          </div>				          	
 			          <div style="float: left; clear: both; position: absolute; right: 30px">
 				          <a href="/rate/details">
 					          <center><h4><i class="fa fa-users"></i> Social</h4></center>
-					        <div style="width: 100px" ng-circles value="socials" class="circle"></div>
+					        <div style="width: 100px" ng-circles colors="colors" value="socials" class="circle"></div>
 				          </a>
 			          </div>
 		          </div>
           <script type="text/javascript">
           	app.controller('showRatesCtrl', function ($scope, $http) {
+
+          		$scope.colors = ['lightgrey', '#1D7F8D']
 
           		$scope.socials = 0;
           		$scope.personals = 0;
@@ -105,7 +107,9 @@
 			                <div class="thumbnail">
 			                  <img width="200px" src="{{url('uploads/images/')}}/@{{friend.avatar}}" >
 			                  <div class="caption">
-			                    <h4><a href="/profile/@{{friend.id}}">@{{friend.fname}} @{{friend.lname}}</a></h4>
+				                  <center>
+				                    <h4><a href="/profile/@{{friend.id}}">@{{friend.fname}} @{{friend.lname}}</a></h4>
+				                  </center>
 			                  </div>
 			                </div>
 			              </div>

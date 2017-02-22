@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Friend;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,4 +62,21 @@ Route::group(['prefix' => 'user'], function () {
             return ['confirmed' => false];
         }
 	});
+
+    Route::post('edit', function(Request $request) {
+        $user = User::find($request['id']);
+        $user->fname = $request['user']['fname'];
+        $user->lname = $request['user']['lname'];
+        $user->dof = $request['user']['dof'];
+        $user->email = $request['user']['email'];
+        $user->gender = $request['user']['gender'];
+        $user->save();
+        return ['check' => true];
+    });
+
+    Route::get('test', function() {
+        $d=mktime(0, 0, 0, 8, 12, 2014);
+        // echo new Carbon('Sun Jan 01 2017 00:00:00 GMT+0200 (EET)');
+        return Auth::user();
+    });
 });

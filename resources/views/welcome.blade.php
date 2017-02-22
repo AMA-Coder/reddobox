@@ -141,7 +141,7 @@
               </div>
 
               <div layout="row">
-                <md-input-container flex="50">
+{{--                 <md-input-container flex="50">
                   <label>Date of birth</label>
                   <input required name="dof" type="date" ng-model="user.dof">
                   <div ng-messages="user.dof.$error">
@@ -151,7 +151,7 @@
                     Date of birth
                 </md-tooltip>
                 </md-input-container>
-
+ --}}
                 <md-input-container flex="50">
                   <label>Gender</label>
                   <md-select name="type" ng-model="user.gender" required>

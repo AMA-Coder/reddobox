@@ -143,7 +143,9 @@
 					</li>
 				</ul>
 				</div><!-- /.navbar-collapse -->
+				<md-progress-linear ng-controller="loadingCtrl" ng-show="loading" md-mode="indeterminate"></md-progress-linear>
 			</nav>
+			<!--md-mode	can be select from one of four modes: determinate, indeterminate, buffer or query..-->
 
 				@yield('content')
 			</div>

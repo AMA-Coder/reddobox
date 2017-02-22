@@ -39,10 +39,12 @@
 <hr>
 
     <div ng-repeat="trait in social_traits">
-      <md-checkbox ng-model="bool[trait.id]" ng-click="zeroRate(trait.id)"><h4>@{{trait.name}}</h4></md-checkbox>
+      <md-checkbox class="checkBoxColor" ng-model="bool[trait.id]" ng-click="zeroRate(trait.id)"><h4>@{{trait.name}}</h4></md-checkbox>
       <md-slider-container ng-disabled="!bool[trait.id]">
-        <md-icon md-svg-icon="device:brightness-low"></md-icon>
-        <md-slider ng-model="ss[trait.id]" ng-change="changeBool(trait.id)" aria-label="Disabled 1" flex="" md-discrete="" ng-readonly="readonly"></md-slider>
+      <div flex="10" layout="" layout-align="center center">
+        <span class="md-body-1" ng-show="bool[trait.id]">@{{ss[trait.id]}}%</span>
+      </div>
+        <md-slider id="red-slider" ng-model="ss[trait.id]" ng-change="changeBool(trait.id)" aria-label="red" flex="" ng-readonly="readonly"></md-slider>
       </md-slider-container>
     </div>
     <hr>

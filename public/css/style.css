@@ -1,12 +1,24 @@
 /*font Awesome http://fontawesome.io*/
 @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
 
-#red-slider .md-thumb:after, #red-slider .md-track{
-    background-color: greenyellow !important;
-    border-color: greenyellow !important;
+a {
+  color: #666;
+}
+
+#red-slider .md-thumb:after {
+    background-color: #1D7F8D !important;
+    border-color: #1D7F8D !important;
+}
+#red-slider .md-track{
+    background-color: lightgrey !important;
+    border-color: grey !important;
 }
 #red-slider .md-focus-thumb, #red-slider .md-focus-ring{
-    background-color: greenyellow;
+    background-color: #000;
+}
+
+md-checkbox.md-checked.checkBoxColor .md-icon {
+ background-color: #1D7F8D;
 }
 
 /*Comment List styles*/
