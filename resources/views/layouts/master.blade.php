@@ -83,7 +83,7 @@
 @endif
 
 		<div class="container-fluid"> <!-- container of everything-->
-		<nav class="navbar navbar-default">
+		<nav class="navbar navbar-default" style="zoom: 0.9; padding-left: 100px">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -143,11 +143,14 @@
 					</li>
 				</ul>
 				</div><!-- /.navbar-collapse -->
-				<md-progress-linear ng-controller="loadingCtrl" ng-show="loading" md-mode="indeterminate"></md-progress-linear>
 			</nav>
+				<md-progress-linear style="position: absolute; top: 55px;" ng-controller="loadingCtrl" ng-show="loading" md-mode="indeterminate"></md-progress-linear>
 			<!--md-mode	can be select from one of four modes: determinate, indeterminate, buffer or query..-->
 
-				@yield('content')
+				<div style="zoom: 0.8">
+					@yield('content')
+				</div>
+
 			</div>
 		</body>
 	</body>

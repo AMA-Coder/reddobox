@@ -38,7 +38,7 @@
 							<h1>This user BLOCKED YOU</h1>
 						@else
 							<div ng-show="!isFriend && !hasFriendRequestFrom">
-								<button class="btn btn-default" ng-show="!hasSentRequest" ng-click="sendRequest({{$user->id}}, {{Auth::id()}})">Send request</button>
+								<button class="btn btn-default" ng-show="!hasSentRequest" ng-click="sendRequest({{$user->id}}, {{Auth::id()}})">Add to your box</button>
 								<button class="btn btn-default" ng-show="hasSentRequest" ng-click="removeRequest({{$user->id}})">Remove request</button>
 								<button class="btn btn-default" ng-click="block({{$user->id}})">Block</button>
 							</div>
@@ -163,7 +163,7 @@
 		          </div>
 			</center>
 		@else
-          <div class="col-md-9" style=" height: auto;" ng-controller="showRatesCtrl">
+          <div class="col-md-9" style="height: auto; padding-bottom: 30px" ng-controller="showRatesCtrl">
 	          <div class="col-md-5">
 		          @if (Auth::user()->isFriendWith($user))
 			          <center>
@@ -190,8 +190,8 @@
 	          </div>
           </div>
           @if (!Auth::user()->isFriendWith($user))
-          	<center>
-          		<h2>You can't rate him/her, because he/she is not in your box.</h2>
+          	<center class="col-md-8">
+          		<h2>You can't rate {{Auth::user()->gender == 'male' ? 'him' : 'her'}}, because {{Auth::user()->gender == 'male' ? 'he' : 'she'}}'s not in your box.</h2>
           	</center>
 
           @endif
@@ -275,6 +275,9 @@
           </div>
          </center>
   		</div>
+
+  		<hr>
+  		<br>
 @stop
 <script>
 	var id = {{$user->id}};

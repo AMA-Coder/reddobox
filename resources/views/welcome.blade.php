@@ -40,7 +40,7 @@
 @endif
   <div class="container" ng-controller="DemoBasicCtrl as ctrl"> <!-- container of everything-->
 
-    <div id="cover"> <!-- container of the cover area-->
+    <div id="cover" style="height: 100%"> <!-- container of the cover area-->
       <div id="logo">
         <img src="images/logo.png">
       </div>
@@ -51,21 +51,6 @@
         <md-button class="md-primary md-raised sign-up" ng-click="loginPrompt()">
             Log in
         </md-button>
-      </div>
-    </div>
-    <div id="middel">
-      <div id="middelimg">
-        <img src="images/image.png">
-      </div>
-      <div id="middeltxt">
-          <h2>
-            • Reddo Box is a social and professional web that helps you to
-            know how others see you . You can Reddo others to share your
-            opinion. <br><br><br><br>
-            • The site will deliver your opinion anonymously <br><br><br><br>
-            • You can create events, jobs, projects, or even a relationship to get
-             feedback on.
-          </h2>
       </div>
     </div>
     <div id="footer">

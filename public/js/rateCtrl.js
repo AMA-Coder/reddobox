@@ -52,7 +52,11 @@
             }).then(function (data) {
               if(data.data.check) {
                     $this.button('reset');
-                    swal('Done!');
+                    swal({
+                      title: 'Done!',
+                    }, function () {
+                      window.location.href = '/';
+                    });
                     $scope.notify(user_id, 'Someone rated you socially!');
                 }else{
                     $this.button('reset');
@@ -125,7 +129,11 @@
             }).then(function (data) {
               if(data.data.check) {
                 $this.button('reset');
-                    swal('Done!');
+                    swal({
+                      title: 'Done!',
+                    }, function () {
+                      window.location.href = '/';
+                    });
                     $scope.notify(user_id, 'Someone rated you personally!');
                 }else{
                     swal('Failed, Try again later!');
