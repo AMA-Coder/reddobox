@@ -162,6 +162,10 @@ app.config(['ngCirclesSettingsProvider', function (ngCirclesSettingsProvider) {
   //end prompt
   // sign up
   	$scope.signup = function (user) {
+
+      $scope.loading = [];
+      $scope.loading.register = true;
+
   		$http.post('/api/user/create', {
   			email: user.email,
   			fname: user.fname,
@@ -170,10 +174,13 @@ app.config(['ngCirclesSettingsProvider', function (ngCirclesSettingsProvider) {
   			gender: user.gender,
   			password: user.password,
   		}).then(function (data) {
-  			console.log(data.data.state)
-  			if(data.data.state) {
+        $scope.loading.register = false;
+  			if(data.data.state == true) {
   				$scope.showAlert('Done!', 'Your account has been made successfully.', 'Okay!', true);
   			}
+        if(data.data.state == 'exists') {
+          $scope.showAlert('Done!', 'Email already exists, you can login with your email.', 'Okay!', true);
+        }
   		})
   	}
   // end sign up
@@ -185,20 +192,23 @@ $scope.myFunct = function(user, keyEvent) {
 
   //login
   	$scope.login = function (user, e) {
+      $scope.loading = [];
+      $scope.loading.login = true;
   		$http.post('/api/user/login', {
   			email: user.email,
   			password: user.password,
   		}).then(function (data) {
-        if(data.data.confirmed) {
+        $scope.loading.login = false;
+        // if(data.data.confirmed) {
           if(data.data.state) {
             document.getElementById("projectForm").submit();
           }else{
             $scope.showAlert('Error', 'Email and Password Don\'t match!', 'Try again!', true);
           }
-        }else{
-            $scope.showAlert('Error', 'Email and Password Don\'t match!', 'Try again!', true);
-            // $scope.showAlert('Error', 'Your account is not verified yet, Please check your mail to verify your account.', 'Okay!', false);
-        }
+        // }else{
+        //     $scope.showAlert('Error', 'Email and Password Don\'t match!', 'Try again!', true);
+        //     // $scope.showAlert('Error', 'Your account is not verified yet, Please check your mail to verify your account.', 'Okay!', false);
+        // }
   		})
   	}
   //end login

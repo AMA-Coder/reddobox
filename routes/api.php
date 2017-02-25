@@ -23,15 +23,21 @@ Route::get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'user'], function () {
 	Route::post('/create', function (Request $request, User $user) {
-        $user->email = $request->get('email');
-        $user->fname = $request->get('fname');
-        $user->lname = $request->get('lname');
-        $user->full_name = $request->get('fname') . ' ' .$request->get('lname');
-        $user->dof = $request->get('dof');
-        $user->gender = $request->get('gender');
+
+        $checkExisting = User::whereEmail($request['email'])->first();
+        if(count($checkExisting) > 0) {
+            return ['state' => 'exists'];
+        }
+
+        $user->email = $request['email'];
+        $user->fname = $request['fname'];
+        $user->lname = $request['lname'];
+        $user->full_name = $request['fname'] . ' ' .$request['lname'];
+        $user->dof = $request['dof'];
+        $user->gender = $request['gender'];
         $user->confirmation_code = str_random(30);
         $user->confirmed = 1;
-        $user->password = bcrypt($request->get('password'));
+        $user->password = bcrypt($request['password']);
         $user->save();
 
         // Mail::send('emails.verify', ['code' => $request['confirmation_code']], function ($m) use ($user) {
@@ -52,15 +58,15 @@ Route::group(['prefix' => 'user'], function () {
         return redirect()->route('welcome', compact('confirmed'));
     });
 	Route::post('/login', function (Request $request, User $user) {
-        $user = User::whereEmail($request->get('email'))->first();
-        if($user->confirmed == 1) {
-            if (Auth::attempt(['email' => $request->get('email'), 'password' => $request->get('password')])) {
-                return ['state' => true, 'confirmed' => true];
-            }
-            return ['state' => false, 'confirmed' => true];
-        }else{
-            return ['confirmed' => false];
+        $user = User::whereEmail($request['email'])->first();
+        // if($user->confirmed == 1) {
+        if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
+            return ['state' => true];
         }
+        return ['state' => false];
+        // }else{
+        //     return ['confirmed' => false];
+        // }
 	});
 
     Route::post('edit', function(Request $request) {

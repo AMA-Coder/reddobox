@@ -39,6 +39,13 @@
   <!-- sweet alert -->
   <link rel="stylesheet" type="text/css" href=" {{url('extensions/swal/sweetalert.css')}} ">
   <script type="text/javascript" src="{{url('extensions/swal/sweetalert.min.js')}}" ></script>
+
+	<link rel="stylesheet" type="text/css" href="{{url('css/ns-default.css')}}" />
+
+	<link rel="stylesheet" type="text/css" href="{{url('css/ns-style-growl.css')}}" />
+
+	<script src="{{url('js/notificationFx.js')}}"></script>
+
 	<!--Your HTML content here-->
 	<body ng-app="BlankApp" layout-fill layout="column" ng-cloak>
 
@@ -48,7 +55,7 @@
 	@endif
 
 @if (notify()->ready())
-	<script type="text/javascript">
+{{-- 	<script type="text/javascript">
 		app.controller('notifyCtrl', function (Notification, $http, $window) {
 			swal({
 			  title: "{!! notify()->message() !!}",
@@ -79,8 +86,58 @@
   <div ng-controller="notifyCtrl">
     
 
-  </div>
+  </div> --}}
+
+<script>
+(function() {
+
+	app.controller('notifyCtrl', function ($scope, $http, $window) {
+
+		$scope.seeNow = function() {
+			$http.post('/readNotification', {
+				id: "{!! notify()->option('id') !!}",
+			}).then(function () {
+				$window.location.href = "{!! url(notify()->option('url')) !!}";
+			})
+		}
+
+		$scope.later = function () {
+			$http.post('/laterNotification', {
+				id: "{!! notify()->option('id') !!}",
+			}).then(function () {
+
+			})
+		}
+	})
+// create the notification
+var notification = new NotificationFx({
+	wrapper : document.body,
+	message : `
+		<center ng-controller="notifyCtrl">
+			<p>{!! notify()->message() !!}</p><br>
+		<button type="button" class="btn" id="ns-close" style="background-color: lightgrey; color: #555" ng-click="later()">Later</button>
+		<button type="button" class="btn" style="background-color: lightgrey; color: #555" ng-click="seeNow()">See now</button>
+		</center>
+	`,
+	layout : 'growl',
+	effect : 'slide',
+	type : 'notice',
+	ttl : 6000,
+
+	// callbacks
+	onClose : function() { return false; },
+	onOpen : function() { return false; }
+
+});
+
+// show the notification
+notification.show();
+	})();
+
+</script>
+
 @endif
+
 
 		<div class="container-fluid"> <!-- container of everything-->
 		<nav class="navbar navbar-default" style="zoom: 0.9; padding-left: 100px">
@@ -136,7 +193,7 @@
 							<li><a href="/profile/{{Auth::id()}}" >My Profile</a></li>
 							{{-- <li><a href="/rate/professional/{{Auth::id()}}" >Professional box</a></li> --}}
 							<li><a href="/blocks/{{Auth::id()}}" >Block List</a></li>
-							<li><a href="/profile/{{Auth::id()}}">Account settings</a></li>
+							{{-- <li><a href="/profile/{{Auth::id()}}">Account settings</a></li> --}}
 							<li role="separator" class="divider"></li>
 							<li><a href="/logout"> Logout </a></li>
 						</ul>

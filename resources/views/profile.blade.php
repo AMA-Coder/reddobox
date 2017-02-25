@@ -32,7 +32,7 @@
                 @if ( Auth::id() != $user->id)
 					<div ng-controller="profileCtrl">
 						@if (Auth::user()->hasBlocked($user))
-							<h1>You Blocked Him</h1>
+							<h1>You Blocked {{$user->gender == 'male' ? 'him' : 'her'}}</h1>
 							<button class="btn btn-default" ng-click="unblock({{$user->id}})">Unblock</button>
 						@elseif (Auth::user()->isBlockedBy($user))
 							<h1>This user BLOCKED YOU</h1>
@@ -116,7 +116,7 @@
 						        <md-input-container class="center" flex="30">
 									<label>Date of birth</label>
 									<input name="dof" type="text" ng-model="user.dof" ng-change="con()" value="2015-11-30"
-									ng-pattern="/^(0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[012])-(19\d\d|20[12]\d)$/">
+									ng-pattern="/^(0?[1-9]|[12][0-9]|3[01]|dd)-(0?[1-9]|1[012]|mm)-(yyyy|19\d\d|20[12]\d)$/">
 				                <div ng-messages="projectForm.dof.$error">
 				                  <div ng-message-exp="['pattern']">
 				                    Enter your proper birth date.
@@ -174,7 +174,7 @@
 		          @else
 		          	<h2><center>Social</center></h2>
 		          @endif
-			        <div ng-circles colors="colors" value="socials" class="circle"></div>					          	
+			        <a style="cursor: pointer; text-decoration: none" ng-click="social({{$user->id}})"><div ng-circles colors="colors" value="socials" class="circle"></div></a>					          	
 	          </div>
 	          <div class="col-md-6">
 		          @if (Auth::user()->isFriendWith($user))
@@ -186,12 +186,12 @@
 		          @else
 		          	<h2><center>Personal</center></h2>
 		          @endif
-			        <div ng-circles colors="colors" value="personals" class="circle"></div>					          	
+			        <a style="cursor: pointer; text-decoration: none" ng-click="personal({{$user->id}})"><div ng-circles colors="colors" value="personals" class="circle"></div></a>		          	
 	          </div>
           </div>
           @if (!Auth::user()->isFriendWith($user))
           	<center class="col-md-8">
-          		<h2>You can't rate {{Auth::user()->gender == 'male' ? 'him' : 'her'}}, because {{Auth::user()->gender == 'male' ? 'he' : 'she'}}'s not in your box.</h2>
+          		<h2>You can't rate {{$user->gender == 'male' ? 'him' : 'her'}}, because {{$user->gender == 'male' ? 'he' : 'she'}}'s not in your box.</h2>
           	</center>
 
           @endif

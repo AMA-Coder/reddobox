@@ -55,7 +55,7 @@
                     swal({
                       title: 'Done!',
                     }, function () {
-                      window.location.href = '/';
+                      window.location.href = '/profile/' + user_id;
                     });
                     $scope.notify(user_id, 'Someone rated you socially!');
                 }else{
@@ -132,7 +132,7 @@
                     swal({
                       title: 'Done!',
                     }, function () {
-                      window.location.href = '/';
+                      window.location.href = '/profile/' + user_id;
                     });
                     $scope.notify(user_id, 'Someone rated you personally!');
                 }else{

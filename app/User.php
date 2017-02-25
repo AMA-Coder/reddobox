@@ -50,7 +50,18 @@ class User extends Authenticatable
 
     public function ratesSortedByFriends ()
     {
-        $friends = Auth::user()->getFriends();
+        $friendships = Auth::user()->getAllFriendships();
+        $friends = [];
+        foreach ($friendships as $friendship) {
+            if($friendship->sender_id != Auth::id()) {
+                $user = User::find($friendship->sender_id);
+                $friends[] = $user;
+            }
+            if($friendship->recipient_id != Auth::id()) {
+                $user = User::find($friendship->recipient_id);
+                $friends[] = $user;
+            }
+        }
         $final_rates = [];
         for ($i=0; $i < count($friends) ; $i++) {
             $rates = Auth::user()->rates()->whereFromId($friends[$i]->id)->get()->sortBy('updated_at');

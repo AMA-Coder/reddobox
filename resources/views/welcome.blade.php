@@ -176,8 +176,9 @@
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
-      <md-button type="submit" class="bg" style="color:white;" ng-disabled="projectForm.$invalid" ng-click="signup(user)">
-        Register
+      <md-button type="submit" class="bg" style="color:white;" ng-disabled="projectForm.$invalid || loading.register" ng-click="signup(user)">
+        <span ng-show="!loading.register">Register</span>
+        <span ng-show="loading.register"><i class="fa fa-spinner" aria-hidden="true"></i> Loading</span>
       </md-button>
     </form>
     </md-dialog-actions>
@@ -226,8 +227,9 @@
         </md-dialog-content>
 
         <md-dialog-actions layout="row">
-          <md-button class="bg" style="color:white;" ng-disabled="projectForm.$invalid" ng-click="login(user, event)">
-            Login
+          <md-button class="bg" style="color:white;" ng-disabled="projectForm.$invalid || loading.login" ng-click="login(user, event)">
+            <span ng-show="!loading.login">Login</span>
+            <span ng-show="loading.login"><i class="fa fa-spinner" aria-hidden="true"></i> Loading</span>
           </md-button>
         </form>
         </md-dialog-actions>
