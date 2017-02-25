@@ -158,7 +158,7 @@ notification.show();
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li class="dropdown" ng-controller="notificationCtrl">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications </span><span class="caret"></span>  <span class="label label-pill label-warning">@{{x}}</span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications </span><span class="caret"></span>  <span class="label label-pill label-warning bg">@{{x}}</span></a>
 						<ul style="width: 160%" class="dropdown-menu">
 							<div ng-repeat="note in notes | unique:'text' | limitTo:limit">
 								<li><p style="padding: 10px" ng-click="read(note.text, note.url)"> @{{note.text}}
@@ -201,7 +201,7 @@ notification.show();
 				</ul>
 				</div><!-- /.navbar-collapse -->
 			</nav>
-				<md-progress-linear style="position: absolute; top: 55px;" ng-controller="loadingCtrl" ng-show="loading" md-mode="indeterminate"></md-progress-linear>
+				{{-- <md-progress-linear style="position: absolute; top: 55px;" ng-controller="loadingCtrl" ng-show="loading" md-mode="indeterminate"></md-progress-linear> --}}
 			<!--md-mode	can be select from one of four modes: determinate, indeterminate, buffer or query..-->
 
 				<div style="zoom: 0.8">

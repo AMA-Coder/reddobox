@@ -30,7 +30,7 @@
 				                    	@if($traits['rate'] != 0) 
 											<p>{!! $traits['traitName'] !!} : {!! $traits['rate'] !!}%
 							                    <div style="display: block; height: 10px; width: 100%; background: lightgrey"></div>
-							                    <div style="margin-top: -10px; height: 10px; background: grey; width: {{$traits['rate']}}%;"></div>
+							                    <div style="margin-top: -10px; height: 10px; width: {{$traits['rate']}}%;" class="bg"></div>
 											</p>
 				                    	@endif
 				                    @endforeach
@@ -48,7 +48,7 @@
 				                    	@if($traits['rate'] != 0) 
 											<p>{!! $traits['traitName'] !!} : {!! $traits['rate'] !!}%
 							                    <div style="display: block; height: 10px; width: 100%; background: lightgrey"></div>
-							                    <div style="margin-top: -10px; height: 10px; background: grey; width: {{$traits['rate']}}%;"></div>
+							                    <div style="margin-top: -10px; height: 10px; width: {{$traits['rate']}}%;" class="bg"></div>
 											</p>
 				                    	@endif
 				                    @endforeach
