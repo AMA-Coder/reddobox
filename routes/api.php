@@ -46,10 +46,10 @@ Route::group(['prefix' => 'user'], function () {
         //     $m->to($user->email, $user->name)->subject('Your Verification Code!');
         // });
 
-        $to = "maro.pes2010@gmail.com";
+        $to = $user->email;
         $subject = "Reddobox Verification Code";
 
-        $message = `
+        $message = '
             <!DOCTYPE html>
             <html>
             <head>
@@ -57,11 +57,11 @@ Route::group(['prefix' => 'user'], function () {
             </head>
             <body>
             <center>
-                <h1><a href="/api/user/confirm/` . $user->confirmation_code . `">Click here</a> to Confirm your email.</h1>
+                <h1><a href="/api/user/confirm/' . $user->confirmation_code . '">Click here</a> to Confirm your email.</h1>
             </center>
             </body>
             </html>
-        `;
+        ';
 
         // Always set content-type when sending HTML email
         $headers = "MIME-Version: 1.0" . "\r\n";
