@@ -5,7 +5,7 @@
   <div style="min-height: 70%">
   <div id="profilecontent">
     <div class="row">
-  <div class="col-sm-6 col-md-3 my">
+  <div class="col-sm-6 col-md-4 my">
     <div class="thumbnail">
     <img src="{{url('uploads/images/')}}/{{$user->avatar}}" width="250px" alt="...">
     <div class="caption">
@@ -34,7 +34,8 @@
     var from_id = {{Auth::id()}};
     var user_id = {{$user->id}};
   </script>
-<div class="col-md-8" style=" height: auto; background-color:#edebeb;" ng-controller="personalRateCtrl">
+<div class="col-md-8 col-sm-6"ng-controller="personalRateCtrl">
+<div  style=" height: auto; background-color:#edebeb;padding: 10px;" >
 <h3>Reddo {{$user->fname}} personally</h3>
 <hr>
 
@@ -54,7 +55,7 @@
     <button type="button" id="personal_submit" class="btn bg color btn-lg" id="load" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing">Reddo</button>
     </center>
     <hr>
-      </div>
+      </div></div>
     </div>
 </div>
 

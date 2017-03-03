@@ -24,11 +24,12 @@
 
   <script type="text/javascript" src="{{url('extensions/notifications/angular-ui-notification.min.js')}}" ></script>
   <link rel="stylesheet" href="{{url('extensions/notifications/angular-ui-notification.min.css')}}">
-
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <!-- sweet alert -->
   <link rel="stylesheet" type="text/css" href=" {{url('extensions/swal/sweetalert.css')}} ">
   <script type="text/javascript" src="{{url('extensions/swal/sweetalert.min.js')}}" ></script>
-
+<link rel="stylesheet" type="text/css" href="{{url('css/bootstrap.min.css')}}">
+<script src="{{url('js/bootstrap.min.js')}}"></script>
 <body ng-app="BlankApp" layout-fill layout="column" ng-cloak> 
 <!--Your HTML content here--> 
 @if (isset($_GET['confirmed']) == 1)
@@ -38,31 +39,41 @@
     });
   </script>
 @endif
-  <div class="container" ng-controller="DemoBasicCtrl as ctrl"> <!-- container of everything-->
+  <div class="" ng-controller="DemoBasicCtrl as ctrl"> <!-- container of everything-->
 
     <div id="cover" style="height: 100%"> <!-- container of the cover area-->
-      <div id="logo">
-        <img src="images/logo.png">
+      <div class="row" style="margin: 0px;">
+      	<div class="col-lg-4 col-md-6 col-sm-8 col-xs-12">
+      		<div id="logo">
+        	<img src="images/logo.png">
       </div>
-      <div class="dialog-demo-content" style="margin-top: -100px" layout="row" layout-wrap layout-margin layout-align="margin-left">
-        <md-button class="md-primary md-raised sign-up" ng-click="signupPrompt()">
+      	</div>
+      </div>
+      <div class="dialog-demo-content" style="margin:0px;margin-top: -100px;width: 100%;" layout="row" layout-wrap layout-margin layout-align="margin-left">
+        <div class="row" style="margin-top: 50vh;width: 100%;margin-left: 0px;margin-right: 0px;">
+        	<div class="col-sm-2 col-xs-5 col-xs-offset-1">
+        	<md-button class="md-primary md-raised sign-up" ng-click="signupPrompt()">
             Sign up
         </md-button>
-        <md-button class="md-primary md-raised sign-up" ng-click="loginPrompt()">
+        	</div>
+        	<div class="col-sm-2 col-xs-4">
+        	<md-button class="md-primary md-raised sign-up" ng-click="loginPrompt()">
             Log in
         </md-button>
+        	</div>
+        </div>
       </div>
     </div>
     <div id="footer">
-      <img src="images/logo negative.png">
-      <a href="">
-        <h3>FAQs</h3>
-      </a>
-      <a href="">
-        <h3 style="margin-right:1vw;">Contact US |</h3>
-      </a>
-    
-      
+    <div class="row" style="margin: 0px;">
+    	<div class="col-sm-8 footer-brand"><img src="images/logo negative.png"></div>
+    	<div class="col-sm-2"  style="text-align: center;"><a href="#">
+        <h3 class="footer-link">FAQs</h3>
+      </a></div>
+    	<div class="col-sm-2"  style="text-align: center;"><a href="#">
+        <h3 class="footer-link">Contact US</h3>
+      </a></div>
+    </div>
     </div>
 
 

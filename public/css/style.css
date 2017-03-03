@@ -4,7 +4,12 @@
 a {
   color: #666;
 }
-
+.row{
+	margin:0px;
+}
+body,html{
+	height: auto !important;
+}
 #red-slider .md-thumb:after {
     background-color: #1D7F8D !important;
     border-color: #1D7F8D !important;
@@ -104,18 +109,19 @@ md-checkbox.md-checked.checkBoxColor .md-icon {
   height: 730px;
   background-image: url(../images/cover.png); 
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
+}
+#logo{
+	text-align: center;
 }
 #logo img {
-      width: 20vw;
-      margin-left: 15vw; 
-      margin-top: 20px;
+      width: 80%;
+      margin-top: 1vw;
 }
 .sign-up {
    background-color: #12666b !important; 
    width: 10vw; 
    height: 60px;
-   margin-top: 450px; 
    margin-left: 10vw;
    font-size: 1em;
 }
@@ -144,7 +150,6 @@ md-checkbox.md-checked.checkBoxColor .md-icon {
 }
 #footer {
   width:100%;
-  height: 180px; 
   background-color:#333333;
 }
 #footer img {
@@ -154,9 +159,24 @@ md-checkbox.md-checked.checkBoxColor .md-icon {
 }
 #footer h3 {
   color: #ebe9e9; 
-  padding-top: 10vh; 
-  float: right; 
-  margin-right:5vw;
+}
+@media(min-width:768px){
+	.footer-brand{
+	text-align: left;
+	}
+	.footer-link{
+	width: 100%;
+	margin-top: 10vh;
+	}
+}
+@media(max-width:768px){
+	.footer-brand{
+	text-align: center;
+	}
+	.footer-link{
+	width: 100%;
+	margin-top: 0px;
+	}
 }
 /* profile page */
 .container-fluid{
@@ -181,8 +201,7 @@ md-checkbox.md-checked.checkBoxColor .md-icon {
 }
 .navbar-header a img {
       float: left;
-      width: 10vw;
-      margin-left: 15vw; 
+      height: 100%;
 }
 .navbar-text {
   float: right;
@@ -193,13 +212,14 @@ md-checkbox.md-checked.checkBoxColor .md-icon {
   width: 100%;
   height: 700px;
 }
+/*
 .row {
  margin-left:15px;
  margin-top: 80px; 
  margin-right: 0px;
-}
+}*/
 .my {
-  float: left;
+  /*float: left;*/
 }
 .md-padding{
   margin-left: 50px;

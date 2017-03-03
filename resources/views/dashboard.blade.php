@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('content')
       <div id="profilecontent" ng-controller="dashController">
-        <div class="row">
-          <div class="col-sm-6 col-md-3 my">
+        <div class="container-fluid"><div class="row" style="margin:0px;">
+          <div class="col-md-3 col-sm-5">
             <div class="thumbnail">
 	              <img src="{{url('uploads/images/')}}/{{Auth::user()->avatar}}" width="250px" alt="...">
               <div class="caption">
@@ -16,21 +16,22 @@
                 	</center>
                 @endif
  --}}              
-		          <div class="col-md-12" style=" min-height: 80%;" ng-controller="showRatesCtrl">
-			          <br>
-			          <div style="float: left; clear: both; position: absolute;">
+		          <p><div ng-controller="showRatesCtrl">
+			          <div class="row">
+			          <div class="col-xs-6">
 				          <a href="/rate/details">
 					          <center><h4><i class="fa fa-user"></i> Personal</h4></center>
 					        <div style="width: 100px" ng-circles colors="colors" value="personals" class="circle"></div>	
 					      </a>
 			          </div>				          	
-			          <div style="float: left; clear: both; position: absolute; right: 30px">
+			          <div class="col-xs-6">
 				          <a href="/rate/details">
 					          <center><h4><i class="fa fa-users"></i> Social</h4></center>
 					        <div style="width: 100px" ng-circles colors="colors" value="socials" class="circle"></div>
 				          </a>
 			          </div>
-		          </div>
+			          </div>
+		          </div></p>
           <script type="text/javascript">
           	app.controller('showRatesCtrl', function ($scope, $http) {
 
@@ -77,7 +78,11 @@
  				</div>
             </div>
           </div>
-	          <div class="col-md-9" style=" height: auto;">
+          
+          
+          
+          
+	          <div class="col-md-9 col-sm-7" style=" height: auto;">
 		          <form id="searchForm" action="#" ng-submit="$event.preventdefault()">
 			          <input type="search" ng-model="search" placeholder="Find people to Reddo" class="form-control" >
 			      </form>
@@ -97,7 +102,9 @@
 			      		</div>
 			      	</div>
 			      </div>
+			      
 			      		<hr>
+			      		<div class="row">
 			      		<div ng-show="!friends.length">
 			      			<p>You have no friends, yet.</p>
 			      		</div>
@@ -113,12 +120,11 @@
 			                  </div>
 			                </div>
 			              </div>
-			      		</div>
-	          </div>
-	          <div class="row">
+			      		</div></div>
+			      		<div class="row">
 		          <div class="col-md-9">
 		          <div class="col-sm-6 col-md-4"></div>
-			      		<hr>
+			      		<hr width="100%">
 							<p>Current Requests</p>
 							@if (count(Auth::user()->getFriendRequests()) == 0)
 								<p>You don't have any friends requests currently.</p>
@@ -128,8 +134,8 @@
 									<div class="thumbnail" ng-controller="boxCtrl">
 										<img width="200px" src="{{url('uploads/images/')}}/{{$user->find($friend_request->sender_id)->avatar}}" >
 						                  <div class="caption">
-											<h4><a href="/profile/{{$friend_request->sender_id}}">{{$user->find($friend_request->sender_id)->fname . ' ' .$user->find($friend_request->sender_id)->lname}}</a></h4>
-											<p><a class="btn btn-default" ng-click="acceptFriendRequest({{$friend_request->sender_id}},{{Auth::id()}}, '{{Auth::user()->fname}}', '{{Auth::user()->lname}}')">Accept</a>
+											<h4 style=" text-align: center; "><a href="/profile/{{$friend_request->sender_id}}">{{$user->find($friend_request->sender_id)->fname . ' ' .$user->find($friend_request->sender_id)->lname}}</a></h4>
+											<p style=" text-align: center; "><a class="btn btn-default" ng-click="acceptFriendRequest({{$friend_request->sender_id}},{{Auth::id()}}, '{{Auth::user()->fname}}', '{{Auth::user()->lname}}')">Accept</a>
 											 <a class="btn btn-default" ng-click="denyFriendRequest({{$friend_request->sender_id}})">Deny</a> </p>
 										</div>
 									</div>
@@ -137,7 +143,10 @@
 							@endforeach
 			      		</div>
 			      	</div>
+			      		
 	          </div>
+	          
+	          </div></div>
           </div>
         </div>
         </div><!-- /.container-fluid -->
