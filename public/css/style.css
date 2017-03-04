@@ -1,5 +1,10 @@
 /*font Awesome http://fontawesome.io*/
 @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
+@import url(http://fonts.googleapis.com/css?family=Merriweather);
+
+* {
+  font-family: 'Merriweather', sans-serif;
+}
 
 a {
   color: #666;

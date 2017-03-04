@@ -32,14 +32,25 @@
 <script src="{{url('js/bootstrap.min.js')}}"></script>
 <body ng-app="BlankApp" layout-fill layout="column" ng-cloak> 
 <!--Your HTML content here--> 
+
+
+<script type="text/javascript">
+  var confirmed = false;
+</script>
+
 @if (isset($_GET['confirmed']) == 1)
   <script type="text/javascript">
-    swal({title: 'Confirmed!'}, function () {
-      window.location = '/';
-    });
+
+  var confirmed = true;
+
   </script>
 @endif
+<<<<<<< HEAD
   <div class="" ng-controller="DemoBasicCtrl as ctrl"> <!-- container of everything-->
+=======
+  <div ng-controller="userCtrl"></div>
+  <div class="container" ng-controller="DemoBasicCtrl as ctrl"> <!-- container of everything-->
+>>>>>>> AbdelrahmanSE-master
 
     <div id="cover" style="height: 100%"> <!-- container of the cover area-->
       <div class="row" style="margin: 0px;">

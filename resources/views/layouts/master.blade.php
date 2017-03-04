@@ -163,7 +163,7 @@ notification.show();
 						<ul style="width: 160%" class="dropdown-menu">
 							<div ng-repeat="note in notes | unique:'text' | limitTo:limit">
 								<li><p style="padding: 10px" ng-click="read(note.text, note.url)"> @{{note.text}}
-									<span class="label label-pill label-warning">
+									<span class="label label-pill label-warning bg">
 										@{{getCount(note.text)}}
 									</span> 
 									<br>
@@ -209,6 +209,7 @@ notification.show();
 		</body>
 	</body>
     <div id="footer">
+<<<<<<< HEAD
     <div class="row" style="margin: 0px;">
     	<div class="col-sm-8 footer-brand"><img src="/images/logo negative.png"></div>
     	<div class="col-sm-2"  style="text-align: center;"><a href="#">
@@ -217,5 +218,16 @@ notification.show();
     	<div class="col-sm-2"  style="text-align: center;"><a href="#">
         <h3 class="footer-link">Contact US</h3>
       </a></div>
+=======
+      <img src="/images/logo negative.png">
+      <a href="">
+        <h3>FAQs</h3>
+      </a>
+      <a href="/contact">
+        <h3 style="margin-right:1vw;">Contact US |</h3>
+      </a>
+    
+      
+>>>>>>> AbdelrahmanSE-master
     </div>
 </html>
