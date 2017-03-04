@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('content')
-
+<div class="container-fluid">
         <div class="row">
-          <div class="col-sm-6 col-md-3 my">
+          <div class="col-md-3 col-sm-4">
             <div class="thumbnail">
             	@if (Auth::id() == $user->id)
 					<div class="image-upload">
@@ -135,36 +135,40 @@
 				                </md-tooltip>
 				                </md-input-container>
 				              </div>
-				          </md-content>
-				      </div>
-				    </md-dialog-content>
-
-				    <md-dialog-actions layout="row">
+				               <md-dialog-actions layout="row">
 				      <md-button type="submit" style="width: 50%" class="bg left" style="color:white;" ng-disabled="projectForm.$invalid" ng-click="edit({{Auth::id()}})">
 				        Update info
 				      </md-button>
 				    </form>
 				    </md-dialog-actions>
-				</md-dialog>
-				</div>
-				<hr>
+				    <hr width="95%" align="center">
 				<p>
 					Your ratings
 				</p>
 		          <div class="col-md-12" style=" height: auto;" ng-controller="showRatesCtrl">
-			          <div class="col-md-6">
+			          <div class="col-sm-6">
 				          <center><h2>Personal</h2></center>
 					        <div ng-circles colors="colors" value="personals" class="circle"></div>					          	
 			          </div>
-			          <div class="col-md-5">
+			          <div class="col-sm-6">
 				          <center><h2>Social</h2></center>
 					        <div ng-circles colors="colors" value="socials" class="circle"></div>					          	
 			          </div>
 		          </div>
+				          </md-content>
+				      </div>
+				     
+				    </md-dialog-content>
+
+				    
+				</md-dialog>
+				</div>
+				
 			</center>
 		@else
-          <div class="col-md-9" style="height: auto; padding-bottom: 30px" ng-controller="showRatesCtrl">
-	          <div class="col-md-5">
+          <div class="col-md-9 col-sm-8" style="height: auto; padding-bottom: 30px" ng-controller="showRatesCtrl">
+          <div class="row">
+	          <div class="col-md-6 col-sm-6">
 		          @if (Auth::user()->isFriendWith($user))
 			          <center>
 			          	<h2>
@@ -176,7 +180,7 @@
 		          @endif
 			        <a style="cursor: pointer; text-decoration: none" ng-click="social({{$user->id}})"><div ng-circles colors="colors" value="socials" class="circle"></div></a>					          	
 	          </div>
-	          <div class="col-md-6">
+	          <div class="col-md-6 col-sm-6">
 		          @if (Auth::user()->isFriendWith($user))
 			          <center>
 			          	<h2>
@@ -187,14 +191,15 @@
 		          	<h2><center>Personal</center></h2>
 		          @endif
 			        <a style="cursor: pointer; text-decoration: none" ng-click="personal({{$user->id}})"><div ng-circles colors="colors" value="personals" class="circle"></div></a>		          	
-	          </div>
-          </div>
-          @if (!Auth::user()->isFriendWith($user))
-          	<center class="col-md-8">
+	          </div></div>
+	          @if (!Auth::user()->isFriendWith($user))
+          	<div class="row"><center class="col-md-8">
           		<h2>You can't rate {{$user->gender == 'male' ? 'him' : 'her'}}, because {{$user->gender == 'male' ? 'he' : 'she'}}'s not in your box.</h2>
-          	</center>
+          	</center></div>
 
           @endif
+          </div>
+          
 	  @endif
           <script type="text/javascript">
           	app.controller('showRatesCtrl', function ($scope, $http, $window) {
@@ -249,7 +254,7 @@
           		})
           	})
           </script>
-		</div>
+		</div></div>
 	<br>
   		<div ng-controller="dashController">
   		<center>
@@ -276,7 +281,7 @@
          </center>
   		</div>
 
-  		<hr>
+  		<hr width="95%" align="center">
   		<br>
 @stop
 <script>

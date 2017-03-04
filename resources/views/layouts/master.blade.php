@@ -140,7 +140,7 @@ notification.show();
 
 
 		<div class="container-fluid"> <!-- container of everything-->
-		<nav class="navbar navbar-default" style="zoom: 0.9; padding-left: 100px">
+		<nav class="navbar navbar-default"><div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -150,14 +150,15 @@ notification.show();
 				<span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="/dashboard"><img src="/images/logo.png"></a>
-				<p class="navbar-text">
-{{-- <a href="/profile/{{Auth::id()}}">{{Auth::user()->fname}} {{Auth::user()->lname}}</a> --}}
-				<a href="/dashboard">{{Auth::user()->fname}}</a></p>
+				
+
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li class="dropdown" ng-controller="notificationCtrl">
+				 <ul class="nav navbar-nav navbar-right">
+				 	<li>{{-- <a href="/profile/{{Auth::id()}}">{{Auth::user()->fname}} {{Auth::user()->lname}}</a> --}}
+				<a href="/dashboard">{{Auth::user()->fname}}</a></li>
+				<li class="dropdown" ng-controller="notificationCtrl">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications </span><span class="caret"></span>  <span class="label label-pill label-warning bg">@{{x}}</span></a>
 						<ul style="width: 160%" class="dropdown-menu">
 							<div ng-repeat="note in notes | unique:'text' | limitTo:limit">
@@ -185,8 +186,6 @@ notification.show();
 							</div>
 						</ul>
 					</li>
-				</ul>
-				<ul class="nav navbar-nav">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span><span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -198,28 +197,25 @@ notification.show();
 							<li><a href="/logout"> Logout </a></li>
 						</ul>
 					</li>
-				</ul>
-				</div><!-- /.navbar-collapse -->
+				 </ul>
+				</div><!-- /.navbar-collapse --></div>
 			</nav>
 				{{-- <md-progress-linear style="position: absolute; top: 55px;" ng-controller="loadingCtrl" ng-show="loading" md-mode="indeterminate"></md-progress-linear> --}}
 			<!--md-mode	can be select from one of four modes: determinate, indeterminate, buffer or query..-->
-
-				<div style="zoom: 0.8">
+			</div>
+			<div>
 					@yield('content')
 				</div>
-
-			</div>
 		</body>
 	</body>
     <div id="footer">
-      <img src="/images/logo negative.png">
-      <a href="">
-        <h3>FAQs</h3>
-      </a>
-      <a href="">
-        <h3 style="margin-right:1vw;">Contact US |</h3>
-      </a>
-    
-      
+    <div class="row" style="margin: 0px;">
+    	<div class="col-sm-8 footer-brand"><img src="/images/logo negative.png"></div>
+    	<div class="col-sm-2"  style="text-align: center;"><a href="#">
+        <h3 class="footer-link">FAQs</h3>
+      </a></div>
+    	<div class="col-sm-2"  style="text-align: center;"><a href="#">
+        <h3 class="footer-link">Contact US</h3>
+      </a></div>
     </div>
 </html>
