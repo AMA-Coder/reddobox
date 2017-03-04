@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-	<div style="min-height: 70%">
+	<div class="container">
 		@if (count($rates) == 0)
 			<center>
 				<p>You don't have any rates/reviews, yet.</p>
@@ -10,7 +10,7 @@
 		@else
 
 			@foreach ($rates as $rate)
-	            <div class="col-md-10 col-sm-10">
+	            <div class="col-xs-12">
 	              <div class="panel panel-default arrow left">
 	                <div class="panel-body">
 	                  <header class="text-left">

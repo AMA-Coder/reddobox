@@ -22,6 +22,8 @@
 							</form>
 						</center>
 					</div>
+					
+				        
             	@else
 	              <img src="{{url('uploads/images/' . $user->avatar)}}" width="250px" alt="...">
             	@endif
@@ -55,6 +57,21 @@
 				@endif
 				</center>
               </div>
+              <p style="text-align: center">
+					Your ratings
+				</p>
+		          <div class="row" style="margin-bottom: 10px;">
+		          	<div class="col-md-12" style=" height: auto;" ng-controller="showRatesCtrl">
+			          <div class="col-sm-6">
+				          <center><h3>Personal</h3></center>
+					        <div style="width: 100px" ng-circles colors="colors" value="personals" class="circle"></div>					          	
+			          </div>
+			          <div class="col-sm-6">
+				          <center><h3>Social</h3></center>
+					        <div style="width: 100px" ng-circles colors="colors" value="socials" class="circle"></div>					          	
+			          </div>
+		          </div>
+		          </div>
             </div>
           </div>
 		@if ( Auth::id() == $user->id)
@@ -141,21 +158,7 @@
 				      </md-button>
 				    </form>
 				    </md-dialog-actions>
-				    <hr width="95%" align="center">
-				<p>
-					Your ratings
-				</p>
-		          <div class="col-md-12" style=" height: auto;" ng-controller="showRatesCtrl">
-			          <div class="col-sm-6">
-				          <center><h2>Personal</h2></center>
-					        <div ng-circles colors="colors" value="personals" class="circle"></div>					          	
-			          </div>
-			          <div class="col-sm-6">
-				          <center><h2>Social</h2></center>
-					        <div ng-circles colors="colors" value="socials" class="circle"></div>					          	
-			          </div>
-		          </div>
-				          </md-content>
+				  </md-content>
 				      </div>
 				     
 				    </md-dialog-content>
