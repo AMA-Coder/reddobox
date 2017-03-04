@@ -150,6 +150,13 @@ app.config(['ngCirclesSettingsProvider', function (ngCirclesSettingsProvider) {
 
   app.controller('userCtrl', function ($scope, $http, $mdDialog, $window) {
   //prompt
+
+  if(confirmed) {
+    swal({title: 'Confirmed!'}, function () {
+      $scope.loginPrompt();
+    });
+  }
+
   $scope.loginPrompt = function(ev) {
     $mdDialog.show({
       templateUrl: 'login.tmpl.html',

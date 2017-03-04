@@ -162,7 +162,7 @@ notification.show();
 						<ul style="width: 160%" class="dropdown-menu">
 							<div ng-repeat="note in notes | unique:'text' | limitTo:limit">
 								<li><p style="padding: 10px" ng-click="read(note.text, note.url)"> @{{note.text}}
-									<span class="label label-pill label-warning">
+									<span class="label label-pill label-warning bg">
 										@{{getCount(note.text)}}
 									</span> 
 									<br>
@@ -216,7 +216,7 @@ notification.show();
       <a href="">
         <h3>FAQs</h3>
       </a>
-      <a href="">
+      <a href="/contact">
         <h3 style="margin-right:1vw;">Contact US |</h3>
       </a>
     

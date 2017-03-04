@@ -31,13 +31,20 @@
 
 <body ng-app="BlankApp" layout-fill layout="column" ng-cloak> 
 <!--Your HTML content here--> 
+
+
+<script type="text/javascript">
+  var confirmed = false;
+</script>
+
 @if (isset($_GET['confirmed']) == 1)
   <script type="text/javascript">
-    swal({title: 'Confirmed!'}, function () {
-      window.location = '/';
-    });
+
+  var confirmed = true;
+
   </script>
 @endif
+  <div ng-controller="userCtrl"></div>
   <div class="container" ng-controller="DemoBasicCtrl as ctrl"> <!-- container of everything-->
 
     <div id="cover" style="height: 100%"> <!-- container of the cover area-->

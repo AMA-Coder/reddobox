@@ -41,6 +41,9 @@ Route::post('/auth', function (Request $request, User $user) {
 });
 
 Route::group(['middleware' => ['auth']], function () {
+	Route::get('/contact', function() {
+	    return view('contact');
+	});
 	Route::get('/dashboard', function (Request $request) {
 		$user = new User();
 		$friends = $user->getFbFriends();
