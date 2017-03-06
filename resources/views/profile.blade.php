@@ -57,9 +57,6 @@
 				@endif
 				</center>
               </div>
-              <p style="text-align: center">
-					Your ratings
-				</p>
 		          <div class="row" style="margin-bottom: 10px;">
 		          	<div class="col-md-12" style=" height: auto;" ng-controller="showRatesCtrl">
 			          <div class="col-sm-6">
@@ -276,8 +273,8 @@
             <div class="thumbnail">
               <img width="200px" src="{{url('uploads/images/')}}/@{{friend.avatar}}" >
               <div class="caption">
-                <h4> @{{friend.fname}} @{{friend.lname}} </h4>
-                <p><a href="/profile/@{{friend.id}}" class="btn btn-default" role="button">Reddo @{{friend.fname}}</a></p>
+                <h4> <a href="/profile/@{{friend.id}}">@{{friend.fname}} @{{friend.lname}}</a> </h4>
+               	
               </div>
             </div>
           </div>
