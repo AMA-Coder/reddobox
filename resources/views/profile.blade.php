@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-<div class="container-fluid">
+<div class="container">
         <div class="row">
           <div class="col-md-3 col-sm-4">
             <div class="thumbnail">
@@ -256,7 +256,7 @@
           </script>
 		</div></div>
 	<br>
-  		<div ng-controller="dashController">
+  		<div ng-controller="dashController" class="container">
   		<center>
   			<h2>People in
   			@if (Auth::id() == $user->id)

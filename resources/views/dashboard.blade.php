@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
       <div id="profilecontent" ng-controller="dashController">
-        <div class="container-fluid"><div class="row" style="margin:0px;">
+        <div class="container"><div class="row" style="margin:0px;">
           <div class="col-md-3 col-sm-5">
             <div class="thumbnail">
 	              <img src="{{url('uploads/images/')}}/{{Auth::user()->avatar}}" width="250px" alt="...">

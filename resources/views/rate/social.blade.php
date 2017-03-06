@@ -2,7 +2,7 @@
 
 @section('content')
 @if (Auth::user()->isFriendWith($user))
-  <div class="container-fluid">
+  <div class="container">
   <div id="profilecontent">
     <div class="row">
   <div class="col-sm-6 col-md-3 my">
