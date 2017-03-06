@@ -287,6 +287,9 @@ md-checkbox.md-checked.checkBoxColor .md-icon {
 
 
 
+.thumbnail a>img, .thumbnail>img{
+   width: 100%;
+ }
 
 /*Date picker*/
 
