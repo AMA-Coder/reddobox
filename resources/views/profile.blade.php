@@ -269,7 +269,7 @@
 	      		<div ng-show="!friends.length">
 	      			<p>There is no people in the box.</p>
 	      		</div>
-          <div class="col-sm-6 col-md-3 my friends" ng-repeat="friend in friends">
+          <div class="col-sm-4 col-md-2 my friends col-xs-6" ng-repeat="friend in friends">
             <div class="thumbnail">
               <img width="200px" src="{{url('uploads/images/')}}/@{{friend.avatar}}" >
               <div class="caption">
