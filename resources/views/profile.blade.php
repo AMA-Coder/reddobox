@@ -274,7 +274,6 @@
               <img width="200px" src="{{url('uploads/images/')}}/@{{friend.avatar}}" >
               <div class="caption">
                 <h4> <a href="/profile/@{{friend.id}}">@{{friend.fname}} @{{friend.lname}}</a> </h4>
-               	
               </div>
             </div>
           </div>
