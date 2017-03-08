@@ -7,14 +7,12 @@
             	@if (Auth::id() == $user->id)
 					<div class="image-upload">
 						<center>
-						    <label for="file-input">
 							<form enctype="multipart/form-data" method="post" action="" id="form">
-								<img src="{{url('uploads/images/' . $user->avatar)}}" width="250px">
+								<img src="{{url('uploads/images/' . $user->avatar)}}" width="100%">
 					                <md-tooltip md-direction="top">
 					                    Click to change
 					                </md-tooltip>
 				            	</img>
-						    </label>
 
 						    <input type="file" id="file-input" name="image" onchange="document.getElementById('form').submit()" style="display: none;">
 
@@ -57,15 +55,15 @@
 				@endif
 				</center>
               </div>
-		          <div class="row" style="margin-bottom: 10px;">
+		          <div class="row" style="margin-bottom: 10px;color: rgb(102, 102, 102)">
 		          	<div class="col-md-12" style=" height: auto;" ng-controller="showRatesCtrl">
-			          <div class="col-sm-6">
-				          <center><h3><i class="fa fa-user"></i><br>Personal</h3></center>
-					        <div style="width: 100px" ng-circles colors="colors" value="personals" class="circle"></div>					          	
+			          <div class="col-xs-6">
+				          <center><h4><i class="fa fa-user"></i><br>Personal</h4></center>
+					        <div style="width: 100%" ng-circles colors="colors" value="personals" class="circle"></div>					          	
 			          </div>
-			          <div class="col-sm-6">
-				          <center><h3><i class="fa fa-users"></i><br>Social</h3></center>
-					        <div style="width: 100px" ng-circles colors="colors" value="socials" class="circle"></div>					          	
+			          <div class="col-xs-6">
+				          <center><h4><i class="fa fa-users"></i><br>Social</h4></center>
+					        <div style="width: 100%" ng-circles colors="colors" value="socials" class="circle"></div>					          	
 			          </div>
 		          </div>
 		          </div>
