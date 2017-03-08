@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-<div class="container-fluid">
+<div class="container">
         <div class="row">
           <div class="col-md-3 col-sm-4">
             <div class="thumbnail">
@@ -256,7 +256,7 @@
           </script>
 		</div></div>
 	<br>
-  		<div ng-controller="dashController">
+  		<div ng-controller="dashController" class="container">
   		<center>
   			<h2>People in
   			@if (Auth::id() == $user->id)
@@ -269,11 +269,11 @@
 	      		<div ng-show="!friends.length">
 	      			<p>There is no people in the box.</p>
 	      		</div>
-          <div class="col-sm-6 col-md-3 my friends" ng-repeat="friend in friends">
+          <div class="col-sm-4 col-md-2 my friends col-xs-6" ng-repeat="friend in friends">
             <div class="thumbnail">
               <img width="200px" src="{{url('uploads/images/')}}/@{{friend.avatar}}" >
               <div class="caption">
-				<h4> <a href="/profile/@{{friend.id}}">@{{friend.fname}} @{{friend.lname}}</a> </h4>
+                <h4> <a href="/profile/@{{friend.id}}">@{{friend.fname}} @{{friend.lname}}</a> </h4>
               </div>
             </div>
           </div>
