@@ -60,11 +60,11 @@
 		          <div class="row" style="margin-bottom: 10px;">
 		          	<div class="col-md-12" style=" height: auto;" ng-controller="showRatesCtrl">
 			          <div class="col-sm-6">
-				          <center><h3>Personal</h3></center>
+				          <center><h3><i class="fa fa-user"></i><br>Personal</h3></center>
 					        <div style="width: 100px" ng-circles colors="colors" value="personals" class="circle"></div>					          	
 			          </div>
 			          <div class="col-sm-6">
-				          <center><h3>Social</h3></center>
+				          <center><h3><i class="fa fa-users"></i><br>Social</h3></center>
 					        <div style="width: 100px" ng-circles colors="colors" value="socials" class="circle"></div>					          	
 			          </div>
 		          </div>
