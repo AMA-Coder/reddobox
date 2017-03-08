@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-	<div class="container">
+	<div class="container"  style="min-height: 580px;">
 		@if (count($rates) == 0)
 			<center>
 				<p>You don't have any rates/reviews, yet.</p>
