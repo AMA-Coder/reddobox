@@ -21,13 +21,13 @@
 			          <div class="col-xs-6">
 				          <a href="/rate/details">
 					          <center><h4><i class="fa fa-user"></i><br> Personal</h4></center>
-					        <div style="width: 100px" ng-circles colors="colors" value="personals" class="circle"></div>	
+					        <div style="width: 100%" ng-circles colors="colors" value="personals" class="circle"></div>	
 					      </a>
 			          </div>				          	
 			          <div class="col-xs-6">
 				          <a href="/rate/details">
 					          <center><h4><i class="fa fa-users"></i><br> Social</h4></center>
-					        <div style="width: 100px" ng-circles colors="colors" value="socials" class="circle"></div>
+					        <div style="width: 100%" ng-circles colors="colors" value="socials" class="circle"></div>
 				          </a>
 			          </div>
 			          </div>
