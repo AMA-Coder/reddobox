@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-      <div id="profilecontent" ng-controller="dashController">
+      <div id="profilecontent" ng-controller="dashController"  style="min-height: 580px;">
         <div class="container"><div class="row" style="margin:0px;">
           <div class="col-md-3 col-sm-5">
             <div class="thumbnail">
