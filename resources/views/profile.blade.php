@@ -192,12 +192,41 @@
 		          @endif
 			        <a style="cursor: pointer; text-decoration: none" ng-click="personal({{$user->id}})"><div ng-circles colors="colors" value="personals" class="circle"></div></a>		          	
 	          </div></div>
+	          
+	           <div ng-controller="dashController" class="row">
+  		<center>
+  			<h2 style="text-align: center;">People in
+  			@if (Auth::id() == $user->id)
+	  			your
+  			@else
+  				{{$user->gender == 'male' ? 'his' : 'her'}}
+  			@endif
+  			box
+  			</h2>
+	      		<div ng-show="!friends.length">
+	      			<p>There is no people in the box.</p>
+	      		</div>
+          <div class="col-sm-4 col-md-3 my friends col-xs-12" ng-repeat="friend in friends">
+            <div class="thumbnail">
+              <img width="200px" src="{{url('uploads/images/')}}/@{{friend.avatar}}" >
+              <div class="caption">
+                <h4> <a href="/profile/@{{friend.id}}">@{{friend.fname}} @{{friend.lname}}</a> </h4>
+               	
+              </div>
+            </div>
+          </div>
+         </center>
+  		</div>
+  		
 	          @if (!Auth::user()->isFriendWith($user))
           	<div class="row"><center class="col-md-8">
           		<h2>You can't rate {{$user->gender == 'male' ? 'him' : 'her'}}, because {{$user->gender == 'male' ? 'he' : 'she'}}'s not in your box.</h2>
           	</center></div>
 
           @endif
+          
+         
+          
           </div>
           
 	  @endif
@@ -256,30 +285,7 @@
           </script>
 		</div></div>
 	<br>
-  		<div ng-controller="dashController" class="container">
-  		<center>
-  			<h2>People in
-  			@if (Auth::id() == $user->id)
-	  			your
-  			@else
-  				{{$user->gender == 'male' ? 'his' : 'her'}}
-  			@endif
-  			box
-  			</h2>
-	      		<div ng-show="!friends.length">
-	      			<p>There is no people in the box.</p>
-	      		</div>
-          <div class="col-sm-4 col-md-2 my friends col-xs-6" ng-repeat="friend in friends">
-            <div class="thumbnail">
-              <img width="200px" src="{{url('uploads/images/')}}/@{{friend.avatar}}" >
-              <div class="caption">
-                <h4> <a href="/profile/@{{friend.id}}">@{{friend.fname}} @{{friend.lname}}</a> </h4>
-               	
-              </div>
-            </div>
-          </div>
-         </center>
-  		</div>
+  		
 
   		<hr width="95%" align="center">
   		<br>
