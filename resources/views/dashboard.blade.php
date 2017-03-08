@@ -92,7 +92,7 @@
 			      		<div ng-show="results.length" ng-repeat="user in results">
 			      			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 			      				<a href="/profile/@{{user.id}}" class="thumbnail">
-			      					<img width="150px" src="{{url('uploads/images/')}}/@{{user.avatar}}" alt="">
+			      					<img width="150px" ng-src="{{url('uploads/images/')}}/@{{user.avatar}}" alt="">
 			      				</a>
 			      					<center><p> @{{user.fname}} @{{user.lname}} </p></center>
 			      			</div>
@@ -112,7 +112,7 @@
 			      			<p>Your friends</p>
 			              <div class="col-sm-6 col-md-3 my friends" ng-repeat="friend in friends">
 			                <div class="thumbnail">
-			                  <img width="200px" src="{{url('uploads/images/')}}/@{{friend.avatar}}" >
+			                  <img width="200px" ng-src="{{url('uploads/images/')}}/@{{friend.avatar}}" >
 			                  <div class="caption">
 				                  <center>
 				                    <h4><a href="/profile/@{{friend.id}}">@{{friend.fname}} @{{friend.lname}}</a></h4>

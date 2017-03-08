@@ -3,7 +3,6 @@ app.controller('accountCtrl', function ($scope, $http) {
   if(!$scope.user.dof) {
     $scope.user.dof = 'dd-mm-yyyy'
   }
-	console.log($scope.user)
 	$scope.edit = function (id) {
     if($scope.user.dof == 'dd-mm-yy') {
       $scope.user.dof = null;

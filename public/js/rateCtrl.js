@@ -26,23 +26,37 @@
       }).then(function(result) {
         if(result.data.rate) {
           $scope.social = result.data.rate;
-          console.log(result.data.rate)
           $scope.ss = [];
           $scope.bool = [];
+          var total = [];
           angular.forEach($scope.social, function(v, k) {
             $scope.ss[v.rate_trait_id] = v.rate;
             if(v.rate == 0) {
                 $scope.bool[v.rate_trait_id] = false;
             }else{
                 $scope.bool[v.rate_trait_id] = true;
+                total.push(v.rate);
             }
             $scope.review = v.review;
           })
+
+          $scope.total = 0;
+          var counter = 0;
+
+          if(total.length == 0) {
+            $scope.total = 0;
+          }else{
+            for (var i = total.length - 1; i >= 0; i--) {
+              $scope.total = $scope.total + total[i];
+              counter++;
+            }
+
+            $scope.total = Math.round($scope.total/counter);
+          }
         }
       })
 
           $('#social_submit').on('click', function() {
-            console.log($scope.ss)
               var $this = $(this);
             $this.button('loading');
             $http.post('/rate/social', {
@@ -104,18 +118,33 @@
       }).then(function(result) {
         if(result.data.rate) {
           $scope.personal = result.data.rate;
-          console.log(result.data.rate)
           $scope.ss = [];
           $scope.bool = [];
+          var total = [];
           angular.forEach($scope.personal, function(v, k) {
             $scope.ss[v.rate_trait_id] = v.rate;
             if(v.rate == 0) {
                 $scope.bool[v.rate_trait_id] = false;
             }else{
                 $scope.bool[v.rate_trait_id] = true;
+                total.push(v.rate);
             }
             $scope.review = v.review;
           })
+
+          $scope.total = 0;
+          var counter = 0;
+
+          if(total.length == 0) {
+            $scope.total = 0;
+          }else{
+            for (var i = total.length - 1; i >= 0; i--) {
+              $scope.total = $scope.total + total[i];
+              counter++;
+            }
+
+            $scope.total = Math.round($scope.total/counter);
+          }
         }
       })
 

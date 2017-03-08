@@ -47,10 +47,8 @@ app.controller('professionalCtrl', function ($scope, $mdDialog, $http, $rootScop
       $scope.project = {};
       $scope.types = ['Project', 'Event'];
       $scope.closeDialog = function() {
-      	console.log($scope.route)
       	if($scope.project.title && $scope.project.desc && $scope.project.type) {
 	        $mdDialog.hide();
-	        console.log($scope.project)
 	        $http.post($scope.route, {
 	        	details: $scope.project
 	        }).then(function () {
@@ -66,7 +64,6 @@ app.controller('projectCtrl', function ($scope, $mdDialog, $http, $rootScope) {
   $scope.showPrompt = function($event, friends, project) {
   	$rootScope.friends = JSON.parse(friends);
   	$rootScope.projectID = JSON.parse(project);
-  	console.log($rootScope.projectID)
        var parentEl = angular.element(document.body);
        $mdDialog.show({
          parent: parentEl,
@@ -96,7 +93,6 @@ app.controller('projectCtrl', function ($scope, $mdDialog, $http, $rootScope) {
         if(s==0) {
           s=1;
           var checks = $http.get('/invite/check/' + user_id + '/' + $rootScope.projectID).then(function (result) {
-            console.log(result.data);
             if(result.data.check == true) {
               var check = true;
               return check;
@@ -107,10 +103,8 @@ app.controller('projectCtrl', function ($scope, $mdDialog, $http, $rootScope) {
           })
         }else{
           if(checks == true) {
-            console.log('a')
             return true;
           }else{
-            console.log('b')
             return false;
           }
         }

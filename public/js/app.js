@@ -53,7 +53,6 @@ app.config(['ngCirclesSettingsProvider', function (ngCirclesSettingsProvider) {
       if($scope.status) {
         $facebook.api('/me').then(function(user) {
           $scope.user = user;
-          console.log(user)
         });
       }
     });
@@ -64,7 +63,6 @@ app.config(['ngCirclesSettingsProvider', function (ngCirclesSettingsProvider) {
       if(!$scope.status) return;
         $facebook.cachedApi('/me/friends').then(function(friends) {
           $scope.friends = friends.data;
-          console.log(friends.data[0].id)
           for (i=0;i<friends.data.length;i++) {
             $http.post('/friend', {
                 id: friends.data[i].id,
@@ -83,7 +81,6 @@ app.config(['ngCirclesSettingsProvider', function (ngCirclesSettingsProvider) {
             review: 'Review', //$scope.rate.review
             id: id,
         }).then(function () {
-            console.log('Done!');
         })
     }
 
@@ -236,7 +233,6 @@ app.controller('dashController', function ($scope, $http, $timeout, $q, $log) {
         id: id
       }).then(function (result) {
         $scope.friends = result.data.friends;
-        console.log($scope.friends)
       });
     }
     $scope.getFriends();
@@ -255,7 +251,6 @@ app.controller('dashController', function ($scope, $http, $timeout, $q, $log) {
           }else{
             $scope.results = false;
           }
-          console.log(result)
         }, 0);
       })
     })

@@ -1,7 +1,6 @@
 app.controller('profileCtrl', function ($scope, $http, $window) {
 
 	$http.post('/new/checkIfFriend/' + id).then(function (res) {
-		//console.log(res.data.check);
 		if(res.data.check == true) {
 			$scope.isFriend = true;
 		}else{
@@ -10,7 +9,6 @@ app.controller('profileCtrl', function ($scope, $http, $window) {
 	});
 
 	$http.post('/new/hasSentFriendRequestTo/' + id).then(function (res) {
-		console.log(res.data.check);
 		if(res.data.check == true) {
 			$scope.hasSentRequest = true;
 		}else{
@@ -19,7 +17,6 @@ app.controller('profileCtrl', function ($scope, $http, $window) {
 	});
 
 	$http.post('/new/hasFriendRequestFrom/' + id).then(function (res) {
-		//console.log(res.data.check);
 		if(res.data.check == true) {
 			$scope.hasFriendRequestFrom = true;
 		}else{
@@ -29,7 +26,6 @@ app.controller('profileCtrl', function ($scope, $http, $window) {
 
 	$scope.sendRequest = function (id, from_id) {
 		$http.post('/new/friendRequest/' + id).then(function (res) {
-			//console.log(res.data.check);
 			if(res.data.check == true) {
 				$scope.hasSentRequest = true;
 				$http.post('/notify', {
@@ -43,7 +39,6 @@ app.controller('profileCtrl', function ($scope, $http, $window) {
 	}
 	$scope.removeRequest = function (id) {
 		$http.post('/new/deleteRequest/' + id).then(function (res) {
-			//console.log(res.data.check);
 			if(res.data.check == true) {
 				$scope.hasSentRequest = false;
 				$scope.isFriend = false;
@@ -60,7 +55,6 @@ app.controller('profileCtrl', function ($scope, $http, $window) {
 		$scope.fname = fname;
 		$scope.lname = lname;
 		$http.post('/new/acceptFriendRequest/' + id).then(function (res) {
-			//console.log(res.data.check);
 			if(res.data.check == true) {
 				$scope.isFriend = true;
 				$scope.hasSentRequest = false;
@@ -82,7 +76,6 @@ app.controller('profileCtrl', function ($scope, $http, $window) {
 	}
 	$scope.block = function (id) {
 		$http.post('/new/block/' + id).then(function (res) {
-			//console.log(res.data.check);
 			$http.post('/readNotification', {
 				from_id: id,
 			}).then(function () {
@@ -92,7 +85,6 @@ app.controller('profileCtrl', function ($scope, $http, $window) {
 	}
 	$scope.unblock = function (id) {
 		$http.post('/new/unblock/' + id).then(function (res) {
-			//console.log(res.data.check);
 			$window.location.reload();
 		});
 	}

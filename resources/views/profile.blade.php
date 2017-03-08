@@ -55,19 +55,19 @@
 				@endif
 				</center>
               </div>
-		          <div class="row" style="margin-bottom: 10px;color: rgb(102, 102, 102)">
+{{-- 		          <div class="row" style="margin-bottom: 10px;color: rgb(102, 102, 102)">
 		          	<div class="col-md-12" style=" height: auto;" ng-controller="showRatesCtrl">
-			          <div class="col-xs-6">
-				          <center><h4><i class="fa fa-user"></i><br>Personal</h4></center>
-					        <div style="width: 100%" ng-circles colors="colors" value="personals" class="circle"></div>					          	
-			          </div>
 			          <div class="col-xs-6">
 				          <center><h4><i class="fa fa-users"></i><br>Social</h4></center>
 					        <div style="width: 100%" ng-circles colors="colors" value="socials" class="circle"></div>					          	
 			          </div>
+			          <div class="col-xs-6">
+				          <center><h4><i class="fa fa-user"></i><br>Personal</h4></center>
+					        <div style="width: 100%" ng-circles colors="colors" value="personals" class="circle"></div>					          	
+			          </div>
 		          </div>
 		          </div>
-            </div>
+ --}}            </div>
           </div>
 		@if ( Auth::id() == $user->id)
 			<center>

@@ -5,7 +5,6 @@ app.controller('notificationCtrl', function ($scope, $http, $window) {
 	function getNotifications() {
 		$http.get('/get/notifications').then(function (result) {
 			$scope.notifications = result.data.notifications;
-			console.log(result)
 			$scope.haveNotifications = false;
 			
 			$scope.x = 0;

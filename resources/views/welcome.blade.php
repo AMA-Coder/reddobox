@@ -66,17 +66,72 @@
     </div>
     <div id="footer">
     <div class="row" style="margin: 0px;">
-    	<div class="col-sm-8 footer-brand"><img src="images/logo negative.png"></div>
-    	<div class="col-sm-2"  style="text-align: center;"><a href="#">
-        <h3 class="footer-link">FAQs</h3>
-      </a></div>
-    	<div class="col-sm-2"  style="text-align: center;"><a href="#">
+      <div class="col-sm-7 footer-brand"><img src="/images/logo negative.png"></div>
+      <div class="col-sm-3"  style="text-align: center;">
+        <a data-toggle="modal" href='#terms'>
+            <h3 class="footer-link">Terms and conditions</h3>
+      </a>
+    </div>
+      <div class="col-sm-2"  style="text-align: center;"><a data-toggle="modal" href='#contact-us'>
         <h3 class="footer-link">Contact US</h3>
       </a></div>
     </div>
     </div>
 
+<div class="modal fade" id="contact-us">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg color">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Contact us</h4>
+      </div>
+      <div class="modal-body" style="font-family: mynexa">
+        <h1><span style="color: grey">Contact us at:</span> <br><center><span style="color: grey">Support@reddobox.com</span></center></h1>
+      </div>
+      <div class="modal-footer bg color">
+      <br>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="modal fade" id="terms">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg color">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Terms and conditions</h4>
+      </div>
+      <div class="modal-body" style="font-family: mynexa">
+<b>Welcome to Reddobox.com</b> <br><br>
+
+<p>
+  Thank you for using our service. Reddobox.com is a startup created by a group of engineering students who aim providing a new service to the world in the social networking filed. We started building the website October 2016 and we will continue to develop it to match our users’ needs. Reddobox.com is located in Egypt - 6th of October City - Giza. 
+  By using our Services, you are agreeing to the following terms. Please read it carefully.
+  Reddobox.com terms of service
+</p>
+<br>
+<p>
+  This statement includes our terms of service that governs the relationship between our users and Reddobox.com. By accessing, registering and/or continuing to use Reddox.com Services, you agree to this Statement with immediate effect.
+</p>
+<hr>
+<p>
+  1- Reddobox.com will not share any of your passwords with any third parties (unless you authorize us to do so).
+  <br><br>2- The security of your account is our priority. We don’t recommend you share your passwords with others as it might affect account security.
+  <br><br>3- Your anonymous features will stay anonymous unless you share your information with people.
+  <br><br>4- Reddobox.com does not have any official mobile apps in the meantime. Any app with similar names is not related to Reddobox.com.
+  <br><br>5- Any account with false personal information might be blocked or suspended until further notice.
+  <br><br>6- Reddobox.com might use your information to help you see relative content.
+  <br><br>7- The upcoming updates in Reddobox.com might change those terms. 
+  8- Last updated version of this document at 7th of March 2017.
+</p>
+      </div>
+      <div class="modal-footer bg color">
+      <br>
+      </div>
+    </div>
+  </div>
+</div>
       
   </div>
 <script type="text/ng-template" id="signup.tmpl.html">

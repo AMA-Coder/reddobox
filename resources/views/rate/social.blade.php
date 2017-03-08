@@ -37,8 +37,9 @@
 <div class="col-md-9 col-sm-6"  ng-controller="socialRateCtrl">
 <div style=" height: auto; background-color:#edebeb;padding: 10px;">
 <h3>Reddo {{$user->fname}} socially</h3>
-<hr>
-
+<center>
+  Your overall rate now is @{{total}}%
+</center>
     <div ng-repeat="trait in social_traits">
       <md-checkbox class="checkBoxColor" ng-model="bool[trait.id]" ng-click="zeroRate(trait.id)"><h4>@{{trait.name}}</h4></md-checkbox>
       <md-slider-container ng-disabled="!bool[trait.id]">

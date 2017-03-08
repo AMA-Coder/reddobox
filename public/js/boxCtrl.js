@@ -1,7 +1,6 @@
 app.controller('boxCtrl', function ($scope, $http, $window) {
 	$scope.denyFriendRequest = function (id) {
 		$http.post('/new/deleteRequest/' + id).then(function (res) {
-			//console.log(res.data.check);
 			if(res.data.check == true) {
 				$scope.hasSentRequest = false;
 				$scope.isFriend = false;
@@ -18,7 +17,6 @@ app.controller('boxCtrl', function ($scope, $http, $window) {
 		$scope.fname = fname;
 		$scope.lname = lname;
 		$http.post('/new/acceptFriendRequest/' + id).then(function (res) {
-			//console.log(res.data.check);
 			if(res.data.check == true) {
 				$scope.isFriend = true;
 				$scope.hasSentRequest = false;
