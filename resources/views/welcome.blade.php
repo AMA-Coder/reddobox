@@ -85,8 +85,8 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title">Contact us</h4>
       </div>
-      <div class="modal-body" style="font-family: mynexa">
-        <h1><span style="color: grey">Contact us at:</span> <br><center><span style="color: grey">Support@reddobox.com</span></center></h1>
+      <div class="modal-body">
+        <h4><span style="color: grey">Contact us at:</span> <br><center><span style="color: grey">Support@reddobox.com</span></center></h4>
       </div>
       <div class="modal-footer bg color">
       <br>
@@ -102,7 +102,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title">Terms and conditions</h4>
       </div>
-      <div class="modal-body" style="font-family: mynexa">
+      <div class="modal-body">
 <b>Welcome to Reddobox.com</b> <br><br>
 
 <p>

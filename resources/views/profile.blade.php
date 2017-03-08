@@ -170,6 +170,18 @@
 		          @if (Auth::user()->isFriendWith($user))
 			          <center>
 			          	<h2>
+				          <a style="cursor: pointer; text-decoration: none" ng-click="personal({{$user->id}})">Personal</a>
+				       	</h2>
+				       </center>
+		          @else
+		          	<h2><center>Personal</center></h2>
+		          @endif
+			        <a style="cursor: pointer; text-decoration: none" ng-click="personal({{$user->id}})"><div ng-circles colors="colors" value="personals" class="circle"></div></a>		          	
+	          </div>
+	          <div class="col-md-6 col-sm-6">
+		          @if (Auth::user()->isFriendWith($user))
+			          <center>
+			          	<h2>
 				          <a style="cursor: pointer; text-decoration: none" ng-click="social({{$user->id}})">Social</a>
 				       	</h2>
 				      </center>
@@ -178,18 +190,7 @@
 		          @endif
 			        <a style="cursor: pointer; text-decoration: none" ng-click="social({{$user->id}})"><div ng-circles colors="colors" value="socials" class="circle"></div></a>					          	
 	          </div>
-	          <div class="col-md-6 col-sm-6">
-		          @if (Auth::user()->isFriendWith($user))
-			          <center>
-			          	<h2>
-				          <a style="cursor: pointer; text-decoration: none" ng-click="personal({{$user->id}})">Personal</a>
-				       	</h2>
-				       </center>
-		          @else
-		          	<h2><center>Personal</center></h2>
-		          @endif
-			        <a style="cursor: pointer; text-decoration: none" ng-click="personal({{$user->id}})"><div ng-circles colors="colors" value="personals" class="circle"></div></a>		          	
-	          </div></div>
+	          </div>
 	          
 	           <div ng-controller="dashController" class="row">
   		<center>
