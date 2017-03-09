@@ -33,7 +33,7 @@ Route::group(['prefix' => 'user'], function () {
                     </head>
                     <body>
                     <center>
-                        <h1><a href="'.env('APP_URL').'/api/user/confirm/' . $user->confirmation_code . '">Click here</a> to Confirm your email.</h1>
+                        <h1><a href="'.env('APP_URL').'/api/user/confirm/' . $checkExisting->confirmation_code . '">Click here</a> to Confirm your email.</h1>
                     </center>
                     </body>
                     </html>
@@ -79,7 +79,7 @@ Route::group(['prefix' => 'user'], function () {
             </head>
             <body>
             <center>
-                <h1><a href="/api/user/confirm/' . $user->confirmation_code . '">Click here</a> to Confirm your email.</h1>
+                <h1><a href="'.env('APP_URL').'/api/user/confirm/' . $user->confirmation_code . '">Click here</a> to Confirm your email.</h1>
             </center>
             </body>
             </html>
