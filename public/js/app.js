@@ -173,7 +173,7 @@ app.config(['ngCirclesSettingsProvider', function (ngCirclesSettingsProvider) {
   		}).then(function (data) {
         $scope.loading.register = false;
   			if(data.data.state == true) {
-+         $scope.showAlert('Done!', 'Your account has been made successfully, check your e-mail for the verification code.', 'Okay!', true);
+         $scope.showAlert('Done!', 'Your account has been made successfully, check your e-mail for the verification code.', 'Okay!', true);
   			}
         if(data.data.state == 'exists') {
           $scope.showAlert('Done!', 'Email already exists, you can login with your email.', 'Okay!', true);
