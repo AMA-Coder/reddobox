@@ -21,7 +21,39 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('/create', function (Request $request, User $user) {
         $checkExisting = User::whereEmail($request['email'])->first();
         if(count($checkExisting) > 0) {
-            return ['state' => 'exists'];
+
+            if($checkExisting->confirmed == 0) {
+                $to = $checkExisting->email;
+                $subject = "Reddobox Verification Code";
+                $message = '
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>Your Verification Code</title>
+                    </head>
+                    <body>
+                    <center>
+                        <h1><a href="/api/user/confirm/' . $user->confirmation_code . '">Click here</a> to Confirm your email.</h1>
+                    </center>
+                    </body>
+                    </html>
+                ';
+                // Always set content-type when sending HTML email
+                $headers = "MIME-Version: 1.0" . "\r\n";
+                $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                // More headers
+                $headers .= 'From: Reddo box <support@reddobox.com>' . "\r\n";
+                $headers .= 'Cc: support@reddobox.com' . "\r\n". "Reply-To: support@reddobox.com" . "\r\n" .
+                "X-Mailer: PHP/" . phpversion() . "Return-Path: support@reddobox.com\r\n";
+                if (mail($to,$subject,$message,$headers)){
+                    return ['state' => 'existsAndEmailed'];
+                }else{
+                    return ['state' => 'existsWithEmailProblem'];
+                }
+            }else{
+                return ['state' => 'existsAndConfirmed'];
+            }
+
         }
         $user->email = $request['email'];
         $user->fname = $request['fname'];

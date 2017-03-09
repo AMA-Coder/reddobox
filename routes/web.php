@@ -443,7 +443,8 @@ Route::group(['middleware' => ['auth']], function () {
 	    $query = $request['search'];
 	    if(strlen($query) > 2) {
 		    $check = User::where('email', 'Like', '%' . $query . '%')
-		    ->orWhere('full_name', 'Like', '%' . $query . '%')->get();
+		    ->orWhere('full_name', 'Like', '%' . $query . '%')
+		    ->having('confirmed', 1)->get();
 		    function check($x) {
 		    	if(count($x) > 0) {
 		    		return true;

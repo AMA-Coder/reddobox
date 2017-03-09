@@ -175,8 +175,14 @@ app.config(['ngCirclesSettingsProvider', function (ngCirclesSettingsProvider) {
   			if(data.data.state == true) {
          $scope.showAlert('Done!', 'Your account has been made successfully, check your e-mail for the verification code.', 'Okay!', true);
   			}
-        if(data.data.state == 'exists') {
+        if(data.data.state == 'existsAndConfirmed') {
           $scope.showAlert('Done!', 'Email already exists, you can login with your email.', 'Okay!', true);
+        }
+        if(data.data.state == 'existsAndEmailed') {
+          $scope.showAlert('Done!', 'Email already exists, check your email for the verification code.', 'Okay!', true);
+        }
+        if(data.data.state == 'existsWithEmailProblem') {
+          $scope.showAlert('Done!', 'Email already exists, and there is a problem sending verification email, please try again later.', 'Okay!', false);
         }
   		})
   	}
