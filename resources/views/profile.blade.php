@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-<div class="container">
+<div class="container"   style="min-height: 580px;">
         <div class="row">
           <div class="col-md-3 col-sm-4">
             <div class="thumbnail">
