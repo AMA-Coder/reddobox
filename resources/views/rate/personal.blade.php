@@ -46,7 +46,7 @@
       <div flex="10" layout="" layout-align="center center">
         <span class="md-body-1" ng-show="bool[trait.id]">@{{ss[trait.id]}}%</span>
       </div>
-        <md-slider id="red-slider" ng-model="ss[trait.id]" ng-change="changeBool(trait.id)" aria-label="red" flex="" ng-readonly="readonly"></md-slider>
+        <md-slider step="5" id="red-slider" ng-model="ss[trait.id]" ng-change="changeBool(trait.id)" aria-label="red" flex="" ng-readonly="readonly"></md-slider>
       </md-slider-container>
     </div>
     <hr>
