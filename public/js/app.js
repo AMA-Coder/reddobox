@@ -173,7 +173,7 @@ app.config(['ngCirclesSettingsProvider', function (ngCirclesSettingsProvider) {
   		}).then(function (data) {
         $scope.loading.register = false;
   			if(data.data.state == true) {
-  				$scope.showAlert('Done!', 'Your account has been made successfully.', 'Okay!', true);
++         $scope.showAlert('Done!', 'Your account has been made successfully, check your e-mail for the verification code.', 'Okay!', true);
   			}
         if(data.data.state == 'exists') {
           $scope.showAlert('Done!', 'Email already exists, you can login with your email.', 'Okay!', true);
@@ -196,16 +196,15 @@ $scope.myFunct = function(user, keyEvent) {
   			password: user.password,
   		}).then(function (data) {
         $scope.loading.login = false;
-        // if(data.data.confirmed) {
-          if(data.data.state) {
+          if(data.data.state == true) {
             document.getElementById("projectForm").submit();
-          }else{
+          }
+          if(data.data.state == false) {
             $scope.showAlert('Error', 'Email and Password Don\'t match!', 'Try again!', true);
           }
-        // }else{
-        //     $scope.showAlert('Error', 'Email and Password Don\'t match!', 'Try again!', true);
-        //     // $scope.showAlert('Error', 'Your account is not verified yet, Please check your mail to verify your account.', 'Okay!', false);
-        // }
+          if(data.data.state == 'notConfirmed') {
+            $scope.showAlert('Error', 'Your account is not verified yet, Please check your mail to verify your account.', 'Okay!', false);
+          }
   		})
   	}
   //end login
