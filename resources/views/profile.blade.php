@@ -7,6 +7,7 @@
             	@if (Auth::id() == $user->id)
 					<div class="image-upload">
 						<center>
+						    <label for="file-input">
 							<form enctype="multipart/form-data" method="post" action="" id="form">
 								<img src="{{url('uploads/images/' . $user->avatar)}}" width="100%">
 					                <md-tooltip md-direction="top">
