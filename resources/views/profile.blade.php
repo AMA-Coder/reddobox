@@ -150,7 +150,7 @@
 				                </md-input-container>
 				              </div>
 				               <md-dialog-actions layout="row">
-				      <md-button type="submit" style="width: 50%" class="bg left" style="color:white;" ng-disabled="projectForm.$invalid" ng-click="edit({{Auth::id()}})">
+				      <md-button type="submit" style="width: 100%" class="bg left" style="color:white;" ng-disabled="projectForm.$invalid" ng-click="edit({{Auth::id()}})">
 				        Update info
 				      </md-button>
 				    </form>
@@ -163,7 +163,28 @@
 				    
 				</md-dialog>
 				</div>
-				
+				<a class="btn bg color" data-toggle="modal" href='#modal-id' style="position: absolute; right: 33%;">Change your password</a>
+				<div class="modal fade" id="modal-id">
+					<div class="modal-dialog">
+						<div class="modal-content" ng-controller="pwResetCtrl">
+							<div class="modal-header bg color">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title">Change your password</h4>
+							</div>
+							<div class="modal-body">
+								
+								<div class="form-group">
+									<input type="password" class="form-control" ng-model="new_password" placeholder="Enter your new password..">
+								</div>
+								
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								<button type="button" class="btn bg color" ng-click="resetPassword()">Save changes</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</center>
 		@else
           <div class="col-md-9 col-sm-8" style="height: auto; padding-bottom: 30px" ng-controller="showRatesCtrl">

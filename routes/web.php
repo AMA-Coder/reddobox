@@ -499,48 +499,62 @@ Route::group(['middleware' => ['auth']], function () {
 	    return view('blocks', compact('user'));
 	});
 
-	Route::get('seed/traits', function() {
-	    //
-		$trait = new App\RateTrait(['name' => 'Active', 'type' => 'personal']);
-		$trait->save();
-		$trait = new App\RateTrait(['name' => 'Honest', 'type' => 'personal']);
-		$trait->save();
-		$trait = new App\RateTrait(['name' => 'Smart', 'type' => 'personal']);
-		$trait->save();
-		$trait = new App\RateTrait(['name' => 'Organized', 'type' => 'personal']);
-		$trait->save();
-		$trait = new App\RateTrait(['name' => 'Optimistic', 'type' => 'personal']);
-		$trait->save();
-		$trait = new App\RateTrait(['name' => 'Open minded', 'type' => 'personal']);
-		$trait->save();
-		$trait = new App\RateTrait(['name' => 'Polite', 'type' => 'personal']);
-		$trait->save();
-		$trait = new App\RateTrait(['name' => 'Courage', 'type' => 'personal']);
-		$trait->save();
-		$trait = new App\RateTrait(['name' => 'kind', 'type' => 'personal']);
-		$trait->save();
-		$trait = new App\RateTrait(['name' => 'Sense of humor', 'type' => 'personal']);
-		$trait->save();
+	// Route::get('seed/traits', function() {
+	//     //
+	// 	$trait = new App\RateTrait(['name' => 'Active', 'type' => 'personal']);
+	// 	$trait->save();
+	// 	$trait = new App\RateTrait(['name' => 'Honest', 'type' => 'personal']);
+	// 	$trait->save();
+	// 	$trait = new App\RateTrait(['name' => 'Smart', 'type' => 'personal']);
+	// 	$trait->save();
+	// 	$trait = new App\RateTrait(['name' => 'Organized', 'type' => 'personal']);
+	// 	$trait->save();
+	// 	$trait = new App\RateTrait(['name' => 'Optimistic', 'type' => 'personal']);
+	// 	$trait->save();
+	// 	$trait = new App\RateTrait(['name' => 'Open minded', 'type' => 'personal']);
+	// 	$trait->save();
+	// 	$trait = new App\RateTrait(['name' => 'Polite', 'type' => 'personal']);
+	// 	$trait->save();
+	// 	$trait = new App\RateTrait(['name' => 'Courage', 'type' => 'personal']);
+	// 	$trait->save();
+	// 	$trait = new App\RateTrait(['name' => 'kind', 'type' => 'personal']);
+	// 	$trait->save();
+	// 	$trait = new App\RateTrait(['name' => 'Sense of humor', 'type' => 'personal']);
+	// 	$trait->save();
 
-		$trait = new App\RateTrait(['name' => 'Socially Active', 'type' => 'social']);
-		$trait->save();
-		$trait = new App\RateTrait(['name' => 'Good listener', 'type' => 'social']);
-		$trait->save();
-		$trait = new App\RateTrait(['name' => 'Initiative', 'type' => 'social']);
-		$trait->save();
-		$trait = new App\RateTrait(['name' => 'Leader', 'type' => 'social']);
-		$trait->save();
-		$trait = new App\RateTrait(['name' => 'Caring', 'type' => 'social']);
-		$trait->save();
-		$trait = new App\RateTrait(['name' => 'Friendly', 'type' => 'social']);
-		$trait->save();
-		$trait = new App\RateTrait(['name' => 'Chatty', 'type' => 'social']);
-		$trait->save();
-		$trait = new App\RateTrait(['name' => 'Relations builder', 'type' => 'social']);
-		$trait->save();
-		$trait = new App\RateTrait(['name' => 'Helpful', 'type' => 'social']);
-		$trait->save();
-		$trait = new App\RateTrait(['name' => 'Cooperative', 'type' => 'social']);
-		$trait->save();
-	});
+	// 	$trait = new App\RateTrait(['name' => 'Socially Active', 'type' => 'social']);
+	// 	$trait->save();
+	// 	$trait = new App\RateTrait(['name' => 'Good listener', 'type' => 'social']);
+	// 	$trait->save();
+	// 	$trait = new App\RateTrait(['name' => 'Initiative', 'type' => 'social']);
+	// 	$trait->save();
+	// 	$trait = new App\RateTrait(['name' => 'Leader', 'type' => 'social']);
+	// 	$trait->save();
+	// 	$trait = new App\RateTrait(['name' => 'Caring', 'type' => 'social']);
+	// 	$trait->save();
+	// 	$trait = new App\RateTrait(['name' => 'Friendly', 'type' => 'social']);
+	// 	$trait->save();
+	// 	$trait = new App\RateTrait(['name' => 'Chatty', 'type' => 'social']);
+	// 	$trait->save();
+	// 	$trait = new App\RateTrait(['name' => 'Relations builder', 'type' => 'social']);
+	// 	$trait->save();
+	// 	$trait = new App\RateTrait(['name' => 'Helpful', 'type' => 'social']);
+	// 	$trait->save();
+	// 	$trait = new App\RateTrait(['name' => 'Cooperative', 'type' => 'social']);
+	// 	$trait->save();
+	// });
+});
+
+Route::post('password_reset', function(Request $request) {
+
+	if(strlen($request['new_password']) < 6) {
+		return ['state' => 'length_error'];
+	}
+
+	$user = Auth::user();
+	$user->password = bcrypt($request['new_password']);
+	if($user->save()) {
+		return ['state' => true];
+	}
+	return ['state' => false];
 });
