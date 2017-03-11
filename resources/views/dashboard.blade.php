@@ -130,7 +130,7 @@
 			                  <img width="200px" ng-src="{{url('uploads/images/')}}/@{{friend.avatar}}" >
 			                  <div class="caption">
 				                  <center>
-				                    <h4 style="white-space: nowrap; overflow:hidden !important; text-overflow: ellipsis;"><a href="/profile/@{{friend.id}}">@{{friend.fname}} @{{friend.lname}}</a></h4>
+				                    <h4 style="font-size: 100%; white-space: nowrap; overflow:hidden !important; text-overflow: ellipsis;"><a href="/profile/@{{friend.id}}">@{{friend.fname}} @{{friend.lname}}</a></h4>
 				                  </center>
 			                  </div>
 			                </div>
