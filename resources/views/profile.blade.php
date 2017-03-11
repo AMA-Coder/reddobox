@@ -9,11 +9,12 @@
 						<center>
 						    <label for="file-input">
 							<form enctype="multipart/form-data" method="post" action="" id="form">
-								<img src="{{url('uploads/images/' . $user->avatar)}}" width="100%">
-					                <md-tooltip md-direction="top">
-					                    Click to change
-					                </md-tooltip>
-				            	</img>
+							<div class="image-container">
+							<img src="{{url('uploads/images/' . Auth::user()->avatar)}}" width="100%" class="image">
+							  <div class="overlay bg">
+							    <div class="text">Click to change</div>
+							  </div>
+							</div>
 
 						    <input type="file" id="file-input" name="image" onchange="document.getElementById('form').submit()" style="display: none;">
 
