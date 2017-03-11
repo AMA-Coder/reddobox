@@ -90,7 +90,7 @@
 
 				              <md-input-container class="md-block" flex="50">
 				                <label>Email address</label>
-				                <input value="aa" minlength="6" maxlength="100" md-no-asterisk name="email" ng-model="user.email" ng-pattern="/^.+@.+\..+$/">
+				                <input ng-disabled="user.email" value="aa" minlength="6" maxlength="100" md-no-asterisk name="email" ng-model="user.email" ng-pattern="/^.+@.+\..+$/">
 				                <div ng-messages="projectForm.email.$error">
 				                  <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
 				                    Your email must be between 10 and 100 characters long and look like an e-mail address.

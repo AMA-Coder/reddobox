@@ -4,7 +4,22 @@
         <div class="container"><div class="row" style="margin:0px;">
           <div class="col-md-3 col-sm-5">
             <div class="thumbnail">
-	              <img src="{{url('uploads/images/')}}/{{Auth::user()->avatar}}" width="250px" alt="...">
+					<div class="image-upload">
+						<center>
+						    <label for="file-input">
+							<form enctype="multipart/form-data" method="post" action="/profile/{{Auth::id()}}" id="form">
+								<img src="{{url('uploads/images/' . Auth::user()->avatar)}}" width="100%">
+					                <md-tooltip md-direction="top">
+					                    Click to change
+					                </md-tooltip>
+				            	</img>
+
+						    <input type="file" id="file-input" name="image" onchange="document.getElementById('form').submit()" style="display: none;">
+
+							{{csrf_field()}}
+							</form>
+						</center>
+					</div>
               <div class="caption">
                 <center><h3>{{Auth::user()->fname}} {{Auth::user()->lname}}</h3></center>
                 {{-- <p>Short description</p> --}}
@@ -98,7 +113,7 @@
 			      			</div>
 			      		</div>
 			      		<div ng-show="!results">
-			      			No results were found for "@{{r}}".
+			      			Searching for "@{{r}}".
 			      		</div>
 			      	</div>
 			      </div>

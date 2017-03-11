@@ -226,7 +226,7 @@ notification.show();
 			</a>
 		</div>
     	<div class="col-sm-2"  style="text-align: center;"><a data-toggle="modal" href='#contact-us'>
-        <h3 class="footer-link">Contact US</h3>
+        <h3 class="footer-link">Contact us</h3>
       </a></div>
     </div>
 </html>
