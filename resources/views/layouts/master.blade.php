@@ -41,6 +41,7 @@
   <script type="text/javascript" src="{{url('js/professionalCtrl.js')}}" ></script>
   <script type="text/javascript" src="{{url('js/notificationCtrl.js')}}" ></script>
   <script type="text/javascript" src="{{url('js/accountCtrl.js')}}" ></script>
+  <script type="text/javascript" src="{{url('js/pwResetCtrl.js')}}" ></script>
 
   <script type="text/javascript" src="{{url('extensions/notifications/angular-ui-notification.min.js')}}" ></script>
   <link rel="stylesheet" href="{{url('extensions/notifications/angular-ui-notification.min.css')}}">
