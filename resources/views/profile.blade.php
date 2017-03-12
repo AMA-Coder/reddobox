@@ -163,8 +163,8 @@
 				    
 				</md-dialog>
 				</div>
-				<a class="btn bg color" data-toggle="modal" href='#modal-id' style="position: absolute; right: 33%;">Change your password</a>
-				<div class="modal fade" id="modal-id">
+				<a class="btn bg color" data-toggle="modal" href='#reset-pw-modal' style="position: absolute; right: 33%;">Change your password</a>
+				<div class="modal fade" id="reset-pw-modal">
 					<div class="modal-dialog">
 						<div class="modal-content" ng-controller="pwResetCtrl">
 							<div class="modal-header bg color">
@@ -175,6 +175,8 @@
 								
 								<div class="form-group">
 									<input type="password" class="form-control" ng-model="new_password" placeholder="Enter your new password..">
+									<br>
+									<input type="password" class="form-control" ng-model="new_password_confirm" placeholder="Re-enter your new password..">
 								</div>
 								
 							</div>
