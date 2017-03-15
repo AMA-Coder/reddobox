@@ -1,14 +1,13 @@
 app.controller('notificationCtrl', function ($scope, $http, $window) {
-	$scope.notes = [];
-	$scope.socialNotes = [];
-	$scope.personalNotes = [];
 
 	function getNotifications() {
 		$http.get('/get/notifications').then(function (result) {
 			$scope.notifications = result.data.notifications;
 			$scope.haveNotifications = false;
 			
-			$scope.x = 0;
+			$scope.notes = [];
+			$scope.socialNotes = [];
+			$scope.personalNotes = [];
 
 			for (var i = $scope.notifications.length - 1; i >= 0; i--) {
 				// if($scope.notifications[i].state == 1) {
