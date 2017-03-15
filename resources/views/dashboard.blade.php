@@ -35,21 +35,23 @@
 		          <p><div ng-controller="showRatesCtrl">
 			          <div class="row">
 				          <div class="col-xs-12">
-					          <a href="/rate/details">
-						        <center><h5><i class="fa fa-user"></i> Personal <span class="badge bg color" style="margin-left: 5px">@{{personalNotes.length}}</span></h5></center>
+					          <a href="#" ng-click="read('Someone rated you personally!', '/rate/details')">
+						        <center><h5><i class="fa fa-user"></i> Personal <span ng-show="personalNotes.length" class="badge color" style="background: red !important; margin-left: 5px">@{{personalNotes.length}}</span></h5></center>
 						      </a>
 		                    <div style="display: block; height: 10px; width: 100%; background: lightgrey"></div>
 		                    <div style="margin-top: -10px; height: 10px;" ng-style="personalStyles" class="bg"></div>
+		                    <center>@{{personals}}%</center>
 				          </div>
 			          </div>
 			          <br>
 			          <div class="row">			          	
 				          <div class="col-xs-12">
-					          <a href="/rate/details">
-						        <center><h5><i class="fa fa-user"></i> Social <span class="badge bg color" style="margin-left: 5px">@{{socialNotes.length}}</span></h5></center>
+					          <a href="#" ng-click="read('Someone rated you socially!', '/rate/details')">
+						        <center><h5><i class="fa fa-user"></i> Social <span ng-show="socialNotes.length" class="badge color" style="background: red !important; margin-left: 5px">@{{socialNotes.length}}</span></h5></center>
 					          </a>
 		                    <div style="display: block; height: 10px; width: 100%; background: lightgrey"></div>
 		                    <div style="margin-top: -10px; height: 10px;" ng-style="socialStyles" class="bg"></div>
+		                    <center>@{{socials}}%</center>
 				          </div>
 			          </div>
 		          </div></p>
