@@ -34,18 +34,23 @@
  --}}              
 		          <p><div ng-controller="showRatesCtrl">
 			          <div class="row">
-			          <div class="col-xs-6">
-				          <a href="/rate/details">
-					          <center><h4><i class="fa fa-user"></i><br> Personal</h4></center>
-					        <div style="width: 100%" ng-circles colors="colors" value="personals" class="circle"></div>	
-					      </a>
-			          </div>				          	
-			          <div class="col-xs-6">
-				          <a href="/rate/details">
-					          <center><h4><i class="fa fa-users"></i><br> Social</h4></center>
-					        <div style="width: 100%" ng-circles colors="colors" value="socials" class="circle"></div>
-				          </a>
+				          <div class="col-xs-12">
+					          <a href="/rate/details">
+						        <center><h5><i class="fa fa-user"></i> Personal <span class="badge bg color" style="margin-left: 5px">@{{personalNotes.length}}</span></h5></center>
+						      </a>
+		                    <div style="display: block; height: 10px; width: 100%; background: lightgrey"></div>
+		                    <div style="margin-top: -10px; height: 10px;" ng-style="personalStyles" class="bg"></div>
+				          </div>
 			          </div>
+			          <br>
+			          <div class="row">			          	
+				          <div class="col-xs-12">
+					          <a href="/rate/details">
+						        <center><h5><i class="fa fa-user"></i> Social <span class="badge bg color" style="margin-left: 5px">@{{socialNotes.length}}</span></h5></center>
+					          </a>
+		                    <div style="display: block; height: 10px; width: 100%; background: lightgrey"></div>
+		                    <div style="margin-top: -10px; height: 10px;" ng-style="socialStyles" class="bg"></div>
+				          </div>
 			          </div>
 		          </div></p>
           <script type="text/javascript">
@@ -73,6 +78,10 @@
           				social_sum += social_filtered[i].rate;
           			}
           			$scope.socials = Math.round(social_sum/(social_filtered.length));
+          			$scope.socials = $scope.socials || 0;
+          			$scope.socialStyles = {
+						width: $scope.socials + '%',
+          			}
 
 
           			var personals = result.data.personals;
@@ -87,6 +96,10 @@
           				personal_sum += personal_filtered[i].rate;
           			}
           			$scope.personals = Math.round(personal_sum/(personal_filtered.length));
+          			$scope.personals = $scope.personals || 0;
+          			$scope.personalStyles = {
+						width: $scope.personals + '%',
+          			}
           		})
           	})
           </script>

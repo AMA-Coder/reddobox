@@ -1,6 +1,7 @@
 app.controller('notificationCtrl', function ($scope, $http, $window) {
-	$scope.x = 0;
 	$scope.notes = [];
+	$scope.socialNotes = [];
+	$scope.personalNotes = [];
 
 	function getNotifications() {
 		$http.get('/get/notifications').then(function (result) {
@@ -10,17 +11,26 @@ app.controller('notificationCtrl', function ($scope, $http, $window) {
 			$scope.x = 0;
 
 			for (var i = $scope.notifications.length - 1; i >= 0; i--) {
-				if($scope.notifications[i].state == 1) {
-					$scope.x += 1;
+				// if($scope.notifications[i].state == 1) {
+				// 	$scope.x += 1;
+				// }
+				// if($scope.notifications[i].state == 1) {
+				// 	$scope.haveNotifications = true;
+				// }
+				// if($scope.notifications[i].state == 1) {
+				// 	$scope.notes.push($scope.notifications[i]);
+				// }
+				if($scope.notifications[i].text == 'Someone rated you socially!' && $scope.notifications[i].state == 1) {
+					$scope.socialNotes.push($scope.notifications[i]);
 				}
-				if($scope.notifications[i].state == 1) {
-					$scope.haveNotifications = true;
+				else if($scope.notifications[i].text == 'Someone rated you personally!' && $scope.notifications[i].state == 1) {
+					$scope.personalNotes.push($scope.notifications[i]);
 				}
-				if($scope.notifications[i].state == 1) {
+				else if($scope.notifications[i].state == 1){
 					$scope.notes.push($scope.notifications[i]);
 				}
-
 			}
+			console.log($scope.socialNotes, $scope.personalNotes, $scope.notes)
 		})
 	}
 
