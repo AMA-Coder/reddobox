@@ -108,6 +108,9 @@ Route::group(['prefix' => 'user'], function () {
     });
     Route::post('/login', function (Request $request, User $user) {
         $user = User::whereEmail($request['email'])->first();
+        if(!count($user)) {
+            return ['state' => false];
+        }
         if($user->confirmed == 1) {
             if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']], true)) {
                 return ['state' => true];

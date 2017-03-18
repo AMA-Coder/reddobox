@@ -45,7 +45,7 @@ app.controller('profileCtrl', function ($scope, $http, $window) {
 				$http.post('/readNotification', {
 					from_id: id,
 				}).then(function () {
-					$window.location.reload();
+					// $window.location.reload();
 				});
 			}
 		});
