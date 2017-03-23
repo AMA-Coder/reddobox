@@ -72,9 +72,13 @@ Route::group(['middleware' => ['auth']], function () {
 
 	Route::group(['prefix' => 'rate', 'middleware' => 'auth'], function () {
 
-		Route::get('details', function() {
-			// return Auth::user()->getFriends();
-			$rates = Auth::user()->ratesSortedByFriends();
+		Route::get('details', function(Request $request) {
+			if($request['cat'] == 'social') {
+				$rates = Auth::user()->ratesSortedByFriends('social');
+				// dd($rates);
+			}elseif($request['cat'] == 'personal') {
+				$rates = Auth::user()->ratesSortedByFriends('personal');
+			}
 		    return view('rate.details', compact('rates'));
 		});
 

@@ -48,7 +48,7 @@ class User extends Authenticatable
         return $this->hasMany(Rate::class);
     }
 
-    public function ratesSortedByFriends ()
+    public function ratesSortedByFriends ($category)
     {
         $friendships = Auth::user()->getAllFriendships();
         $friends = [];
@@ -64,20 +64,22 @@ class User extends Authenticatable
         }
         $final_rates = [];
         for ($i=0; $i < count($friends) ; $i++) {
-            $rates = Auth::user()->rates()->whereFromId($friends[$i]->id)->get()->sortBy('updated_at');
-            $ratesFormed = [];
+            $rates = Auth::user()->rates()->whereFromId($friends[$i]->id)->get()->sortByDesc('updated_at');
+            $personalRatesFormed = [];
+            $socialRatesFormed = [];
             if(count($rates) > 0) {
                 foreach ($rates as $rate) {
                     if($rate->category == 'social') {
-                        $ratesFormed['social'][] = array(
+                        $socialRatesFormed[] = array(
                             'traitName' => $rate->getTraitName($rate->rate_trait_id),
                             'rate' => $rate->rate,
                             'review' => $rate->review,
                             'category' => $rate->category,
                             'updated_at' => $rate->updated_at,
                         );
-                    }else{
-                        $ratesFormed['personal'][] = array(
+                    }
+                    if($rate->category == 'personal') {
+                        $personalRatesFormed[] = array(
                             'traitName' => $rate->getTraitName($rate->rate_trait_id),
                             'rate' => $rate->rate,
                             'review' => $rate->review,
@@ -86,10 +88,29 @@ class User extends Authenticatable
                         );
                     }
                 }
-                $final_rates[] = $ratesFormed;
+                if($category == 'social') {
+                    if(count($socialRatesFormed)) {
+                        $final_rates['social'][] = $socialRatesFormed;
+                    }
+                }else{
+                    if(count($personalRatesFormed)) {
+                        $final_rates['personal'][] = $personalRatesFormed;
+                    }
+                }
             }
         }
-        return $final_rates;
+
+        if($category == 'social') {
+            if(isset($final_rates['social'])) {
+                return $final_rates['social'];
+            }
+            return [];
+        }
+
+        if(isset($final_rates['personal'])) {
+            return $final_rates['personal'];
+        }
+        return [];
     }
 
     public function requests() 

@@ -57,7 +57,7 @@
 	<script src="{{url('js/notificationFx.js')}}"></script>
 
 	<!--Your HTML content here-->
-	<body ng-app="BlankApp" layout-fill layout="column" ng-cloak>
+	<body ng-app="BlankApp" layout-fill layout="column" ng-cloak ng-controller="notificationCtrl">
 
 	@if (Auth::user())
 	  {{-- expr --}}
@@ -168,8 +168,8 @@ notification.show();
 				 <ul class="nav navbar-nav navbar-right">
 				 	<li>{{-- <a href="/profile/{{Auth::id()}}">{{Auth::user()->fname}} {{Auth::user()->lname}}</a> --}}
 				<a href="/dashboard">{{Auth::user()->fname}}</a></li>
-				<li class="dropdown" ng-controller="notificationCtrl">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications </span><span class="caret"></span>  <span class="label label-pill label-warning bg">@{{x}}</span></a>
+				<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications </span><span class="caret"></span>  <span class="label label-pill label-warning bg">@{{notes.length}}</span></a>
 						<ul style="width: 160%" class="dropdown-menu">
 							<div ng-repeat="note in notes | unique:'text' | limitTo:limit">
 								<li><p style="padding: 10px" ng-click="read(note.text, note.url)"> @{{note.text}}
@@ -183,7 +183,7 @@ notification.show();
 								</li>
 								{{-- <li role="separator" class="divider" style="position: absolute;"></li> --}}
 							</div>
-							<div ng-show="haveNotifications && !noMore">
+							<div ng-show="notes.length && !noMore">
 								<button style="width: 100%" type="button" class="btn btn-default" ng-click="showMore($event)">Show More</button>
 							</div>
 							<div ng-show="noMore">
@@ -191,7 +191,7 @@ notification.show();
 									<p style="padding: 20px">No more to load.</p>
 								</center>
 							</div>
-							<div ng-show="!haveNotifications">
+							<div ng-show="!notes.length">
 								<p style="padding: 20px">You have no new notifications.</p>
 							</div>
 						</ul>

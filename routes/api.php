@@ -45,7 +45,7 @@ Route::group(['prefix' => 'user'], function () {
                 $headers .= 'From: Reddo box <support@reddobox.com>' . "\r\n";
                 $headers .= 'Cc: support@reddobox.com' . "\r\n". "Reply-To: support@reddobox.com" . "\r\n" .
                 "X-Mailer: PHP/" . phpversion() . "Return-Path: support@reddobox.com\r\n";
-                if (mail($to,$subject,$message,$headers)){
+                if (mail($to,$subject,$message,$headers, '-fsupport@reddobox.com')){
                     return ['state' => 'existsAndEmailed'];
                 }else{
                     return ['state' => 'existsWithEmailProblem'];
@@ -91,7 +91,7 @@ Route::group(['prefix' => 'user'], function () {
         $headers .= 'From: Reddo box <support@reddobox.com>' . "\r\n";
         $headers .= 'Cc: support@reddobox.com' . "\r\n". "Reply-To: support@reddobox.com" . "\r\n" .
         "X-Mailer: PHP/" . phpversion() . "Return-Path: support@reddobox.com\r\n";
-        if (mail($to,$subject,$message,$headers)){
+        if (mail($to,$subject,$message,$headers, '-fsupport@reddobox.com')){
             return ['state' => true];
         }
         
@@ -108,6 +108,9 @@ Route::group(['prefix' => 'user'], function () {
     });
     Route::post('/login', function (Request $request, User $user) {
         $user = User::whereEmail($request['email'])->first();
+        if(!count($user)) {
+            return ['state' => false];
+        }
         if($user->confirmed == 1) {
             if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']], true)) {
                 return ['state' => true];
