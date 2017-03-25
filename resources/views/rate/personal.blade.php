@@ -50,7 +50,31 @@
       </md-slider-container>
     </div>
     <hr>
-      <textarea ng-model="review" class="form-control" rows="5" required="required" placeholder="Leave a note.."></textarea>
+      <textarea  onkeyup="checkRtl(this)" ng-model="review" class="form-control" rows="5" required="required" placeholder="Leave a note.."></textarea>
+      <style>
+      	.rtl {
+		    direction: rtl; 
+		    text-align: right;
+		    unicode-bidi: bidi-override;
+		}
+		
+		.ltr {
+		    direction: ltr; 
+		    text-align: left;
+		    unicode-bidi: bidi-override;
+		}
+      </style>
+      <script>
+      function checkRtl( field ) {
+  		var character = field.value[0];
+	      var RTL = ['ا','ب','پ','ت','س','ج','چ','ح','خ','د','ذ','ر','ز','ژ','س','ش','ص','ض','ط','ظ','ع','غ','ف','ق','ک','گ','ل','م','ن','و','ه','ی'];
+	      if(RTL.indexOf( character ) > -1){
+	      	field.className = "rtl form-control ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched";
+	      }else{
+	      	field.className = "ltr form-control ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched";
+	      }
+	  };
+      </script>
     <center>
     <hr>
     <button type="button" id="personal_submit" class="btn bg color btn-lg" id="load" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing">Reddo</button>
