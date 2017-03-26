@@ -45,9 +45,10 @@ Route::group(['prefix' => 'user'], function () {
                 $headers .= 'From: Reddo box <support@reddobox.com>' . "\r\n";
                 $headers .= 'Cc: support@reddobox.com' . "\r\n". "Reply-To: support@reddobox.com" . "\r\n" .
                 "X-Mailer: PHP/" . phpversion() . "Return-Path: support@reddobox.com\r\n";
-                if (mail($to,$subject,$message,$headers, '-fsupport@reddobox.com')){
+                try {
+                    mail($to,$subject,$message,$headers, '-fsupport@reddobox.com');
                     return ['state' => 'existsAndEmailed'];
-                }else{
+                }catch (Exception $e){
                     return ['state' => 'existsWithEmailProblem'];
                 }
             }else{
@@ -91,11 +92,61 @@ Route::group(['prefix' => 'user'], function () {
         $headers .= 'From: Reddo box <support@reddobox.com>' . "\r\n";
         $headers .= 'Cc: support@reddobox.com' . "\r\n". "Reply-To: support@reddobox.com" . "\r\n" .
         "X-Mailer: PHP/" . phpversion() . "Return-Path: support@reddobox.com\r\n";
-        if (mail($to,$subject,$message,$headers, '-fsupport@reddobox.com')){
+        try {
+            mail($to,$subject,$message,$headers, '-fsupport@reddobox.com');
             return ['state' => true];
+        }catch (Exception $e){
+            return ['state' => 'doneWithEmailProblem'];
         }
         
-        return ['state' => true];
+        //return ['state' => true];
+    });
+    Route::post('/forgetpass', function(Request $request, User $user) {
+        $checkExisting = User::whereEmail($request['email'])->first();
+        if(count($checkExisting) > 0){
+            $user = User::whereEmail($request['email'])->first();
+
+            $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_-=+';
+            $pass = array(); //remember to declare $pass as an array
+            $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+            for ($i = 0; $i < 8; $i++) {
+                $n = rand(0, $alphaLength);
+                $pass[] = $alphabet[$n];
+            }
+
+            $to = $user->email;
+            $subject = "Reddobox New Password";
+            $message = '
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Your New Password</title>
+                </head>
+                <body>
+                <center>
+                    Your new password is:' . implode($pass) . '
+                </center>
+                </body>
+                </html>
+            ';
+            // Always set content-type when sending HTML email
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+            // More headers
+            $headers .= 'From: Reddo box <support@reddobox.com>' . "\r\n";
+            $headers .= 'Cc: support@reddobox.com' . "\r\n". "Reply-To: support@reddobox.com" . "\r\n" .
+            "X-Mailer: PHP/" . phpversion() . "Return-Path: support@reddobox.com\r\n";
+            try {
+                mail($to,$subject,$message,$headers, '-fsupport@reddobox.com');
+                $user->password = bcrypt($request['password']);
+                return ['state' => true];
+            }catch (Exception $e){
+                return ['state' => 'mailserver'];
+            }
+        }else{
+            return ['state' => false];
+        }
+
     });
     Route::get('confirm/{code}', function($code) {
         //
@@ -111,13 +162,13 @@ Route::group(['prefix' => 'user'], function () {
         if(!count($user)) {
             return ['state' => false];
         }
-        if($user->confirmed == 1) {
-            if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']], true)) {
+        if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']], true)) {
+            if( $user->confirmed == 1)
                 return ['state' => true];
-            }
-            return ['state' => false];
+            else
+                return ['state' => 'notConfirmed', 'message' => 'You have to verify your e-mail first before you can login!'];
         }else{
-            return ['state' => 'notConfirmed', 'message' => 'You have to verify your e-mail first before you can login!'];
+            return ['state' => false];
         }
     });
     Route::post('edit', function(Request $request) {

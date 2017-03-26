@@ -135,11 +135,29 @@ app.config(['ngCirclesSettingsProvider', function (ngCirclesSettingsProvider) {
   //prompt
   $scope.loginPrompt = function(ev) {
     $mdDialog.show({
+    	controllerAs : 'forgetPassPrompt',
       templateUrl: 'login.tmpl.html',
       parent: angular.element(document.body),
       targetEvent: ev,
       clickOutsideToClose:true,
-      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+      fullscreen: $scope.customFullscreen, // Only for -xs, -sm breakpoints.
+      controller : function ($mdDialog) {
+          this.click = function click() {
+            $mdDialog.show({
+              controllerAs : 'forgetPassPrompt',
+              controller : function ($mdDialog) {
+                this.click = function () {
+                  $mdDialog.hide();
+                }
+              },
+              preserveScope : true,
+              autoWrap : true,
+              skipHide : true,
+              clickOutsideToClose:true,
+              templateUrl :'forgetpass.tmpl.html',
+            })
+          }
+        },
     });
   };
   //end prompt
@@ -215,6 +233,30 @@ $scope.myFunct = function(user, keyEvent) {
   	}
   //end login
 
+
+    //Forget Password
+    	$scope.forgetpass = function (user, e) {
+    
+        $scope.loading = [];
+        $scope.loading.forgetpass = true;
+    		$http.post('/api/user/forgetpass', {
+    			email: user.email,
+    		}).then(function (data) {
+          $scope.loading.forgetpass = false;
+            if(data.data.state == true) {
+              $scope.showAlert('Success', 'An e-mail was sent to you account', 'Okay!', true);
+            }
+            if(data.data.state == false) {
+              $scope.showAlert('Error', 'Email not found!', 'Try again!', true);
+            }
+            if(data.data.state == 'mailserver') {
+                $scope.showAlert('Error', 'Problem with mail server, please contact the administrator!', 'Try again!', true);
+              }
+    		})
+    	}
+    //Forget Password
+  	
+  	
     $scope.showAlert = function(title, text, button, openLoginDialog) {
       $mdDialog.show(
         $mdDialog.alert()
