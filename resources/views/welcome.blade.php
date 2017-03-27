@@ -89,7 +89,7 @@
 							<md-dialog-content>
 							<div class="md-dialog-content">
 								<md-content layout-padding style="opacity:0.7"> <md-input-container
-									class="md-block"> <label>Email address</label> <input
+									class="md-block"> <label> Email address</label> <input
 									minlength="6" maxlength="100" required md-no-asterisk
 									name="email" ng-model="user.email" ng-pattern="/^.+@.+\..+$/">
 								<div ng-messages="projectForm.email.$error">
