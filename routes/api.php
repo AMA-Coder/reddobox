@@ -59,7 +59,7 @@ Route::group(['prefix' => 'user'], function () {
         $user->email = $request['email'];
         $user->fname = $request['fname'];
         $user->lname = $request['lname'];
-        $user->full_name = $request['fname'] . ' ' .$request['lname'];
+        $user->full_name = $request['fname'] . ' ' . $request['lname'];
         $user->dof = $request['dof'];
         $user->gender = $request['gender'];
         $user->confirmation_code = str_random(30);
@@ -101,7 +101,7 @@ Route::group(['prefix' => 'user'], function () {
         
         //return ['state' => true];
     });
-    Route::post('/forgetpass', function(Request $request, User $user) {
+    Route::post('/forgetpass', function(Request $request) {
         $checkExisting = User::whereEmail($request['email'])->first();
         if(count($checkExisting) > 0){
             $user = User::whereEmail($request['email'])->first();
@@ -139,6 +139,7 @@ Route::group(['prefix' => 'user'], function () {
             try {
                 mail($to,$subject,$message,$headers, '-fsupport@reddobox.com');
                 $user->password = bcrypt($request['password']);
+                $user->save();
                 return ['state' => true];
             }catch (Exception $e){
                 return ['state' => 'mailserver'];

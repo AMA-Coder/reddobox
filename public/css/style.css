@@ -112,7 +112,7 @@ md-checkbox.md-checked.checkBoxColor .md-icon {
 	src: url(../fonts/proxima-nova.otf) format("truetype");
 }
 *{
-	font-family: 'proxima-nova',sans-serif !important;
+	font-family: 'proxima-nova',sans-serif;
 }
 
 label{
