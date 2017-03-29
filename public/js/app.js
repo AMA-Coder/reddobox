@@ -132,7 +132,22 @@ app.config(['ngCirclesSettingsProvider', function (ngCirclesSettingsProvider) {
   };
   //end prompt
 
+  
+  });
+
+  app.controller('userCtrl', function ($scope, $http, $mdDialog, $window) {
   //prompt
+  $scope.loginPrompt = function(ev) {
+    $mdDialog.show({
+      templateUrl: 'login.tmpl.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true,
+      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+    });
+  };
+  //end prompt
+//prompt
   $scope.loginPrompt = function(ev) {
     $mdDialog.show({
     	controllerAs : 'forgetPassPrompt',
@@ -158,20 +173,6 @@ app.config(['ngCirclesSettingsProvider', function (ngCirclesSettingsProvider) {
             })
           }
         },
-    });
-  };
-  //end prompt
-  });
-
-  app.controller('userCtrl', function ($scope, $http, $mdDialog, $window) {
-  //prompt
-  $scope.loginPrompt = function(ev) {
-    $mdDialog.show({
-      templateUrl: 'login.tmpl.html',
-      parent: angular.element(document.body),
-      targetEvent: ev,
-      clickOutsideToClose:true,
-      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
     });
   };
   //end prompt
