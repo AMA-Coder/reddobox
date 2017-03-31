@@ -84,11 +84,13 @@
 					</div>
 				</div>
 				<div class="row" style="width: 100%; margin: 0px;" >
-					<div class="col-md-7 col-md-offset-1 col-sm-12">
+					<div class="col-md-6 col-md-offset-1 col-sm-12">
 						<form name="projectForm" ng-controller="userCtrl">
 							<md-dialog-content>
 							<div class="md-dialog-content">
-								<md-content layout-padding style="opacity:0.7"> <md-input-container
+								<md-content layout-padding style="    border-radius: 10px;
+    padding: 12px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);"> <md-input-container
 									class="md-block"> <label> Email address</label> <input
 									minlength="6" maxlength="100" required md-no-asterisk
 									name="email" ng-model="user.email" ng-pattern="/^.+@.+\..+$/">
@@ -285,21 +287,6 @@
 		</div>
 
 	</div>
-	<script type="text/ng-template" id="signup.tmpl.html">
-<md-dialog aria-label="Sign up" style="width:70%" ng-controller="userCtrl">
-    <md-toolbar class="bg">
-      <div class="md-toolbar-tools">
-        <h2 class="bg">Sign up</h2>
-        <span flex></span>
-        <md-button class="md-icon-button" ng-click="cancel()">
-          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
-        </md-button>
-      </div>
-    </md-toolbar>
-	
-    
-</md-dialog>
-</script>
 
 
 	<script type="text/ng-template" id="login.tmpl.html">
