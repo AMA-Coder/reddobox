@@ -10,7 +10,7 @@
 						    <label for="file-input">
 							<form enctype="multipart/form-data" method="post" action="" id="form">
 							<div class="image-container">
-							<img src="{{url('uploads/images/' . Auth::user()->avatar)}}" width="100%" class="image">
+							<img src="{{secure_url('uploads/images/' . Auth::user()->avatar)}}" width="100%" class="image">
 							  <div class="overlay bg">
 							    <div class="text">Click to change</div>
 							  </div>
@@ -25,7 +25,7 @@
 					
 				        
             	@else
-	              <img src="{{url('uploads/images/' . $user->avatar)}}" width="250px" alt="...">
+	              <img src="{{secure_url('uploads/images/' . $user->avatar)}}" width="250px" alt="...">
             	@endif
               <div class="caption">
                 <center><h3>{{$user->fname}} {{$user->lname}}</h3></center>
@@ -232,7 +232,7 @@
 	      		</div>
           <div class="col-sm-4 col-md-3 my friends col-xs-12" ng-repeat="friend in friends">
             <div class="thumbnail">
-              <img width="200px" src="{{url('uploads/images/')}}/@{{friend.avatar}}" >
+              <img width="200px" src="{{secure_url('uploads/images/')}}/@{{friend.avatar}}" >
               <div class="caption">
                 <h4> <a href="/profile/@{{friend.id}}">@{{friend.fname}} @{{friend.lname}}</a> </h4>
                	

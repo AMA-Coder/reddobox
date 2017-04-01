@@ -9,7 +9,7 @@
 						    <label class="profile-picture" for="file-input">
 							<form enctype="multipart/form-data" method="post" action="/profile/{{Auth::id()}}" id="form">
 							<div class="image-container">
-							<img src="{{url('uploads/images/' . Auth::user()->avatar)}}" width="100%" class="image">
+							<img src="{{secure_url('uploads/images/' . Auth::user()->avatar)}}" width="100%" class="image">
 							  <div class="overlay bg">
 							    <div class="text">Click to change</div>
 							  </div>
@@ -123,7 +123,7 @@
 			      		<div ng-show="results.length" ng-repeat="user in results">
 			      			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 			      				<a href="/profile/@{{user.id}}" class="thumbnail">
-			      					<img width="150px" ng-src="{{url('uploads/images/')}}/@{{user.avatar}}" alt="">
+			      					<img width="150px" ng-src="{{secure_url('uploads/images/')}}/@{{user.avatar}}" alt="">
 			      				</a>
 			      					<center><p> @{{user.fname}} @{{user.lname}} </p></center>
 			      			</div>
@@ -143,7 +143,7 @@
 			      			<p>Your friends</p>
 			              <div class="col-sm-6 col-md-3 my friends" ng-repeat="friend in friends">
 			                <div class="thumbnail">
-			                  <img width="200px" ng-src="{{url('uploads/images/')}}/@{{friend.avatar}}" >
+			                  <img width="200px" ng-src="{{secure_url('uploads/images/')}}/@{{friend.avatar}}" >
 			                  <div class="caption">
 				                  <center>
 				                    <h4 style="font-size: 100%; white-space: nowrap; overflow:hidden !important; text-overflow: ellipsis;"><a href="/profile/@{{friend.id}}">@{{friend.fname}} @{{friend.lname}}</a></h4>
@@ -163,7 +163,7 @@
 							@foreach (Auth::user()->getFriendRequests() as $friend_request)
 					      		<div class="col-sm-6 col-md-3 my friends">
 									<div class="thumbnail" ng-controller="boxCtrl">
-										<img width="200px" src="{{url('uploads/images/')}}/{{$user->find($friend_request->sender_id)->avatar}}" >
+										<img width="200px" src="{{secure_url('uploads/images/')}}/{{$user->find($friend_request->sender_id)->avatar}}" >
 						                  <div class="caption">
 											<h4 style=" text-align: center; "><a href="/profile/{{$friend_request->sender_id}}">{{$user->find($friend_request->sender_id)->fname . ' ' .$user->find($friend_request->sender_id)->lname}}</a></h4>
 											<p style=" text-align: center; "><a class="btn btn-default" ng-click="acceptFriendRequest({{$friend_request->sender_id}},{{Auth::id()}}, '{{Auth::user()->fname}}', '{{Auth::user()->lname}}')">Accept</a>

@@ -2,11 +2,11 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- Angular Material style sheet -->
-		<link rel="stylesheet" type="text/css" href="{{url('css/angular-material.css')}}">
-		<link rel="stylesheet" type="text/css" href="{{url('css/bootstrap.min.css')}}">
-		<link rel="stylesheet" type="text/css" href="{{url('css/bootstrap-theme.min.css')}}">
-		<link rel="stylesheet" type="text/css" href="{{url('css/style.css')}}">
-		<LINK REL="SHORTCUT ICON" HREF="{{url('images/icon.ico')}}">
+		<link rel="stylesheet" type="text/css" href="{{secure_url('css/angular-material.css')}}">
+		<link rel="stylesheet" type="text/css" href="{{secure_url('css/bootstrap.min.css')}}">
+		<link rel="stylesheet" type="text/css" href="{{secure_url('css/bootstrap-theme.min.css')}}">
+		<link rel="stylesheet" type="text/css" href="{{secure_url('css/style.css')}}">
+		<LINK REL="SHORTCUT ICON" HREF="{{secure_url('images/icon.ico')}}">
 		<title>Reddo-box</title>
 	</head>
 	<!-- Angular Material requires Angular.js Libraries -->
@@ -16,7 +16,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
   <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="{{url('js/bootstrap.min.js')}}"></script>
+  <script src="{{secure_url('js/bootstrap.min.js')}}"></script>
     <script src="//rawgit.com/lugolabs/circles/master/circles.js"></script>
     <script src="//rawgit.com/ActivKonnect/angular-circles/master/angular-circles.js"></script>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -30,31 +30,31 @@
   ga('send', 'pageview');
 
 </script>
-  <script src=" {{url('/js/ngFacebook.js')}} "></script>
+  <script src=" {{secure_url('/js/ngFacebook.js')}} "></script>
   <!-- Angular Material Library -->
   <script src="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.1/angular-material.js"></script>
-  <script src="{{url('/js/app.js')}}"></script>
-  <script src="{{url('/js/angular-filter.min.js')}}"></script>
-  <script type="text/javascript" src="{{url('js/profileCtrl.js')}}" ></script>
-  <script type="text/javascript" src="{{url('js/boxCtrl.js')}}" ></script>
-  <script type="text/javascript" src="{{url('js/rateCtrl.js')}}" ></script>
-  <script type="text/javascript" src="{{url('js/professionalCtrl.js')}}" ></script>
-  <script type="text/javascript" src="{{url('js/notificationCtrl.js')}}" ></script>
-  <script type="text/javascript" src="{{url('js/accountCtrl.js')}}" ></script>
-  <script type="text/javascript" src="{{url('js/pwResetCtrl.js')}}" ></script>
+  <script src="{{secure_url('/js/app.js')}}"></script>
+  <script src="{{secure_url('/js/angular-filter.min.js')}}"></script>
+  <script type="text/javascript" src="{{secure_url('js/profileCtrl.js')}}" ></script>
+  <script type="text/javascript" src="{{secure_url('js/boxCtrl.js')}}" ></script>
+  <script type="text/javascript" src="{{secure_url('js/rateCtrl.js')}}" ></script>
+  <script type="text/javascript" src="{{secure_url('js/professionalCtrl.js')}}" ></script>
+  <script type="text/javascript" src="{{secure_url('js/notificationCtrl.js')}}" ></script>
+  <script type="text/javascript" src="{{secure_url('js/accountCtrl.js')}}" ></script>
+  <script type="text/javascript" src="{{secure_url('js/pwResetCtrl.js')}}" ></script>
 
-  <script type="text/javascript" src="{{url('extensions/notifications/angular-ui-notification.min.js')}}" ></script>
-  <link rel="stylesheet" href="{{url('extensions/notifications/angular-ui-notification.min.css')}}">
+  <script type="text/javascript" src="{{secure_url('extensions/notifications/angular-ui-notification.min.js')}}" ></script>
+  <link rel="stylesheet" href="{{secure_url('extensions/notifications/angular-ui-notification.min.css')}}">
 
   <!-- sweet alert -->
-  <link rel="stylesheet" type="text/css" href=" {{url('extensions/swal/sweetalert.css')}} ">
-  <script type="text/javascript" src="{{url('extensions/swal/sweetalert.min.js')}}" ></script>
+  <link rel="stylesheet" type="text/css" href=" {{secure_url('extensions/swal/sweetalert.css')}} ">
+  <script type="text/javascript" src="{{secure_url('extensions/swal/sweetalert.min.js')}}" ></script>
 
-	<link rel="stylesheet" type="text/css" href="{{url('css/ns-default.css')}}" />
+	<link rel="stylesheet" type="text/css" href="{{secure_url('css/ns-default.css')}}" />
 
-	<link rel="stylesheet" type="text/css" href="{{url('css/ns-style-growl.css')}}" />
+	<link rel="stylesheet" type="text/css" href="{{secure_url('css/ns-style-growl.css')}}" />
 
-	<script src="{{url('js/notificationFx.js')}}"></script>
+	<script src="{{secure_url('js/notificationFx.js')}}"></script>
 
 	<!--Your HTML content here-->
 	<body ng-app="BlankApp" layout-fill layout="column" ng-cloak ng-controller="notificationCtrl">
