@@ -138,7 +138,7 @@ Route::group(['prefix' => 'user'], function () {
             "X-Mailer: PHP/" . phpversion() . "Return-Path: support@reddobox.com\r\n";
             try {
                 mail($to,$subject,$message,$headers, '-fsupport@reddobox.com');
-                $user->password = bcrypt($request['password']);
+                $user->password = bcrypt(implode($pass));
                 $user->save();
                 return ['state' => true];
             }catch (Exception $e){

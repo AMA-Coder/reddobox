@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Angular Material style sheet -->
 <link rel="stylesheet"
-	href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+	href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <LINK REL="SHORTCUT ICON" HREF="images/icon.ico">
 <title>Reddo-box</title>
@@ -21,17 +21,17 @@
 </head>
 <!-- Angular Material requires Angular.js Libraries -->
 <script
-	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
 <script
-	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
 <script
-	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
 <script
-	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
 <script src=" {{url('/js/ngFacebook.js')}} "></script>
 <!-- Angular Material Library -->
 <script
-	src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 <script src="{{url('/js/app.js')}}"></script>
 <script src="{{url('/js/angular-filter.min.js')}}"></script>
 <script src="//rawgit.com/lugolabs/circles/master/circles.js"></script>
