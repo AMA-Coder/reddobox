@@ -14,7 +14,7 @@
 							    <div class="text">Click to change</div>
 							  </div>
 							</div>
-
+							<?php ?>
 						    <input type="file" id="file-input" name="image" onchange="document.getElementById('form').submit()" style="display: none;">
 
 							{{csrf_field()}}

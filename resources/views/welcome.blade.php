@@ -84,7 +84,7 @@
 					</div>
 				</div>
 				<div class="row" style="width: 100%; margin: 0px;" >
-					<div class="col-md-6 col-md-offset-1 col-sm-12">
+					<div class="col-md-4 col-md-offset-1 col-sm-12">
 						<form name="projectForm" ng-controller="userCtrl">
 							<md-dialog-content>
 							<div class="md-dialog-content">
@@ -103,8 +103,8 @@
 								</div>
 								<md-tooltip md-direction="bottom"> Email adress </md-tooltip> </md-input-container>
 
-								<div layout="row">
-									<md-input-container flex="50"> <label>First Name</label> <input
+								
+									<md-input-container class="md-block"> <label>First Name</label> <input
 										md-maxlength="15" required name="fname" ng-model="user.fname">
 									<div ng-messages="projectForm.fname.$error">
 										<div ng-message="required">This is required.</div>
@@ -113,7 +113,7 @@
 									</div>
 									<md-tooltip md-direction="bottom"> First Name </md-tooltip> </md-input-container>
 
-									<md-input-container flex="50"> <label>Last Name</label> <input
+									<md-input-container class="md-block" style="margin-bottom:0px;"> <label>Last Name</label> <input
 										md-maxlength="15" required name="lname" ng-model="user.lname">
 									<div ng-messages="projectForm.lname.$error">
 										<div ng-message="required">This is required.</div>
@@ -121,9 +121,16 @@
 											characters long.</div>
 									</div>
 									<md-tooltip md-direction="bottom"> Last Name </md-tooltip> </md-input-container>
-								</div>
-
-								<div layout="row">
+							
+								 <style>
+    .my-radio md-radio-button , md-radio-button.md-checked ._md-off{
+      border-color: black;
+    }
+    .my-radio md-radio-button , md-radio-button.md-checked ._md-on{
+      background-color: black;
+    }
+  </style>
+								<div layout="row" style="padding:0px;"> 
 									{{--
 									<md-input-container flex="50"> <label>Date of birth</label> <input
 										required name="dof" type="date" ng-model="user.dof">
@@ -133,13 +140,19 @@
 									<md-tooltip md-direction="bottom"> Date of birth </md-tooltip>
 									</md-input-container>
 									--}}
-									<md-input-container flex="50"> <label>Gender</label> <md-select
-										name="type" ng-model="user.gender" required> <md-option
-										value="male">Male</md-option> <md-option value="female">Female</md-option>
-									</md-select> <md-tooltip md-direction="bottom"> Gender </md-tooltip>
+									<md-input-container flex="50" style="margin:0px;">
+									<p><strong>Gender</strong></p>
+									<md-radio-group ng-model="user.gender">
+									<div layout="row">
+									   <md-radio-button value="male" class="md-primary"  flex="50">Male</md-radio-button>
+								      	<md-radio-button value="female" class="md-primary"  flex="50"> Female </md-radio-button>
+									</div>
+								   
+								
+								    </md-radio-group>
 									</md-input-container>
 								</div>
-								<md-input-container class="md-block"> <label>Password</label> <input
+								<md-input-container class="md-block" style="margin-top:0px;"> <label>Password</label> <input
 									required type="password" name="password"
 									ng-model="user.password" minlength="6" maxlength="30" />
 
@@ -290,7 +303,7 @@
 
 
 	<script type="text/ng-template" id="login.tmpl.html">
-    <md-dialog aria-label="Log in" style="width:70%" ng-controller="userCtrl">
+    <md-dialog aria-label="Log in" style="width:45%" ng-controller="userCtrl">
         <md-toolbar class="bg">
           <div class="md-toolbar-tools">
             <h2 class="bg">Log in</h2>
@@ -344,7 +357,7 @@
 </script>
 
 	<script type="text/ng-template" id="forgetpass.tmpl.html">
-    <md-dialog aria-label="Forget Password" style="width:70%" ng-controller="userCtrl">
+    <md-dialog aria-label="Forget Password" style="width:40%" ng-controller="userCtrl">
         <md-toolbar class="bg">
           <div class="md-toolbar-tools">
             <h2 class="bg">Forget Password</h2>
