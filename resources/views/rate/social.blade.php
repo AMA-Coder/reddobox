@@ -7,7 +7,7 @@
     <div class="row">
   <div class="col-sm-6 col-md-3 my">
     <div class="thumbnail">
-    <img src="{{url('uploads/images/')}}/{{$user->avatar}}" width="250px" alt="...">
+    <img src="{{secure_url('uploads/images/')}}/{{$user->avatar}}" width="250px" alt="...">
     <div class="caption">
     <center><h3><a href="/profile/{{$user->id}}">{{$user->fname}} {{$user->lname}}</h3></a></center>
         {{-- <ul style="list-style:none;padding-left:0">
