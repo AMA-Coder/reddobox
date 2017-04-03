@@ -156,7 +156,7 @@ Route::group(['prefix' => 'user'], function () {
         $user->confirmation_code = 0;
         $user->save();
         $confirmed = true;
-        return redirect()->route('welcome', compact('confirmed'));
+        return redirect(preg_replace("/^http:/i", "https:", URL::route('welcome')) . '?confirmed=1');//->route('welcome', compact('confirmed'));
     });
     Route::post('/login', function (Request $request, User $user) {
         $user = User::whereEmail($request['email'])->first();
