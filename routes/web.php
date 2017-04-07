@@ -25,7 +25,7 @@ use App\projectInvitation as Invitation;
 Route::get('/', function () {
 
 	if(Auth::guard(null)->check()) {
-		return redirect('/dashboard');
+		return redirect(preg_replace("/^http:/i", "https:", URL::route('dashboard')));
 	}
 
     return view('welcome');
@@ -36,7 +36,7 @@ Auth::routes();
 // Route::get('/home', 'HomeController@index');
 Route::post('/auth', function (Request $request, User $user) {
     if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
-    	return redirect()->route('dashboard');
+    	return redirect(preg_replace("/^http:/i", "https:", URL::route('dashboard')));
     }
 });
 
@@ -354,7 +354,7 @@ Route::group(['middleware' => ['auth']], function () {
 	});
 	Route::get('/logout', function () {
 		Auth::logout();
-		return redirect()->route('welcome');
+		return redirect()->route(preg_replace("/^http:/i", "https:", URL::route('welcome')));
 	});
 	Route::post('notify', function(Request $request) {
 		$user_id = $request['user_id'];

@@ -4,7 +4,7 @@
 	<div ng-controller="projectCtrl">
 		<div class="col-sm-6 col-md-3 my">
 		    <div class="thumbnail">
-		      <img src="{{url('uploads/images/' . $user->avatar)}}" width="250px" alt="...">
+		      <img src="{{secure_url('uploads/images/' . $user->avatar)}}" width="250px" alt="...">
 	          <div class="caption">
 	            <center><h3>{{$user->fname}} {{$user->lname}}</h3>
 				</center>

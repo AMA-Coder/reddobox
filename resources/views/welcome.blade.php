@@ -28,30 +28,30 @@
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-<script src=" {{url('/js/ngFacebook.js')}} "></script>
+<script src=" {{secure_url('/js/ngFacebook.js')}} "></script>
 <!-- Angular Material Library -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-<script src="{{url('/js/app.js')}}"></script>
-<script src="{{url('/js/angular-filter.min.js')}}"></script>
+<script src="{{secure_url('/js/app.js')}}"></script>
+<script src="{{secure_url('/js/angular-filter.min.js')}}"></script>
 <script src="//rawgit.com/lugolabs/circles/master/circles.js"></script>
 <script
 	src="//rawgit.com/ActivKonnect/angular-circles/master/angular-circles.js"></script>
 
 <script type="text/javascript"
-	src="{{url('extensions/notifications/angular-ui-notification.min.js')}}"></script>
+	src="{{secure_url('extensions/notifications/angular-ui-notification.min.js')}}"></script>
 <link rel="stylesheet"
-	href="{{url('extensions/notifications/angular-ui-notification.min.css')}}">
+	href="{{secure_url('extensions/notifications/angular-ui-notification.min.css')}}">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- sweet alert -->
 <link rel="stylesheet" type="text/css"
-	href=" {{url('extensions/swal/sweetalert.css')}} ">
+	href=" {{secure_url('extensions/swal/sweetalert.css')}} ">
 <script type="text/javascript"
-	src="{{url('extensions/swal/sweetalert.min.js')}}"></script>
+	src="{{secure_url('extensions/swal/sweetalert.min.js')}}"></script>
 <link rel="stylesheet" type="text/css"
-	href="{{url('css/bootstrap.min.css')}}">
-<script src="{{url('js/bootstrap.min.js')}}"></script>
+	href="{{secure_url('css/bootstrap.min.css')}}">
+<script src="{{secure_url('js/bootstrap.min.js')}}"></script>
 <body ng-app="BlankApp" layout-fill layout="column" ng-cloak>
 	<!--Your HTML content here-->
 	@if (isset($_GET['confirmed']) == 1)

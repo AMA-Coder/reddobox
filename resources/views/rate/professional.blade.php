@@ -3,7 +3,7 @@
 	<div ng-controller="professionalCtrl">
 		<div class="col-sm-6 col-md-3 my">
 		    <div class="thumbnail">
-		      <img src="{{url('uploads/images/' . $user->find($id)->avatar)}}" width="250px" alt="...">
+		      <img src="{{secure_url('uploads/images/' . $user->find($id)->avatar)}}" width="250px" alt="...">
 	          <div class="caption">
 	            <center><h3>{{$user->find($id)->fname}} {{$user->find($id)->lname}}</h3>
 				@if (Auth::id() == $id)
