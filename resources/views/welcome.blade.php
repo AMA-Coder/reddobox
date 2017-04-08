@@ -7,6 +7,7 @@
 	href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <LINK REL="SHORTCUT ICON" HREF="images/icon.ico">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>Reddo-box</title>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -52,6 +53,7 @@
 <link rel="stylesheet" type="text/css"
 	href="{{secure_url('css/bootstrap.min.css')}}">
 <script src="{{secure_url('js/bootstrap.min.js')}}"></script>
+
 <body ng-app="BlankApp" layout-fill layout="column" ng-cloak>
 	<!--Your HTML content here-->
 	@if (isset($_GET['confirmed']) == 1)
@@ -103,8 +105,8 @@
 								</div>
 								<md-tooltip md-direction="bottom"> Email adress </md-tooltip> </md-input-container>
 
-								
-									<md-input-container class="md-block"> <label>First Name</label> <input
+									<div class="row" style="margin:0px;">
+									<md-input-container class="md-block col-md-6"  style="margin:0px;padding-left:0px;"> <label>First Name</label> <input
 										md-maxlength="15" required name="fname" ng-model="user.fname">
 									<div ng-messages="projectForm.fname.$error">
 										<div ng-message="required">This is required.</div>
@@ -112,8 +114,8 @@
 											characters long.</div>
 									</div>
 									<md-tooltip md-direction="bottom"> First Name </md-tooltip> </md-input-container>
-
-									<md-input-container class="md-block" style="margin-bottom:0px;"> <label>Last Name</label> <input
+									
+									<md-input-container class="md-block col-md-6" style="margin:0px;padding-left:0px;padding-right:0px;"> <label>Last Name</label> <input
 										md-maxlength="15" required name="lname" ng-model="user.lname">
 									<div ng-messages="projectForm.lname.$error">
 										<div ng-message="required">This is required.</div>
@@ -121,7 +123,7 @@
 											characters long.</div>
 									</div>
 									<md-tooltip md-direction="bottom"> Last Name </md-tooltip> </md-input-container>
-							
+								</div>
 								 <style>
     .my-radio md-radio-button , md-radio-button.md-checked ._md-off{
       border-color: black;
@@ -154,7 +156,7 @@
 								</div>
 								<md-input-container class="md-block" style="margin-top:0px;"> <label>Password</label> <input
 									required type="password" name="password"
-									ng-model="user.password" minlength="6" maxlength="30" />
+									ng-model="user.password" minlength="6" maxlength="30" /><i class="fa fa-eye field-icon show_pass_eye" aria-hidden="true" toggle="[name='password']"></i>
 
 								<div ng-messages="projectForm.password.$error"
 									md-auto-hide="false" role="alert">
@@ -163,10 +165,10 @@
 								</div>
 								<md-tooltip md-direction="bottom"> Password </md-tooltip> </md-input-container>
 
-								<md-input-container class="md-block"> <label>Password
+								<md-input-container class="md-block"> <label class="required-rm-star">Password
 									Confirmation</label> <input required type="password"
 									name="password_confirmation" ng-pattern="@{{user.password}}"
-									ng-model="user.password_confirmation" />
+									ng-model="user.password_confirmation" /><i class="fa fa-eye field-icon show_pass_eye" aria-hidden="true" toggle="[name='password_confirmation']"></i>
 
 								<div ng-messages="projectForm.password_confirmation.$error"
 									md-auto-hide="false" role="alert">
@@ -175,7 +177,18 @@
 								</md-input-container> </md-content>
 							</div>
 							</md-dialog-content>
-
+								<script type="text/javascript">
+										$(".field-icon").click(function() {
+										
+											$(this).toggleClass("fa-eye fa-eye-slash");
+											var input = $($(this).attr("toggle"));
+											if (input.attr("type") == "password") {
+											input.attr("type", "text");
+											} else {
+											input.attr("type", "password");
+											}
+											});
+										</script>
 							<md-dialog-actions> 
 							<div class="row" style="width: 100%;margin: 0px">
 							

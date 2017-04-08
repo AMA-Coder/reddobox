@@ -278,22 +278,44 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 	Route::group(['prefix' => 'profile', 'middleware' => 'auth'], function() {
-		Route::post('/{id}', function(Request $request) {
-		    if($request->hasFile('image')) {
-		    	$img = Image::make($request->file('image'));
+		Route::post('/uploadPP', function(Request $request) {
+		    if($request->hasFile('imgPP')) {
+		    	$img = Image::make($request->file('imgPP'));
 
 				// resize image instance
-				$img->resize(200, 200);
+				//$img->resize(200, 200);
 
 				// save image in desired format
-				$name = time() . '.' . $request->file('image')->getClientOriginalExtension();
+				$name = time() . '.' . $request->file('imgPP')->getClientOriginalExtension();
 				$img->save(public_path('uploads/images/' . $name));
 
 				$user = Auth::user();
 				$user->avatar = $name;
 				$user->save();
-				return redirect()->back();
+				return [ 
+				'status' => true,
+				'imageSrc' => secure_url('uploads/images/' . $name) 
+				];
 		    }
+		    return ['status' => false];
+		});
+		Route::post('/cropPP', function(Request $request){
+			if($request->has(['x', 'y', 'w', 'h'])){
+				$user = Auth::user();
+				$name = $user->avatar;
+				$img = Image::make(public_path('uploads/images/' . $name));
+
+				$x = $request->input('x');
+				$y = $request->input('y');
+				$w = $request->input('w');
+				$h = $request->input('h');
+
+				$img->crop($w, $h, $x, $y);
+				$img->save(public_path('uploads/images/' . $name));
+				//return ['status' => true];
+				return redirect()->back();
+			}
+			return ['status' => false];
 		});
 	    Route::get('{id}',[
 			'uses' => 'ProfileController@index'
