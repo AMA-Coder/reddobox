@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
     <link href="{{secure_url('css/app.css')}}" rel="stylesheet">
     <link href="{{secure_url('css/style.css')}}" rel="stylesheet">
+    <link href="{{secure_url('css/jquery.Jcrop.min.css')}}" rel="stylesheet">
     <title>Reddo-box</title>
 </head>  <!-- Angular Material requires Angular.js Libraries -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
@@ -20,6 +21,7 @@
   <script type="text/javascript" src="{{secure_url('js/rateCtrl.js')}}" ></script>
   <script type="text/javascript" src="{{secure_url('js/professionalCtrl.js')}}" ></script>
   <script type="text/javascript" src="{{secure_url('js/notificationCtrl.js')}}" ></script>
+  <script type="text/javascript" src="{{secure_url('js/jquery.Jcrop.min.js')}}" ></script>
 
   <script type="text/javascript" src="{{secure_url('extensions/notifications/angular-ui-notification.min.js')}}" ></script>
   <link rel="stylesheet" href="{{secure_url('extensions/notifications/angular-ui-notification.min.css')}}">

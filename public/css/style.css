@@ -22,6 +22,15 @@ body,html{
     background-color: #000;
 }
 
+.show_pass_eye{
+	float: right;
+    margin-top: -20px;
+    padding-right: 10px;
+}
+.required-rm-star::AFTER{
+	content:"" !important;
+}
+
 md-checkbox.md-checked.checkBoxColor .md-icon {
  background-color: #1D7F8D;
 }
