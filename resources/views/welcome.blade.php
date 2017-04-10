@@ -163,18 +163,7 @@
 									<div ng-message-exp="['required', 'minlength', 'maxlength']">
 										Your password must be between 6 and 30 characters long.</div>
 								</div>
-								<md-tooltip md-direction="bottom"> Password </md-tooltip> </md-input-container>
-
-								<md-input-container class="md-block"> <label class="required-rm-star">Password
-									Confirmation</label> <input required type="password"
-									name="password_confirmation" ng-pattern="@{{user.password}}"
-									ng-model="user.password_confirmation" /><i class="fa fa-eye field-icon show_pass_eye" aria-hidden="true" toggle="[name='password_confirmation']"></i>
-
-								<div ng-messages="projectForm.password_confirmation.$error"
-									md-auto-hide="false" role="alert">
-									<div ng-message="pattern">The password doesn't match.</div>
-								</div>
-								</md-input-container> </md-content>
+								<md-tooltip md-direction="bottom"> Password </md-tooltip> </md-input-container> </md-content>
 							</div>
 							</md-dialog-content>
 								<script type="text/javascript">

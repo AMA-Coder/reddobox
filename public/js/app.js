@@ -358,7 +358,7 @@ app.controller('dashController', function($scope, $mdDialog, $http, $timeout,
 		// Take the first selected file
 		fd.append("imgPP", userImg[0]);
 
-		$http.post('http://localhost:8000/profile/uploadPP', fd, {
+		$http.post('/profile/uploadPP', fd, {
 			withCredentials : true,
 			headers : {
 				'Content-Type' : undefined
