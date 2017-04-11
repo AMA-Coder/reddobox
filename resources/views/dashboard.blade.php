@@ -188,6 +188,11 @@
 
 <md-dialog aria-label="Log in" style="width:70%" ng-controller="dashController">
 <form name="cropImageForm" id="cropImageForm" method="post" action="/profile/cropPP">
+		<style>
+.jcrop-holder{
+margin: auto;
+}
+		</style>
         <md-toolbar class="bg">
           <div class="md-toolbar-tools">
             <h2 class="bg">Crop Profile Picture</h2>
@@ -202,10 +207,9 @@
 				<input type="hidden" id="y" name="y" />
 				<input type="hidden" id="w" name="w" />
 				<input type="hidden" id="h" name="h" />
-                  <md-input-container class="md-block">
-                   
-                  </md-input-container>
-					<img src="" id="cropbox" />
+				<input type="hidden" id="ratio" name="ratio" />
+					<div style="width:500px;height:350px;margin:auto;">
+					<img align="center" src="" id="cropbox" style="max-width:100%;max-height:100%; object-fit: contain"/></div>
                   
               </md-content>
           </div>
@@ -218,6 +222,7 @@
        
         </md-dialog-actions> </form>
     </md-dialog>
+	
 </script>
 
 
