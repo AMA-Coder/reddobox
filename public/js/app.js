@@ -380,10 +380,12 @@ app.controller('dashController', function($scope, $mdDialog, $http, $timeout,
 					}
 					
 						$('#cropbox').Jcrop({
-							onSelect : updateCoords
+							onSelect : updateCoords,
+							aspectRatio: 0.85
 						});
-
-					
+						$('#cropbox').load(function(){
+							document.getElementById('ratio').value = document.getElementById('cropbox').naturalWidth / $('#cropbox').width();
+						});
 					clearInterval(updated);
 				}
 

@@ -300,15 +300,15 @@ Route::group(['middleware' => ['auth']], function () {
 		    return ['status' => false];
 		});
 		Route::post('/cropPP', function(Request $request){
-			if($request->has(['x', 'y', 'w', 'h'])){
+			if($request->has(['x', 'y', 'w', 'h','ratio'])){
 				$user = Auth::user();
 				$name = $user->avatar;
 				$img = Image::make(public_path('uploads/images/' . $name));
 
-				$x = $request->input('x');
-				$y = $request->input('y');
-				$w = $request->input('w');
-				$h = $request->input('h');
+				$x = intval($request->input('x') * floatval( $request->input('ratio')));
+				$y = intval($request->input('y') * floatval( $request->input('ratio')));
+				$w = intval($request->input('w') * floatval( $request->input('ratio')));
+				$h = intval($request->input('h') * floatval( $request->input('ratio')));
 
 				$img->crop($w, $h, $x, $y);
 				$img->save(public_path('uploads/images/' . $name));
