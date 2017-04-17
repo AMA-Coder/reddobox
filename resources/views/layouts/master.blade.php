@@ -6,6 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="{{secure_url('css/bootstrap.min.css')}}">
 		<link rel="stylesheet" type="text/css" href="{{secure_url('css/bootstrap-theme.min.css')}}">
 		<link rel="stylesheet" type="text/css" href="{{secure_url('css/style.css')}}">
+		<link href="{{secure_url('css/jquery.Jcrop.min.css')}}" rel="stylesheet">
 		<LINK REL="SHORTCUT ICON" HREF="{{secure_url('images/icon.ico')}}">
 		<title>Reddo-box</title>
 	</head>
@@ -19,6 +20,7 @@
   <script src="{{secure_url('js/bootstrap.min.js')}}"></script>
     <script src="//rawgit.com/lugolabs/circles/master/circles.js"></script>
     <script src="//rawgit.com/ActivKonnect/angular-circles/master/angular-circles.js"></script>
+    <script type="text/javascript" src="{{secure_url('js/jquery.Jcrop.min.js')}}" ></script>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

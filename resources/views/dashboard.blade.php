@@ -15,7 +15,7 @@
 							  </div>
 							</div>
 							<?php ?>
-						    <input type="file" id="file-input" name="image" onchange="document.getElementById('form').submit()" style="display: none;">
+						    <input type="file" id="file-input" name="image"  ng-model="userImg" onchange="angular.element(this).scope().uploadImg(this.files)" style="display: none;">
 
 							{{csrf_field()}}
 							</form>
@@ -182,6 +182,49 @@
         </div>
         </div><!-- /.container-fluid -->
       </div>
+
+
+	<script type="text/ng-template" id="crop.image.pp">
+
+<md-dialog aria-label="Log in" style="width:70%" ng-controller="dashController">
+<form name="cropImageForm" id="cropImageForm" method="post" action="/profile/cropPP">
+		<style>
+.jcrop-holder{
+margin: auto;
+}
+		</style>
+        <md-toolbar class="bg">
+          <div class="md-toolbar-tools">
+            <h2 class="bg">Crop Profile Picture</h2>
+            <span flex></span>
+          </div>
+        </md-toolbar>
+        <md-dialog-content>
+          <div class="md-dialog-content">
+              <md-content layout-padding>
+                 {{ csrf_field() }}
+				<input type="hidden" id="x" name="x" />
+				<input type="hidden" id="y" name="y" />
+				<input type="hidden" id="w" name="w" />
+				<input type="hidden" id="h" name="h" />
+				<input type="hidden" id="ratio" name="ratio" />
+					<div style="width:500px;height:350px;margin:auto;">
+					<img align="center" src="" id="cropbox" style="max-width:100%;max-height:100%; object-fit: contain"/></div>
+                  
+              </md-content>
+          </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+          <md-button class="bg" style="color:white;" onclick="document.getElementById('cropImageForm').submit()">
+            <span>Crop Image</span>
+          </md-button>
+       
+        </md-dialog-actions> </form>
+    </md-dialog>
+	
+</script>
+
 
       <script type="text/javascript">
       	var id = {{Auth::id()}};

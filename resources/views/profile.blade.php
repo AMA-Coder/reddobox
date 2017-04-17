@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-<div class="container"   style="min-height: 580px;">
+<div class="container" ng-controller="dashController" style="min-height: 580px;">
         <div class="row">
           <div class="col-md-3 col-sm-4">
             <div class="thumbnail">
@@ -16,7 +16,7 @@
 							  </div>
 							</div>
 
-						    <input type="file" id="file-input" name="image" onchange="document.getElementById('form').submit()" style="display: none;">
+						   <input type="file" id="file-input" name="image"  ng-model="userImg" onchange="angular.element(this).scope().uploadImg(this.files)" style="display: none;">
 
 							{{csrf_field()}}
 							</form>
@@ -254,6 +254,43 @@
           </div>
           
 	  @endif
+	  
+	  <script type="text/ng-template" id="crop.image.pp">
+
+<md-dialog aria-label="Log in" style="width:70%" ng-controller="dashController">
+<form name="cropImageForm" id="cropImageForm" method="post" action="/profile/cropPP">
+        <md-toolbar class="bg">
+          <div class="md-toolbar-tools">
+            <h2 class="bg">Crop Profile Picture</h2>
+            <span flex></span>
+          </div>
+        </md-toolbar>
+        <md-dialog-content>
+          <div class="md-dialog-content">
+              <md-content layout-padding>
+                 {{ csrf_field() }}
+				<input type="hidden" id="x" name="x" />
+				<input type="hidden" id="y" name="y" />
+				<input type="hidden" id="w" name="w" />
+				<input type="hidden" id="h" name="h" />
+                  <md-input-container class="md-block">
+                   
+                  </md-input-container>
+					<img src="" id="cropbox" />
+                  
+              </md-content>
+          </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+          <md-button class="bg" style="color:white;" onclick="document.getElementById('cropImageForm').submit()">
+            <span>Crop Image</span>
+          </md-button>
+       
+        </md-dialog-actions> </form>
+    </md-dialog>
+</script>
+
           <script type="text/javascript">
           	app.controller('showRatesCtrl', function ($scope, $http, $window) {
 
