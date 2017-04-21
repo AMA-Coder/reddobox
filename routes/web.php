@@ -376,7 +376,7 @@ Route::group(['middleware' => ['auth']], function () {
 	});
 	Route::get('/logout', function () {
 		Auth::logout();
-		return redirect()->route(preg_replace("/^http:/i", "https:", URL::route('welcome')));
+		return redirect(preg_replace("/^http:/i", "https:", URL::route('welcome')));
 	});
 	Route::post('notify', function(Request $request) {
 		$user_id = $request['user_id'];
