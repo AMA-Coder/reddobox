@@ -193,9 +193,10 @@
           <div class="row">
 	          <div class="col-md-6 col-sm-6">
 		          @if (Auth::user()->isFriendWith($user))
+		          @include('modals.rate', ['user' => $user])
 			          <center>
 			          	<h2>
-				          <a style="cursor: pointer; text-decoration: none" ng-click="personal({{$user->id}})">Personal</a>
+				          <a style="cursor: pointer; text-decoration: none" data-toggle="modal" href='#personal-rate'>Personal</a>
 				       	</h2>
 				       </center>
 		          @else

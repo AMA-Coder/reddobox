@@ -151,6 +151,7 @@
           $('#personal_submit').on('click', function() {
               var $this = $(this);
             $this.button('loading');
+            console.log($scope.ss)
             $http.post('/rate/personal', {
                 review: $scope.review, 
                 id: user_id,

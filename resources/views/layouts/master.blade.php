@@ -48,6 +48,10 @@
   <script type="text/javascript" src="{{secure_url('extensions/notifications/angular-ui-notification.min.js')}}" ></script>
   <link rel="stylesheet" href="{{secure_url('extensions/notifications/angular-ui-notification.min.css')}}">
 
+<script src="{{secure_url('/js/ext/jk-rating-stars.min.js')}}"></script>
+<link href="{{secure_url('/js/ext/jk-rating-stars.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
   <!-- sweet alert -->
   <link rel="stylesheet" type="text/css" href=" {{secure_url('extensions/swal/sweetalert.css')}} ">
   <script type="text/javascript" src="{{secure_url('extensions/swal/sweetalert.min.js')}}" ></script>

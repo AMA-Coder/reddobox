@@ -35,6 +35,14 @@
 	src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 <script src="{{secure_url('/js/app.js')}}"></script>
 <script src="{{secure_url('/js/angular-filter.min.js')}}"></script>
+
+
+
+<script src="{{secure_url('/js/ext/jk-rating-stars.min.js')}}"></script>
+<link href="{{secure_url('/js/ext/jk-rating-stars.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
 <script src="//rawgit.com/lugolabs/circles/master/circles.js"></script>
 <script
 	src="//rawgit.com/ActivKonnect/angular-circles/master/angular-circles.js"></script>
