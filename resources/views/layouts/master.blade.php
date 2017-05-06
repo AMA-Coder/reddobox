@@ -37,6 +37,7 @@
   <script src="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.1/angular-material.js"></script>
   <script src="{{secure_url('/js/app.js')}}"></script>
   <script src="{{secure_url('/js/angular-filter.min.js')}}"></script>
+  <script src="{{secure_url('/js/ext/angular-rel-date.min.js')}}"></script>
   <script type="text/javascript" src="{{secure_url('js/profileCtrl.js')}}" ></script>
   <script type="text/javascript" src="{{secure_url('js/boxCtrl.js')}}" ></script>
   <script type="text/javascript" src="{{secure_url('js/rateCtrl.js')}}" ></script>

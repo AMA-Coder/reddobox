@@ -1,5 +1,5 @@
 var app = angular.module('BlankApp', [ 'angular.filter', 'ngMaterial',
-		'ngMessages', 'ngFacebook', 'ui-notification', 'angular-circles', 'jkAngularRatingStars'])
+		'ngMessages', 'ngFacebook', 'ui-notification', 'angular-circles', 'jkAngularRatingStars', 'relativeDate'])
 app.config(function(NotificationProvider) {
 	NotificationProvider.setOptions({
 		delay : 10000,

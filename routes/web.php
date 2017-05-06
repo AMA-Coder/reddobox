@@ -10,6 +10,7 @@ use App\Project;
 use App\projectRate;
 use App\Notification;
 use App\projectInvitation as Invitation;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,7 +73,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 	Route::group(['prefix' => 'rate', 'middleware' => 'auth'], function () {
 
-		Route::get('details', function(Request $request) {
+		Route::get('detailsa', function(Request $request) {
 			if($request['cat'] == 'social') {
 				$rates = Auth::user()->ratesSortedByFriends('social');
 				// dd($rates);
@@ -80,6 +81,46 @@ Route::group(['middleware' => ['auth']], function () {
 				$rates = Auth::user()->ratesSortedByFriends('personal');
 			}
 		    return view('rate.details', compact('rates'));
+		});
+
+		Route::get('details', function(Request $request) {
+			if($request['cat'] == 'personal') {
+				$ratesDoneByMe = Rate::where('from_id', Auth::id())->with('user')->get()->groupBy('user_id');
+				// return $ratesDoneByMe;
+				$myRates = Rate::where('user_id', Auth::id())->get();
+				// return $myRates;
+				// return $ratesDoneByMe;
+				foreach ($ratesDoneByMe as $rate) {
+					foreach ($rate as $r) {
+						$r->trait_name = $r->getTraitName($r->rate_trait_id);
+					}
+				}
+				foreach ($myRates as $rate) {
+					$rate->trait_name = $rate->getTraitName($rate->rate_trait_id);
+				}
+				$myRatesGrouped = $myRates->groupBy('from_id');
+				// return $ratesDoneByMe;
+			    return view('rate.my_personal', compact('ratesDoneByMe', 'myRatesGrouped', 'myRates'));
+			}
+		});
+
+		Route::post('getPersonal', function() {
+			$ratesDoneByMe = Rate::where('from_id', Auth::id())->with('user')->get()->groupBy('user_id');
+			// return $ratesDoneByMe;
+			$myRates = Rate::where('user_id', Auth::id())->get();
+			// return $myRates;
+			// return $ratesDoneByMe;
+			foreach ($ratesDoneByMe as $rate) {
+				foreach ($rate as $r) {
+					$r->trait_name = $r->getTraitName($r->rate_trait_id);
+				}
+			}
+			foreach ($myRates as $rate) {
+				$rate->trait_name = $rate->getTraitName($rate->rate_trait_id);
+			}
+			$myRatesGrouped = $myRates->groupBy('from_id');
+			// return $ratesDoneByMe;
+		    return ['ratesDoneByMe' => $ratesDoneByMe, 'myRatesGrouped' => $myRatesGrouped, 'myRates' => $myRates];
 		});
 
 		Route::get('get_traits/{cat}', function($cat) {
@@ -173,10 +214,6 @@ Route::group(['middleware' => ['auth']], function () {
 						$check->rate = $value;
 						$check->review = $request['review'];
 						$check->save();
-						// $text = 'Someone rated you personally!';
-						// $url = '/profile/' . $request['id'];
-						// $user = User::whereId($request['id'])->first();
-						// $user->newNotification($request['id'], Auth::id(), $text, $url);	
 					}else{
 						$rate = new Rate([
 							'from_id' => Auth::user()->id,
@@ -192,6 +229,14 @@ Route::group(['middleware' => ['auth']], function () {
 				}
 
 			}
+			$rates = Rate::whereFromId(Auth::id())->whereUserId($request['id'])
+							->whereCategory('personal')
+							->get();
+			foreach ($rates as $rate) {
+				$rate->updated_at = Carbon::now();
+				$rate->save();
+			}
+
 
 			return ['check' => true];
 		});

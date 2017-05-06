@@ -14,7 +14,7 @@
 									@{{trait.name}}
 								</div>
 								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-									<jk-rating-stars max-rating="10" rating="ratings[trait.id]" read-only="ctrl.readOnly" on-rating="onRating(rating, trait)" >
+									<jk-rating-stars max-rating="5" rating="ratings[trait.id]" read-only="ctrl.readOnly" on-rating="onRating(rating, trait)" >
 									</jk-rating-stars>
 								</div>
 							</div>
@@ -80,7 +80,7 @@
 			$this.button('loading');
 
           angular.forEach($scope.ratings, function(v, k) {
-          	$scope.ratings[k] = v * 10;
+          	$scope.ratings[k] = v * 5;
           })
 
 			$http.post('/rate/personal', {
@@ -90,7 +90,7 @@
 			}).then(function (data) {
 
 	          angular.forEach($scope.ratings, function(v, k) {
-	          	$scope.ratings[k] = v / 10;
+	          	$scope.ratings[k] = v / 5;
 	          })
 			  if(data.data.check) {
 			    $this.button('reset');
@@ -125,7 +125,7 @@
           $scope.ratings = [];
           var total = [];
           angular.forEach($scope.social, function(v, k) {
-            $scope.ratings[v.rate_trait_id] = v.rate / 10;
+            $scope.ratings[v.rate_trait_id] = v.rate / 5;
             if(v.rate != 0) {
                 total.push(v.rate);
             }

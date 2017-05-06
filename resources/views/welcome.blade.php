@@ -35,6 +35,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 <script src="{{secure_url('/js/app.js')}}"></script>
 <script src="{{secure_url('/js/angular-filter.min.js')}}"></script>
+<script src="{{secure_url('/js/ext/angular-rel-date.min.js')}}"></script>
 
 
 
