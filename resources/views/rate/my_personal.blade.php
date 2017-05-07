@@ -53,8 +53,6 @@
 </script>
 <div class="container"  style="min-height: 580px;" ng-controller="myPersonalCtrl">
 	<div class="row" style="margin:0px;">
-		<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-		</div>
 		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 			<div class="thumbnail">
 				<div class="image-upload">
@@ -68,13 +66,13 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+		<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
 			<div ng-repeat="(key, value) in myTraits | groupBy: 'trait_name'">
-				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="">
-						<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-							<h4>@{{key}}</h4>
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+						<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+							<span class="overflowed">@{{key}}</span>
 						</div>
-						<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9" ng-init="val = cc(value)">
+						<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8" ng-init="val = cc(value)">
 							<jk-rating-stars max-rating="5" rating="val/5" read-only="1">
 							</jk-rating-stars>
 						</div>
@@ -100,10 +98,11 @@
 	        			</center>
 	        			<br>
 	        			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-repeat="trait in rate">	        				
-							<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-								<h4>@{{trait.trait_name}}</h4>
+							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+								<img ng-src="/traits-icons/@{{trait.trait_name}}.png" width="25px" style="padding-right: 10px">
+								<span class="overflowed">@{{trait.trait_name}}</span>
 							</div>
-							<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 								<jk-rating-stars max-rating="5" rating="trait.rate / 5" read-only="1">
 								</jk-rating-stars>
 							</div>
@@ -133,10 +132,11 @@
 	        			</center>
 	        			<br>
 	        			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-repeat="trait in rate">	        				
-							<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-								<h4>@{{trait.trait_name}}</h4>
+							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+								<img ng-src="/traits-icons/@{{trait.trait_name}}.png" width="25px" style="padding-right: 10px">
+								<span class="overflowed">@{{trait.trait_name}}</span>
 							</div>
-							<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 								<jk-rating-stars max-rating="5" rating="trait.rate / 5" read-only="1">
 								</jk-rating-stars>
 							</div>

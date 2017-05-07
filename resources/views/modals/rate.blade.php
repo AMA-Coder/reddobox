@@ -11,7 +11,8 @@
 						<div ng-repeat="trait in traits">
 							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="padding-bottom: 20px">
 								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-									@{{trait.name}}
+								<img ng-src="/traits-icons/@{{trait.name}}.png" width="30px" style="padding-right: 10px">
+								<span>@{{trait.name}}</span>
 								</div>
 								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 									<jk-rating-stars max-rating="5" rating="ratings[trait.id]" read-only="ctrl.readOnly" on-rating="onRating(rating, trait)" >

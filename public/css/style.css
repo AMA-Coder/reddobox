@@ -370,3 +370,11 @@ label{
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
 }
+
+.overflowed {
+    display:inline-block;
+    /*width:60px;*/
+    white-space: nowrap;
+    overflow:hidden !important;
+    text-overflow: ellipsis;
+}
