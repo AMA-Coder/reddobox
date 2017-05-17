@@ -21,7 +21,7 @@
 							</div>
 						</div>
 					</div>
-					<textarea  onkeyup="checkRtl(this)" ng-model="review" class="form-control" rows="5" required="required" placeholder="Leave a note.."></textarea>
+					<textarea ng-disabled="ratings.length && r" onkeyup="checkRtl(this)" ng-model="review" class="form-control" rows="5" required="required" placeholder="Leave a note.."></textarea>
 					<style>
 						.rtl {
 					    direction: rtl; 
@@ -85,7 +85,7 @@
           })
 
 			$http.post('/rate/personal', {
-			    review: $scope.review, 
+			    review: $scope.review,
 			    id: $scope.user.id,
 			    rates: $scope.ratings
 			}).then(function (data) {
@@ -131,6 +131,7 @@
                 total.push(v.rate);
             }
             $scope.review = v.review;
+            $scope.r = v.review;
           })
 
           $scope.total = 0;

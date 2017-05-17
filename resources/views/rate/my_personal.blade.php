@@ -60,7 +60,7 @@
 		    $http.post('/rate/getPersonal').then(function(res) {
 			    $scope.myRates = res.data.myRatesGrouped;
 			    $scope.myRatesArray = sort($scope.myRates);
-
+			    console.log(JSON.stringify($scope.ratesByMe) === JSON.stringify(res.data.ratesDoneByMe))
 			    $scope.ratesByMe = res.data.ratesDoneByMe;
 			    $scope.ratesByMeArray = sort($scope.ratesByMe);
 		    }).then(function () {
@@ -82,10 +82,6 @@
 		    	})
 			}
 	    }
-
-	    setInterval(function () {
-			$scope.refresh(null, true)
-	    }, 10000)
 
 	})
 </script>
