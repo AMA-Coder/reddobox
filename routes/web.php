@@ -95,7 +95,6 @@ Route::group(['middleware' => ['auth']], function () {
 		});
 
 		Route::get('details', function(Request $request) {
-			if($request['cat'] == 'personal') {
 				$ratesDoneByMe = Rate::where('from_id', Auth::id())->with('user')->get()->groupBy('user_id');
 				$myRates = Rate::where('user_id', Auth::id())->get();
 				foreach ($ratesDoneByMe as $rate) {
@@ -112,7 +111,6 @@ Route::group(['middleware' => ['auth']], function () {
 				$myRatesGrouped = $myRates->groupBy('from_id');
 				// return $ratesDoneByMe;
 			    return view('rate.my_personal', compact('ratesDoneByMe', 'myRatesGrouped', 'myRates'));
-			}
 		});
 
 		Route::post('getPersonal', function() {

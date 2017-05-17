@@ -35,7 +35,7 @@
 		          <p><div ng-controller="showRatesCtrl">
 			          <div class="row">
 				          <div class="col-xs-12">
-					          <a href="#" ng-click="read('Someone rated you personally!', '/rate/details?cat=personal')">
+					          <a href="#" ng-click="read('Someone rated you personally!', '/rate/details')">
 						        <center><h5><i class="fa fa-user"></i> Personal <span ng-show="personalNotes.length" class="badge color" style="background: red !important; margin-left: 5px">@{{personalNotes.length}}</span></h5></center>
 						      </a>
 		                    <div style="display: block; height: 10px; width: 100%; background: lightgrey"></div>
