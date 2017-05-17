@@ -11,6 +11,7 @@ use App\projectRate;
 use App\Notification;
 use App\projectInvitation as Invitation;
 use Carbon\Carbon;
+use App\Chat;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,16 @@ use Carbon\Carbon;
 | to using a Closure or controller method. Build something great!
 |
 */
+
+Route::post('chat', function(Request $request) {
+    $chats = new Chat([
+    	'message' => $request['message']
+    ]);
+    $chats->sentTo()->associate(User::find($request['to']));
+    $chats->sentFrom()->associate(User::find($request['from']));
+    $chats->anonymous()->associate(User::find($request['anon']));
+    $chats->save();
+});
 
 Route::get('/', function () {
 
@@ -86,17 +97,17 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::get('details', function(Request $request) {
 			if($request['cat'] == 'personal') {
 				$ratesDoneByMe = Rate::where('from_id', Auth::id())->with('user')->get()->groupBy('user_id');
-				// return $ratesDoneByMe;
 				$myRates = Rate::where('user_id', Auth::id())->get();
-				// return $myRates;
-				// return $ratesDoneByMe;
 				foreach ($ratesDoneByMe as $rate) {
 					foreach ($rate as $r) {
 						$r->trait_name = $r->getTraitName($r->rate_trait_id);
+						$r->chats = $r->getChatsReddo();
 					}
 				}
+				// return $ratesDoneByMe;
 				foreach ($myRates as $rate) {
 					$rate->trait_name = $rate->getTraitName($rate->rate_trait_id);
+					$rate->chats = $rate->getChatsRecieved();
 				}
 				$myRatesGrouped = $myRates->groupBy('from_id');
 				// return $ratesDoneByMe;
@@ -113,10 +124,12 @@ Route::group(['middleware' => ['auth']], function () {
 			foreach ($ratesDoneByMe as $rate) {
 				foreach ($rate as $r) {
 					$r->trait_name = $r->getTraitName($r->rate_trait_id);
+					$r->chats = $r->getChatsReddo();
 				}
 			}
 			foreach ($myRates as $rate) {
 				$rate->trait_name = $rate->getTraitName($rate->rate_trait_id);
+				$rate->chats = $rate->getChatsRecieved();
 			}
 			$myRatesGrouped = $myRates->groupBy('from_id');
 			// return $ratesDoneByMe;
